@@ -22,13 +22,13 @@ def get_all_event():
         list.append(current)
     return list
 
-def get_location(serverId, channelId, messageId):
+def get_eventid_by_location(serverId, channelId, messageId):
     records = connector.select_query(f"""select eventId from discordLocation where serverId = {serverId} AND channelId = {channelId} AND messageId = {messageId} """)
     return records[0][0]
 
 def get_event_from_location(serverId, channelId, messageId):
-    location = get_location(serverId, channelId, messageId)
-    event = get_event(location[0][0])
+    id = get_eventid_by_location(serverId, channelId, messageId)
+    event = get_event(id)
     return event
 
 def create_event():
