@@ -4,7 +4,7 @@ import sys
 import pathlib
 path = pathlib.Path().absolute()
 sys.path.append(f'{path}/connector/')
-from event import Event
+import event
 import connector 
 
 def get_event(event_id):
@@ -14,7 +14,7 @@ def get_event(event_id):
     cursor.execute(select_query, (event_id,))
     records = cursor.fetchall()
     row = records[0]
-    current = make_event(row[0], row[1], row[2]) 
+    current = event.make_event(row[0], row[1], row[2]) 
     connector.close_connection(connection)
     return current
 
@@ -26,7 +26,7 @@ def get_all_event():
     cursor.execute(select_query)
     records = cursor.fetchall()
     for row in records:
-        current = make_event(row[0], row[1], row[2]) 
+        current = event.make_event(row[0], row[1], row[2]) 
         list.append(current)
     connector.close_connection(connection)
     return list
