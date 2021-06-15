@@ -19,3 +19,13 @@ def select_query(query):
     records = cursor.fetchall()
     close_connection(connection)
     return records
+
+def insert_query(query):
+    connection = get_connection()
+    cursor = connection.cursor()
+    cursor.execute(query)
+    records = cursor.fetchall()
+    connection.commit()
+    id = connection.insert_id()
+    close_connection(connection)
+    return id
