@@ -6,6 +6,7 @@ path = pathlib.Path().absolute()
 sys.path.append(f'{path}/connector/')
 import event
 import connector 
+import pprint
 
 def get_event(event_id):
     connection = connector.get_connection()
@@ -38,5 +39,15 @@ def get_event_from_location(serverId, channelId, messageId):
     cursor.execute(select_query)
     records = cursor.fetchall()
     event = get_event(records[0][0])
+    connector.close_connection(connection)
+    return event
+
+def create_event():
+    connection = connector.get_connection()
+    cursor = connection.cursor()
+    select_query = f"""INSERT INTO event (players, time) VALUES ("juju", "asap"); """
+    cursor.execute(select_query)
+    records = cursor.fetchall()
+    pprint(f"this is my creation query: {records}")
     connector.close_connection(connection)
     return event
