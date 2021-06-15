@@ -1,4 +1,3 @@
-import pprint
 import discord 
 import sys
 import pathlib
@@ -31,12 +30,12 @@ async def on_ready():
     print('We have logged in as {0.user}'.format(client))
     print('\n\n!planning-sot-4-20h30-here')
     Reset()
-    pprint('-------- testing ---------')
+    print('-------- testing ---------')
     test = event_rep.get_all_event()
     for ev in test:
         print(f'id {ev.id} players {ev.players}')
     event_rep.create_event()
-    pprint('------ testing end -------')
+    print('------ testing end -------')
     
 
 # Registering Receving Message event
