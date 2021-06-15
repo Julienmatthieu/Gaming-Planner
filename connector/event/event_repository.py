@@ -1,12 +1,11 @@
-from event import Event
 import mysql.connector
 from mysql.connector import Error
-from event import *
 import sys
-sys.path.append('../')
-from connector
-
-print(globals())
+import pathlib
+path = pathlib.Path().absolute()
+sys.path.append(f'{path}/connector/')
+from event import Event
+import connector 
 
 def get_event(event_id):
     connection = connector.get_connection()

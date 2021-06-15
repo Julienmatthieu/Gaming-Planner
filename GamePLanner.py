@@ -1,13 +1,14 @@
 import discord 
 import sys
-sys.path.append('./Ressources/')
+import pathlib
+path = pathlib.Path().absolute()
+sys.path.append(f'{path}/Ressources/')
+sys.path.append(f'{path}/connector/event')
 import ressources as res
 import commands as com
-import keys
-sys.path.append('./connector/event')
 import event_repository as event_rep
-from event import *
-
+import keys
+ 
 intents = discord.Intents.default()
 intents.members = True
 client = discord.Client(intents=intents)
