@@ -8,28 +8,30 @@ import event
 import connector 
 
 def get_event(event_id):
-    connection = connector.get_connection()
-    cursor = connection.cursor()
-    select_query = """select * from event where id = %s"""
-    cursor.execute(select_query, (event_id,))
-    records = cursor.fetchall()
+    records = connector.select_query(f"""select * from event where id = {event_id}""")
     row = records[0]
     current = event.make_event(row[0], row[1], row[2]) 
-    connector.close_connection(connection)
     return current
 
 def get_all_event():
     list = []
-    connection = connector.get_connection()
-    cursor = connection.cursor()
-    select_query = """select * from event"""
-    cursor.execute(select_query)
-    records = cursor.fetchall()
+
+    records = connector.select_query("""select * from event""")
     for row in records:
         current = event.make_event(row[0], row[1], row[2]) 
         list.append(current)
-    connector.close_connection(connection)
     return list
+
+    #connection = connector.get_connection()
+    #cursor = connection.cursor()
+    #select_query = 
+    #cursor.execute(select_query)
+    #records = cursor.fetchall()
+    #for row in records:
+    #    current = event.make_event(row[0], row[1], row[2]) 
+    #    list.append(current)
+    #connector.close_connection(connection)
+    #return list
 
 def get_event_from_location(serverId, channelId, messageId):
     connection = connector.get_connection()

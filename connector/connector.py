@@ -11,3 +11,11 @@ def get_connection():
 def close_connection(connection):
     if connection:
         connection.close()
+
+def select_query(query):
+    connection = get_connection()
+    cursor = connection.cursor()
+    cursor.execute(query)
+    records = cursor.fetchall()
+    close_connection(connection)
+    return records
