@@ -26,6 +26,6 @@ def insert_query(query):
     cursor.execute(query)
     records = cursor.fetchall()
     connection.commit()
-    id = connection.insert_id()
+    id = cursor.lastrowid
     close_connection(connection)
     return id
