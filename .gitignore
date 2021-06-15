@@ -1,4 +1,4 @@
 /.vscode
 /ARchive
-/Ressources/keys.py
-/connector/ressources.py
+Ressources/keys.py
+connector/ressources.py
