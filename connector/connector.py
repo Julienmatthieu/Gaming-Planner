@@ -1,12 +1,12 @@
 import mysql.connector
 from mysql.connector import Error
-import ressources
+import keys
 
 def get_connection():
-    return mysql.connector.connect(host=ressources.host,
-                                         database=ressources.database,
-                                         user=ressources.user,
-                                         password=ressources.password)
+    return mysql.connector.connect(host=keys.host,
+                                         database=keys.database,
+                                         user=keys.user,
+                                         password=keys.password)
 
 def close_connection(connection):
     if connection:
