@@ -4,7 +4,7 @@ from mysql.connector import Error
 from event import *
 import sys
 sys.path.append('../')
-import connector
+from connector import *
 
 def get_event(event_id):
     connection = connector.get_connection()
