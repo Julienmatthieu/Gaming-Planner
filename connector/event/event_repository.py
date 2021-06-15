@@ -44,8 +44,9 @@ def get_event_from_location(serverId, channelId, messageId):
 def create_event():
     connection = connector.get_connection()
     cursor = connection.cursor()
-    select_query = f"""INSERT INTO event (players, time) VALUES ("juju", "asap"); """
+    select_query = f"""INSERT INTO event (players, time) VALUES ("juju, steve", "asap") """
     cursor.execute(select_query)
+    connector.commit()
     records = cursor.fetchall()
     print(f"this is my creation query: {records}")
     connector.close_connection(connection)
