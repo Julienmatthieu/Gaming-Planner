@@ -27,11 +27,12 @@ def insert_query(query):
         cursor.execute(query)
         cursor.fetchall()
         connection.commit()
+        id = cursor.lastrowid
         close_connection(connection)
-        return 0
+        return id
     except ValueError:
-        print(f"Error {ValueError} while execution of insert query:\'{query}\'")
-        return 1
+        print(f"Error {ValueError} while execution of query:\'{query}\'")
+        return -1
 
 def delete_query(query):
     try:
@@ -43,5 +44,5 @@ def delete_query(query):
         close_connection(connection)
         return 0
     except ValueError:
-        print(f"Error {ValueError} while execution of delete query:\'{query}\'")
-        return 1
+        print(f"Error {ValueError} while execution of query:\'{query}\'")
+        return -1
