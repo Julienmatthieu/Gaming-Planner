@@ -46,7 +46,7 @@ def create_event():
     cursor = connection.cursor()
     select_query = f"""INSERT INTO event (players, time) VALUES ("juju, steve", "asap") """
     cursor.execute(select_query)
-    connector.commit()
+    connection.commit()
     records = cursor.fetchall()
     print(f"this is my creation query: {records}")
     connector.close_connection(connection)
