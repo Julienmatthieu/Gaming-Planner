@@ -4,6 +4,9 @@ sys.path.append('./Ressources/')
 import ressources as res
 import commands as com
 import keys
+sys.path.append('./connector/event')
+import event_repository as event_rep
+from event import *
 
 intents = discord.Intents.default()
 intents.members = True
@@ -26,6 +29,9 @@ async def on_ready():
     print('We have logged in as {0.user}'.format(client))
     print('\n\n!planning-sot-4-20h30-here')
     Reset()
+    test = event_rep.get_all_event()
+    for ev in test:
+        print(f'id {ev.id} players {ev.players}')
 
 # Registering Receving Message event
 @client.event
