@@ -35,8 +35,8 @@ async def on_ready():
     for ev in test:
         print(f'id {ev.id} players {ev.players}')
     event_rep.create_event()
-    location = event_rep.get_event_from_location(1, 1, 1)
-    print(f"event from location {location}")
+    event = event_rep.get_event_from_location(1, 1, 1)
+    print(f"event from location {event.id}, {event.players}, {event.time}")
     print('------ testing end -------')
     
 
