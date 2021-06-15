@@ -21,11 +21,27 @@ def select_query(query):
     return records
 
 def insert_query(query):
-    connection = get_connection()
-    cursor = connection.cursor()
-    cursor.execute(query)
-    records = cursor.fetchall()
-    connection.commit()
-    id = cursor.lastrowid
-    close_connection(connection)
-    return id
+    try:
+        connection = get_connection()
+        cursor = connection.cursor()
+        cursor.execute(query)
+        cursor.fetchall()
+        connection.commit()
+        close_connection(connection)
+        return 0
+    except ValueError:
+        print(f"Error {ValueError} while execution of insert query:\'{query}\'")
+        return 1
+
+def delete_query(query):
+    try:
+        connection = get_connection()
+        cursor = connection.cursor()
+        cursor.execute(query)
+        cursor.fetchall()
+        connection.commit()
+        close_connection(connection)
+        return 0
+    except ValueError:
+        print(f"Error {ValueError} while execution of delete query:\'{query}\'")
+        return 1
