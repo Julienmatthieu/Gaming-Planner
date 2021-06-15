@@ -1,0 +1,10 @@
+#commands
+commandSign='!'
+cancel='cancel'
+planning='planning'
+clear='clear'
+help='help'
+here='here'
+set_channel='here'
+unset_channel='nothere'
+reset='reset'
