@@ -199,7 +199,7 @@ async def PlanningEvent(message):
     print("\n")
     print("\n")
     print(f"new event gn = ->{new_event.gameName}<-, slots= {new_event.slots} author = {new_event.author} eetcc ")
-    print(f"new location GId = ->{new_event.guildId}<-, channelId= {new_event.channelId}  eetcc")
+    print(f"new location GId = ->{new_location.guildId}<-, channelId= {new_location.channelId}  eetcc")
 
     testId = event_rep.create_event(new_event, new_location)
     print(f"OUR FIRST EVENT ID IS {testId}")
