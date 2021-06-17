@@ -58,16 +58,16 @@ async def on_ready():
     print('We have logged in as {0.user}'.format(bot))
     print('\n\n!planning-Sea Of Thieves-4-20h30-here')   
 
-# Registering Receving Message event
-@bot.event
-async def on_message(message):
-    # def tool
-    if message.content.startswith(res.commandSign):
-        await bot.process_commands(message)
-    elif message.author == bot.user and str(message.channel.type) != res.msg_type['dm']:
-        await MessageFromBot(message)
-    elif str(message.channel.type) == res.msg_type['dm'] and message.author != bot.user:
-        await plan_serv.building_together(message, bot)
+## Registering Receving Message event
+#@bot.event
+#async def on_message(message):
+#    # def tool
+#    if message.content.startswith(res.commandSign):
+#        await bot.process_commands(message)
+#    elif message.author == bot.user and str(message.channel.type) != res.msg_type['dm']:
+#        await MessageFromBot(message)
+#    elif str(message.channel.type) == res.msg_type['dm'] and message.author != bot.user:
+#        await plan_serv.building_together(message, bot)
 
 @bot.event
 async def on_raw_reaction_add(payload):
