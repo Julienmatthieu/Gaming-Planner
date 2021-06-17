@@ -133,12 +133,12 @@ async def Commades(message):
         await message.delete()
 
 async def PlanningCommand(message):
-    if str(message.channel.type) != res.msg_type['dm']:
+    if str(message.channel.type) == res.msg_type['dm']:
         message.channel.send(res.error['not_here'])
         return
 
     authorDb = await usr_serv.get_or_create_user(message.author)
-    
+   
     event = await event_serv.new_event(message, authorDb)
     if message.content != com.commandSign + com.planning:
         event = await event_serv.no_step(message.content, authorDb, event)
