@@ -5,7 +5,7 @@ import discord
 from user_service import get_or_create_user
 from event_service import new_event, update_event, get_location_by_event, get_last_event_by_userId
 import message_service as msg_serv
-import resource as res
+import ressources as res
 from event import Event, Location
 #from GamePLanner import client 
 
