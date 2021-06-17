@@ -19,7 +19,8 @@ msg_dict = {
 }
 
 error = {
-    'event-not-found':    'Aucun évènement en cours. Vous pouvez en créer un nouveau avec la commande !planning' 
+    'event-not-found':  'Aucun évènement en cours. Vous pouvez en créer un nouveau avec la commande !planning',
+    'not_here':         'Commande non utilisable dans ce channel.'   
 }
 
 msg_type = {

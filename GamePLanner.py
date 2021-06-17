@@ -111,8 +111,8 @@ async def Commades(message):
         await message.channel.send(f'>>> Commades disponible:\
                                             \n\t{com.commandSign}{com.set_channel}: défini le chan d\'acttion du bot. A configurer a chaque redémarage\
                                             \n\t{com.commandSign}{com.unset_channel}: annule la configuration du chan\
-                                            \n\t{com.commandSign}{com.planning} pour créer une session de jeu étape par étape\
-                                            \n\t{com.commandSign}{com.planning}-GameName-NombreDeJoueurs-Date-Role pour créer une session en une seule commande\
+                                            \n\t{com.commandSign}{com.planning} pour créer une session de jeu étape par étape (Non utilisable en MP)\
+                                            \n\t{com.commandSign}{com.planning}-GameName-NombreDeJoueurs-Date-Role pour créer une session en une seule commande (Non utilisable en MP)\
                                             \n\t{com.commandSign}{com.clear}: supprime tous les messages du bot\
                                             \n\t{com.commandSign}{com.cancel}: annule la session en cours de création')
     elif message.content.startswith(com.commandSign + com.set_channel):
@@ -133,6 +133,10 @@ async def Commades(message):
         await message.delete()
 
 async def PlanningCommand(message):
+    if str(message.channel.type) != res.msg_type['dm']:
+        message.channel.send(res.error['not_here'])
+        return
+
     authorDb = await usr_serv.get_or_create_user(message.author)
     
     event = await event_serv.new_event(message, authorDb)
