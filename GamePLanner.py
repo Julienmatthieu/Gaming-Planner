@@ -51,9 +51,6 @@ async def on_ready():
 # Registering Receving Message event
 @client.event
 async def on_message(message):
-    global planningStep, slots, gameName, hours, min, even_message_id, channel
-
-    print(f"\n\n{message.channel.type}\n\n")
 
     if message.channel.type == res.msg_type['dm']:
         await plan_serv.planning_event(message)
