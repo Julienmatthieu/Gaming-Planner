@@ -1,3 +1,4 @@
+from GamePLanner import ClearHisto
 from os import error
 from sys import audit
 import discord 
@@ -20,6 +21,9 @@ async def building_together(message):
 
 #Steps
 async def next_step(message, authorDb, event):
+    global client
+
+    test = client.get_user(int(authorDb.discordDb))
 
     if event.step == res.steps['none']:
         new_event(message, authorDb)
