@@ -36,12 +36,7 @@ async def on_ready():
 
 
 @bot.command(name='list', help="test a changer")
-
-
-@bot.command(name='list')
-
-@bot.command(name="bite")
-async def ERZZEbutton(ctx):
+async def button(ctx):
     await ctx.send(
         "Hello, World!",
         components = [
@@ -130,6 +125,7 @@ async def clear(ctx):
 
 @bot.command(name=res.planning, help=res.help['planning'])
 async def PlanningCommand(ctx):
+
     message = ctx.message
     if str(message.channel.type) == res.msg_type['dm']:
         await message.channel.send(res.error['not_here'])
