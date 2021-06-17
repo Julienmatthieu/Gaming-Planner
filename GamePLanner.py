@@ -36,6 +36,8 @@ async def on_ready():
     print(f"Logged in as {bot.user}!")
 
 
+
+
 @bot.command(name='list')
 async def button(ctx):
     await ctx.send(
@@ -145,6 +147,7 @@ async def Commades(message):
     if str(message.channel.type) != res.msg_type['dm']:
         await message.delete()
 
+@bot.command(name='planning')
 async def PlanningCommand(message):
     if str(message.channel.type) == res.msg_type['dm']:
         await message.channel.send(res.error['not_here'])
