@@ -66,7 +66,8 @@ async def on_message(message):
     elif message.author == bot.user and str(message.channel.type) != res.msg_type['dm']:
         await MessageFromBot(message)
     elif str(message.channel.type) == res.msg_type['dm'] and message.author != bot.user:
-        await plan_serv.building_together(message, bot)
+        await message.channel.send("ok m8")
+        #await plan_serv.building_together(message, bot)
 
 @bot.event
 async def on_raw_reaction_add(payload):
