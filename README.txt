@@ -9,8 +9,7 @@ instal
 - lib
 	pip install discord.py
 	pip install mysql-connector-python
-	pip install discord-buttons
 	pip install discord-components
-
+	pip install --upgrade discord-components
 
 Voir get-pip.py en cas de pb
