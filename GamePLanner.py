@@ -126,7 +126,7 @@ async def clear(ctx):
     await msg_serv.FullClear(message)
 
 @bot.command(name=com.help)
-async def help(ctx):
+async def need_help(ctx):
     await ctx.channel.send(f'>>> Commades disponible:\
         \n\t{com.commandSign}{com.set_channel}: défini le chan d\'acttion du bot. A configurer a chaque redémarage\
         \n\t{com.commandSign}{com.unset_channel}: annule la configuration du chan\
