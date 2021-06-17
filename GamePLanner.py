@@ -167,6 +167,7 @@ async def PlanningCommand(message):
     
     user2 = client.get_user(int(authorDb.discordId))
     await user2.send("hello world")
+    return
 #    await client.send(user2, "Hello World")
 
 
