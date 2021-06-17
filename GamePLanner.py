@@ -74,7 +74,6 @@ def CreatePlayerList(author):
     players = list()
     players.append(author)
 
-
 def AddUserToEvent(user):
     if len(players) < slots:
         players.append(user.name)

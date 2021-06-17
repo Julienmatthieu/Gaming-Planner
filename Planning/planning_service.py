@@ -13,7 +13,6 @@ async def building_together(message, client):
     authorDb = await get_or_create_user(message.author)
     event = await get_last_event_by_userId(authorDb.id)
     if event == None:
-        print(f"\n\n  Client USer name : {message.author.name} ------- \n")
         await message.author.send(res.error['event-not-found'])
         return
     await next_step(message, authorDb, event, client)
@@ -57,5 +56,5 @@ async def next_step(message, authorDb, event, client):
         await update_event(event)
         await message.author.send(res.msg_dict['done'])
         Location = await get_location_by_event(event)
-       # channel = client.get_channel(int(Location.channelId))
-       # channel.send(await msg_serv.BuildInvitMessage(event, authorDb))
+        channel = client.get_channel(int(Location.channelId))
+        channel.send(await msg_serv.BuildInvitMessage(event, authorDb))
