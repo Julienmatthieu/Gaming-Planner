@@ -92,14 +92,14 @@ async def UpdateCurrentEvent(payload):
     user = client.get_user(payload.user_id)
 
     if payload.emoji.name == res.emojis_dict['cross'] and payload.user_id == author.id:
-        await plan_serv.CancelCurrentEvent(message, client)
+        await plan_serv.CancelCurrentEvent(message)
         return
     if payload.emoji.name == res.emojis_dict['thumbs_up'] and not user.name in players:
         AddUserToEvent(user)
     elif payload.emoji.name == res.emojis_dict['thumbs_down'] and user.name in players:
         RemoveUserFromEvent(user)
         if len(players) == 0:
-            await plan_serv.CancelCurrentEvent(message, client)
+            await plan_serv.CancelCurrentEvent(message)
             return
     await UpdateMessage(payload.message_id, client.get_channel(payload.channel_id), msg_serv.BuildInvitMessage(None))
 
@@ -126,7 +126,7 @@ async def Commades(message):
     elif message.content == com.commandSign + com.clear:
         await msg_serv.FullClear(message.channel)
     elif message.content == com.commandSign + com.cancel or message.content == com.commandSign + com.reset:
-        await plan_serv.CancelCurrentEvent(message, client)
+        await plan_serv.CancelCurrentEvent(message)
         await msg_serv.FullClear(message.channel)
     else:
         await message.channel.send('>>> Commande inconnue. Utilisez !help pour de l\'aide')

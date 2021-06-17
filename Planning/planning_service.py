@@ -58,7 +58,7 @@ async def next_step(message, authorDb, event, client):
         channel = client.get_channel(int(Location.channelId))
         await channel.send(msg_serv.BuildInvitMessage(event, authorDb))
 
-async def CancelCurrentEvent(message, client):
+async def CancelCurrentEvent(message):
     authorDb = await get_or_create_user(message.author)
     event = await get_last_event_by_userId(authorDb.id)
 
