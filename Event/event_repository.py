@@ -43,7 +43,7 @@ async def update_location_message(location):
 # Getters 
 
 async def get_by_userId(userId):
-    query = f""" SELECT * FROM event WHERE step >= {res.steps['init']}  AND authorId == {userId} ORDER BY id desc """
+    query = f""" SELECT * FROM event WHERE step >= {res.steps['init']}  AND authorId = {userId} ORDER BY id desc """
     records = connector.select_query(query)
     if len(records) == 0:
         return None
