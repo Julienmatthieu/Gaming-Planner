@@ -18,9 +18,9 @@ class Event(object):
 
 class Location(object):
     id = 0
-    guildId = 0
-    channelId = 0
-    messageId = 0
+    guildId = "0"
+    channelId = "0"
+    messageId = "0"
     eventId = 0
 
     def __init__(self, id, guildId, channelId, messageId, eventId):
