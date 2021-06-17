@@ -41,7 +41,7 @@ async def on_ready():
 @bot.command(name='list')
 
 @bot.command(name="bite")
-async def button(ctx):
+async def ERZZEbutton(ctx):
     await ctx.send(
         "Hello, World!",
         components = [
