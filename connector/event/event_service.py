@@ -2,6 +2,7 @@ import discord
 
 import event_repository as repo
 from event import Event, Location
+import ressources as res
 
 async def get_last_unset_event(message):
     location = await repo.get_last_location(message.guild.id, message.channel.id)
