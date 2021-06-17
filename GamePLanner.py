@@ -148,7 +148,8 @@ async def Commades(message):
         await message.delete()
 
 @bot.command(name='planning')
-async def PlanningCommand(message):
+async def PlanningCommand(ctx):
+    message = ctx.message
     if str(message.channel.type) == res.msg_type['dm']:
         await message.channel.send(res.error['not_here'])
         return
