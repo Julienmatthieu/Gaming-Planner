@@ -52,6 +52,7 @@ async def on_ready():
 @client.event
 async def on_message(message):
 
+    print(message.channel.type)
     if message.channel.type == res.msg_type['dm']:
         print('i am in a dm message')
         await plan_serv.planning_event(message)
