@@ -52,9 +52,6 @@ async def on_ready():
 @client.event
 async def on_message(message):
 
-    if str(message.channel.type) == res.msg_type['dm']:
-        await plan_serv.building_together(message)
-
     if channel != '' and channel != message.channel or channel == '' and not message.content.startswith(com.commandSign):
         return
 
@@ -63,6 +60,8 @@ async def on_message(message):
         await Commades(message)
     elif message.author == client.user and channel != '':
         await MessageFromBot(message)
+    elif str(message.channel.type) == res.msg_type['dm']:
+        await plan_serv.building_together(message)
 
 @client.event
 async def on_raw_reaction_add(payload):
