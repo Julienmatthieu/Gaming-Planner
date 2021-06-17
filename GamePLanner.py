@@ -1,3 +1,4 @@
+from os import name
 import discord 
 import sys
 import pathlib
@@ -8,6 +9,7 @@ import ressources as res
 import commands as com
 import event_repository as event_rep
 import keys
+from event import Event, Location
  
 intents = discord.Intents.default()
 intents.members = True
@@ -188,7 +190,19 @@ async def Commades(message):
         await message.channel.send('>>> Commande inconnue. Utilisez !help pour de l\'aide')
     await message.delete()
 
+async def PlanningEvent(message):
+    data=message.content.split('-')
+    author = message.author.name
+    new_event = Event(id=0, gameName=data[1], slots=int(data[2]), time=data[3], author=author, player=author, role=data[4])
+
+    print(f"new event gn = {new_event.gameName}, slots= {new_event.slots} author = {new_event.author} eetcc ")
+
+    await message.channel.send(BuildInvitMessage())
+    await message.delete()
+
 async def DirectPLanning(message):
+    PlanningEvent(message)
+    return
     global planningStep, slots, gameName, date, role, author, even_message_id
 
     data=message.content.split('-')
