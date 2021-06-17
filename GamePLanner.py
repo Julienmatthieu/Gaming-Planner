@@ -192,6 +192,8 @@ async def PlanningCommand(message):
 
 async def MessageFromBot(message):
     location = await event_rep.get_last_location(message.guild.id, message.channel.id)
+    if (location == None):
+        return
     location.messageId = message.id
     print(f" \n\n ASSIGNING THIS MESSAGE {message.id} to location {location.id}")
     await event_rep.update_location_message(location)
