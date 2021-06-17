@@ -192,6 +192,7 @@ async def PlanningCommand(message):
 
     print("creating a user")
     user = User(0, author.name, author.id, author.avatar_url, author.display_name, author.mention)
+    user.print()
     await usr_rep.create_user(user)
     print("did it work ? ")
     return 
