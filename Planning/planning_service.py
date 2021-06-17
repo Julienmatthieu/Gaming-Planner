@@ -37,12 +37,20 @@ async def next_step(message, authorDb, event, bot):
         event.step = res.steps['slots']
         await update_event(event)
 
-        await message.author.send(
-            res.msg_dict['slots'],
+
+        await message.channel.send(
+            "Hello, World!",
             components = [
-                Button(label = "+")
+                Button(label = "WOW button!")
             ]
-        )   
+        )
+
+#        await message.author.send(
+#            res.msg_dict['slots'],
+#            components = [
+#                Button(label = "+")
+#            ]
+#        )   
         interaction = await bot.wait_for("button_click", check = lambda i: i.component.label.startswith("WOW"))
         await interaction.respond(content = "Button clicked!")
 
