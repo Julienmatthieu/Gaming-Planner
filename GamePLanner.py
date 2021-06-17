@@ -162,13 +162,11 @@ async def Commades(message):
 
 async def PlanningCommand(message):
     author = message.author
-    print("\n\n --------------- 1 ---------------\n\n")
 
     user = await usr_serv.get_or_create_user(message.author)
-    print("\n\n --------------- 2 ---------------\n\n")
 
     event = await event_serv.new_event(message, user)
-    print("\n\n --------------- 3 ---------------\n\n")
+    print("\n\n --------------- END ---------------\n\n")
     if message.content != com.commandSign + com.planning:
         event = await event_serv.no_step(message.content, user, event)
         await message.channel.send(msg_serv.BuildInvitMessage(event))
