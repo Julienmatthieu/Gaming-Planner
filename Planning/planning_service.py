@@ -14,7 +14,7 @@ async def building_together(message):
     authorDb = await get_or_create_user(message.author)
     event = await get_last_event_by_userId(authorDb.id)
     if event == None:
-        await await message.author.send(res.error['event-not-found'])
+        await message.author.send(res.error['event-not-found'])
         return
     await next_step(message, authorDb, event)
 
@@ -25,7 +25,7 @@ async def next_step(message, authorDb, event):
         new_event(message, authorDb)
         event.step = res.steps['game_name']
         await update_event(event)
-        await await message.author.send(res.msg_dict['game_name'])
+        await message.author.send(res.msg_dict['game_name'])
     elif event.step == res.steps['init']:
         event.step = res.steps['game_name']
         await update_event(event)
