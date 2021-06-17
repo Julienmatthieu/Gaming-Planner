@@ -15,11 +15,27 @@ async def create_event(event, location):
     locationId = connector.alter_query(query)
     return eventId
 
+async def get_last_location(guildId, channelId):
+    records = connector.select_query(f"""SELECT * FROM discordLocation WHERE guildId = {guildId} AND channelId = {channelId} AND messageId = 0 ORDER BY eventId DESC""")
+    row = records[0]
+    location = event.Location(row[0], row[1], row[2], row[3], row[4]) 
+    return location  
+
+# update 
+
+async def update_location_message(location):
+
+    query = f"""UPDATE discordLocation SET messageId = \"{location.messageId}\" WHERE id = {location.id} """
+    eventId = connector.alter_query(query)
+    return eventId
+
+# -------------------------------------------
+
 # Getters 
 async def get_event(event_id):
     records = connector.select_query(f"""SELECT * FROM event WHERE id = {event_id}""")
     row = records[0]
-    current = event.Event(row[0], row[1], row[2], row[3]) 
+    current = event.Event(row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7]) 
     return current
 
 async def get_all_event():
@@ -30,12 +46,6 @@ async def get_all_event():
         current = event.Event(row[0], row[1], row[2], row[3]) 
         list.append(current)
     return list
-
-async def get_last_location(guildId, channelId):
-    records = connector.select_query(f"""SELECT * FROM discordLocation WHERE guildId = {guildId} AND channelId = {channelId} AND messageId = 0 ORDER BY eventId DESC""")
-    row = records[0]
-    location = event.Location(row[0], row[1], row[2], row[3], row[4]) 
-    return location   
 
 async def get_location(location):
     records = connector.select_query(f"""SELECT * FROM discordLocation WHERE guildId = {location.guildId} AND channelId = {location.channelId} AND messageId = {location.messageId} """)
@@ -57,14 +67,6 @@ async def get_event_from_location(guildId, channelId, messageId):
     id = get_eventid_by_location(guildId, channelId, messageId)
     event = get_event(id)
     return event
-
-# update 
-
-async def update_location_message(location):
-
-    query = f"""UPDATE discordLocation SET messageId = \"{location.messageId}\" WHERE id = {location.id} """
-    eventId = connector.alter_query(query)
-    return eventId
 
 async def delete_event(id):
     connector.delete_query(f""" DELETE FROM discordLocation WHERE eventId = {id} """)

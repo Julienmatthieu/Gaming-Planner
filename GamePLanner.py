@@ -66,7 +66,7 @@ async def on_message(message):
     if message.content.startswith(com.commandSign):
         await Commades(message)
     elif message.author == client.user and channel != '':
-        await PlanningCommand(message)
+        await MessageFromBot(message)
     elif planningStep > 0 and channel != '':
         await Steps(message)
         return
@@ -170,12 +170,7 @@ async def Commades(message):
     elif channel == '':
         await message.channel.send(f'>>> Vous devez d\'abord m\'assigner a un chan. {com.commandSign}{com.set_channel}')
     elif message.content.startswith(com.commandSign + com.planning):
-        if message.content != com.commandSign + com.planning:
-            await DirectPLanning(message)
-            return
-        else:
-            await SimplePLanning(message)
-            await message.channel.send(res.msg_dict['game_name'])
+        await PlanningCommand(message)
     elif message.content == com.commandSign + com.clear:
         await FullClear(message.channel)
     elif message.content == com.commandSign + com.cancel:
@@ -188,10 +183,20 @@ async def Commades(message):
     await message.delete()
 
 async def PlanningCommand(message):
+    if message.content != com.commandSign + com.planning:
+        await DirectPLanning(message)
+        return
+    else:
+        await SimplePLanning(message)
+        await message.channel.send(res.msg_dict['game_name'])
+
+async def MessageFromBot(message):
     location = await event_rep.get_last_location(message.guild.id, message.channel.id)
     location.messageId = message.id
     print(f" \n\n ASSIGNING THIS MESSAGE {message.id} to location {location.id}")
     await event_rep.update_location_message(location)
+    event = event_rep.get_event(location.eventId)
+    event.print()
     return
     if message.content.startswith('@'):
         if even_message_id == None:
