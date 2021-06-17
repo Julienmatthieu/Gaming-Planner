@@ -20,8 +20,7 @@ async def building_together(message, client):
 
 #Steps
 async def next_step(message, authorDb, event, client):
-
-    test = client.get_user(int(authorDb.discordId))
+    event.print()
 
     if event.step == res.steps['none']:
         new_event(message, authorDb)
