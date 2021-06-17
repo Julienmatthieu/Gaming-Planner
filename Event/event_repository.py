@@ -1,6 +1,6 @@
 from event import Event, Location 
 import connector 
-import ressources as res
+import resources as res
 
 #approuved 
 async def create_event(event, location):

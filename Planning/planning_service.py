@@ -5,7 +5,7 @@ import discord
 from user_service import get_or_create_user
 from event_service import new_event, update_event, get_location_by_event, get_last_event_by_userId, delete_event_from_authorId
 import message_service as msg_serv
-import ressources as res
+import resources as res
 from event import Event, Location
 
 async def building_together(message, client):

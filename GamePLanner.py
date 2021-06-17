@@ -10,7 +10,7 @@ sys.path.append(f'{path}/Planning/')
 sys.path.append(f'{path}/Message/')
 sys.path.append(f'{path}/User/')
 sys.path.append(f'{path}/Event')
-import ressources as res
+import resources as res
 import commands as com
 import user_service as usr_serv
 import event_service as event_serv
