@@ -38,7 +38,7 @@ async def on_ready():
 @bot.command(name='list', help="test a changer")
 async def button(ctx):
     await ctx.send(
-        "Hello, World!",
+        content ="Hello, World!",
         components = [
             Button(label = "WOW button!")
         ]
