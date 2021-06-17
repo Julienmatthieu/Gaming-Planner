@@ -125,16 +125,16 @@ async def clear(ctx):
     await plan_serv.CancelCurrentEvent(message)
     await msg_serv.FullClear(message)
 
-@bot.command(name=com.help)
-async def need_help(ctx):
-    await ctx.channel.send(f'>>> Commades disponible:\
-        \n\t{com.commandSign}{com.set_channel}: défini le chan d\'acttion du bot. A configurer a chaque redémarage\
-        \n\t{com.commandSign}{com.unset_channel}: annule la configuration du chan\
-        \n\t{com.commandSign}{com.planning} pour créer une session de jeu étape par étape (Non utilisable en MP)\
-        \n\t{com.commandSign}{com.planning}-GameName-NombreDeJoueurs-Date-Role pour créer une session en une seule commande (Non utilisable en MP)\
-        \n\t{com.commandSign}{com.clear}: supprime tous les messages du bot\
-        \n\t{com.commandSign}{com.cancel}: annule la session en cours de création \
-        \n\t  **Ce bot est actuellement en cours de dévelopement. Pour tout feedback ou idée n\' hésitez pas à contacter Stalingrad#9674**')
+#@bot.command(name=com.help)
+#async def need_help(ctx):
+#    await ctx.channel.send(f'>>> Commades disponible:\
+#        \n\t{com.commandSign}{com.set_channel}: défini le chan d\'acttion du bot. A configurer a chaque redémarage\
+#        \n\t{com.commandSign}{com.unset_channel}: annule la configuration du chan\
+#        \n\t{com.commandSign}{com.planning} pour créer une session de jeu étape par étape (Non utilisable en MP)\
+#        \n\t{com.commandSign}{com.planning}-GameName-NombreDeJoueurs-Date-Role pour créer une session en une seule commande (Non utilisable en MP)\
+#        \n\t{com.commandSign}{com.clear}: supprime tous les messages du bot\
+#        \n\t{com.commandSign}{com.cancel}: annule la session en cours de création \
+#        \n\t  **Ce bot est actuellement en cours de dévelopement. Pour tout feedback ou idée n\' hésitez pas à contacter Stalingrad#9674**')
 
 @bot.command(name=com.planning)
 async def PlanningCommand(ctx):
