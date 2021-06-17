@@ -1,7 +1,7 @@
 from os import error
 from sys import audit
 from discord.ext.commands import Bot
-from discord_components import *
+from discord_components import DiscordComponents, Button
 
 from user_service import get_or_create_user
 from event_service import new_event, update_event, get_location_by_event, get_last_event_by_userId, delete_event_from_authorId
@@ -38,15 +38,6 @@ async def next_step(message, authorDb, event, bot):
         await update_event(event)
 
 
-        await ctx.send(
-            "Hello, World!",
-            components = [
-                Button(label = "WOW button!")
-            ]
-        )
-
-        interaction = await bot.wait_for("button_click", check = lambda i: i.component.label.startswith("WOW"))
-        await interaction.respond(content = "Button clicked!")
 
 
 #        await message.author.send(

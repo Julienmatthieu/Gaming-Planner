@@ -36,6 +36,11 @@ async def on_ready():
 
 
 @bot.command(name='list', help="test a changer")
+
+
+@bot.command(name='list')
+
+@bot.command()
 async def button(ctx):
     await ctx.send(
         "Hello, World!",
@@ -46,6 +51,7 @@ async def button(ctx):
 
     interaction = await bot.wait_for("button_click", check = lambda i: i.component.label.startswith("WOW"))
     await interaction.respond(content = "Button clicked!")
+
 
 
 # Registering Loggin event
@@ -108,9 +114,9 @@ async def UpdateCurrentEvent(payload):
             return
     await UpdateMessage(payload.message_id, bot.get_channel(payload.channel_id), msg_serv.BuildInvitMessage(None))
 
-@bot.command()
-async def default(ctx):
-    await ctx.channel.send('>>> Commande inconnue. Utilisez !help pour de l\'aide')
+#@bot.command()
+#async def default(ctx):
+#    await ctx.channel.send('>>> Commande inconnue. Utilisez !help pour de l\'aide')
 
 @bot.command(name=res.clear, help=res.help['clear'])
 async def clear(ctx):
