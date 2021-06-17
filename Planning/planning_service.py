@@ -10,6 +10,9 @@ from event import Event, Location
 #from GamePLanner import client 
 
 async def building_together(message):
+    
+    print(f"\n\\n {str(type(res))} \n\n")
+    
     authorDb = await get_or_create_user(message.author)
     event = await get_last_event_by_userId(authorDb.id)
     if event == None:
