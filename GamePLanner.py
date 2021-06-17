@@ -92,10 +92,10 @@ async def Steps(message):
     elif planningStep == 4:
         role = message.content
         planningStep = 5 
-        await UpdateMessage(even_message_id, message.channel, BuildInvitMessage())
+        await UpdateMessage(even_message_id, message.channel, BuildInvitMessageOld())
 
 # Event setting
-def BuildNewInvMessage(event):
+def BuildInvitMessage(event):
     players = event.get_list_players()
 
     message= f'@{event.role} '         
@@ -103,14 +103,14 @@ def BuildNewInvMessage(event):
     message += f'\n\t\theure:  **{event.time}** \t\t **{str(event.slots - len(players))}** place(s)\n'
     for slot in range(event.slots):
         if slot < len(players):
-            message += f'\n\t- {players[slot]}'
+            message += f'\n\t  - {players[slot]}'
         else:
-            message += f'\n\t- '
+            message += f'\n\t  - '
     message += '\n\n   '
     return message
 
 
-def BuildInvitMessage():
+def BuildInvitMessageOld():
     global role, slots, gameName, date, author
 
     message= f'@{role} '         
@@ -149,7 +149,7 @@ async def UpdateCurrentEvent(payload):
         if len(players) == 0:
             await CancelCurrentEvent()
             return
-    await UpdateMessage(payload.message_id, client.get_channel(payload.channel_id), BuildInvitMessage())
+    await UpdateMessage(payload.message_id, client.get_channel(payload.channel_id), BuildInvitMessageOld())
 
 #Managing Data
 def Reset():
@@ -215,7 +215,7 @@ async def DirectPLanning(message):
 
     new_event.print()
 
-    await message.channel.send(BuildNewInvMessage(new_event))
+    await message.channel.send(BuildInvitMessage(new_event))
     await message.delete()
 
 
