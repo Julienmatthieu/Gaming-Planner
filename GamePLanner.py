@@ -37,7 +37,7 @@ async def on_ready():
 
 
 
-@bot.command(name='list')
+@bot.command(name='list', help="test a changer")
 async def button(ctx):
     await ctx.send(
         "Hello, World!",
@@ -114,17 +114,17 @@ async def UpdateCurrentEvent(payload):
 async def default(ctx):
     await ctx.channel.send('>>> Commande inconnue. Utilisez !help pour de l\'aide')
 
-@bot.command(name=res.clear, help =res.help['clear'])
+@bot.command(name=res.clear, help=res.help['clear'])
 async def clear(ctx):
     await msg_serv.FullClear(ctx.message)
 
-@bot.command(name=res.cancel)
+@bot.command(name=res.cancel, help=res.help['cancel'])
 async def clear(ctx):
     message = ctx.message
     await plan_serv.CancelCurrentEvent(message)
     await msg_serv.FullClear(message)
 
-@bot.command(name=res.planning)
+@bot.command(name=res.planning, help=res.help['planning'])
 async def PlanningCommand(ctx):
     message = ctx.message
     if str(message.channel.type) == res.msg_type['dm']:
