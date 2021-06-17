@@ -10,19 +10,28 @@ class Event(object):
     slots = 1
     gameName = ''
     role = ''
-    author = 0
+    authorId = 0
     step = 0
     
-    def __init__(self, id, player, time, slots, gameName, author, role, step):
+    def __init__(self, id, player, time, slots, gameName, authorId, role, step):
         self.id = id
         self.players = player
         self.time = time
         self.slots = slots
         self.gameName = gameName
-        self.author = author
+        self.authorId = authorId
         self.role = role
         self.step = step
     
+    def merge(self, other):
+        self.players = other.players
+        self.time = other.time
+        self.slots = other.slots
+        self.gameName = other.gameName
+        self.authorId = other.author
+        self.role = other.role
+        self.step = other.step
+
     def get_list_players(self):
         players = list()
         for player in self.players.split(databaseSeparator):
@@ -48,7 +57,7 @@ class Event(object):
                             \ttime = {self.time} \n\
                             \tslots = {self.slots} \n\
                             \tgameName = {self.gameName} \n\
-                            \tauthor = {self.author} \n\
+                            \tauthorId = {self.authorId} \n\
                             \trole = {self.role} \n\
                             \n")
 

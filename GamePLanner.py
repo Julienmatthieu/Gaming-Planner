@@ -10,9 +10,8 @@ sys.path.append(f'{path}/User/')
 sys.path.append(f'{path}/Event')
 import ressources as res
 import commands as com
-import event_repository as event_rep
-import user_service
-import event_service
+import user_service as usr_serv
+import event_service as event_serv
 import message_service as msg_serv
 from  user import User
 from event import Event, Location
@@ -163,16 +162,17 @@ async def Commades(message):
 async def PlanningCommand(message):
     author = message.author
 
-    user = await user_service.get_or_create_user(message.author)
+    user = await usr_serv.get_or_create_user(message.author)
+    event = await event_serv.new_event(message, user)
     if message.content != com.commandSign + com.planning:
-        await DirectPLanning(message, user)
+        event = await event_serv.no_step(message.content, user, event)
+        await message.channel.send(msg_serv.BuildInvitMessage(event))
         return
     else:
-        await event_service.new_event(message, user)
         await message.channel.send(res.msg_dict['game_name'])
 
 async def MessageFromBot(message):
-    event = await event_service.get_last_unset_event(message)
+    event = await event_serv.get_last_unset_event(message)
     if event == None:
         return
     if event.step == res.steps['done']:
@@ -180,13 +180,6 @@ async def MessageFromBot(message):
         for emoji in emojis:
             await message.add_reaction(emoji)
 
-async def DirectPLanning(message, author):
-    data=message.content.split('-')
-    new_event = Event(id=0, gameName=data[1], slots=int(data[2]), time=data[3], author=author.id, player=author.name, role=data[4], step=res.steps['done'])
-    new_location = Location(id = 0, guildId=message.guild.id, channelId=message.channel.id, messageId=0, eventId=0)
-    await event_rep.create_event(new_event, new_location)
-    # testing 
-    await message.channel.send(msg_serv.BuildInvitMessage(new_event))
 
 # Managing messages
 async def CancelCurrentEvent():

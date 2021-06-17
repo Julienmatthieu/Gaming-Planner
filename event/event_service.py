@@ -13,6 +13,12 @@ async def get_last_unset_event(message):
     return await repo.get_event(location.eventId)
 
 async def new_event(message, author):
-    new_event = Event(id=0, player=message.author.name, time="", slots=1, gameName="", author=author.id, role="", step=res.steps['init'])
+    new_event = Event(id=0, player=message.author.name, time="", slots=1, gameName="", authorId=author.id, role="", step=res.steps['init'])
     new_location = Location(id = 0, guildId=message.guild.id, channelId=message.channel.id, messageId=0, eventId=0)
-    await repo.create_event(new_event, new_location)
+    return await repo.create_event(new_event, new_location)
+
+async def update_event(content, author, event):
+    data=content.split('-')
+    new_event = Event(id=0, gameName=data[1], slots=int(data[2]), time=data[3], authorId=author.id, player=author.name, role=data[4], step=res.steps['done'])
+    event.merge(new_event)
+    return await repo.update_event(event)

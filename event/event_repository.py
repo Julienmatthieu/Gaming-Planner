@@ -3,11 +3,12 @@ import connector
 
 #approuved 
 async def create_event(event, location):
-    query = f"""INSERT INTO event (players, time, slots, gameName, author, role, step) VALUES (\"{event.players}\", \"{event.time}\", {event.slots}, \"{event.gameName}\", {event.author}, \"{event.role}\", {event.step})  """
+    query = f"""INSERT INTO event (players, time, slots, gameName, authorId, role, step) VALUES (\"{event.players}\", \"{event.time}\", {event.slots}, \"{event.gameName}\", {event.authorId}, \"{event.role}\", {event.step})  """
     eventId = connector.alter_query(query)
     query = f"""INSERT INTO discordLocation (guildId, channelId, messageId, eventId) VALUES (\"{location.guildId}\", \"{location.channelId}\", \"{location.messageId}\", {eventId}) """
     locationId = connector.alter_query(query)
-    return eventId
+    event.id = eventId
+    return event
 
 async def get_last_location(guildId, channelId):
     records = connector.select_query(f"""SELECT * FROM discordLocation WHERE guildId = {guildId} AND channelId = {channelId} AND messageId = 0 ORDER BY eventId DESC""")
@@ -19,8 +20,13 @@ async def get_last_location(guildId, channelId):
 
 # update 
 
-async def update_location_message(location):
+async def update_event(event):
+    query = f"""UPDATE event SET players = \"{event.players}\", time = \"{event.time}\", slots = \"{event.slots}\", gameName = \"{event.gameName}\" \
+                                authorId = \"{event.authorId}\", role = \"{event.role}\", step = \"{event.step}" WHERE id = {event.id} """
+    eventId = connector.alter_query(query)
+    return event   
 
+async def update_location_message(location):
     query = f"""UPDATE discordLocation SET messageId = \"{location.messageId}\" WHERE id = {location.id} """
     eventId = connector.alter_query(query)
     return eventId
