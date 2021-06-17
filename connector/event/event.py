@@ -3,12 +3,18 @@ class Event(object):
     players = ''
     time = ''
     slots = 1
+    gameName = ''
+    role = ''
+    author = ''
 
-    def __init__(self, id, player, time, slots):
+    def __init__(self, id, gameName, slots, time, author, player, role):
         self.id = id
         self.players = player
         self.time = time
         self.slots = slots
+        self.gameName = gameName
+        self.author = author
+        self.role = role
 
 class Location(object):
     id = 0
