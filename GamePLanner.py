@@ -75,6 +75,8 @@ async def button(ctx):
 async def on_message(message):
     if message.author.id != bot.user.id:
         await message.channel.send("I can see that")
+    await bot.process_commands(message)
+
     # def tool
 #    if message.content.startswith(com.commandSign):
 #        await Commades(message)
