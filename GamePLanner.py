@@ -118,22 +118,10 @@ async def clear(ctx):
 
 @bot.command(name=res.planning, help=res.help['planning'])
 async def PlanningCommand(ctx):
-
-    await ctx.channel.send(
-        "Hello, World!",
-        components = [
-            Button(label = "WOW button!")
-        ]
-    )
-
-    interaction = await bot.wait_for("button_click", check = lambda i: i.component.label.startswith("WOW"))
-    await interaction.respond(content = "Button clicked!")
-
     message = ctx.message
     if str(message.channel.type) == res.msg_type['dm']:
         await message.channel.send(res.error['not_here'])
         return
-
     authorDb = await usr_serv.get_or_create_user(message.author)
    
     event = await event_serv.new_event(message, authorDb)
