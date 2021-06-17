@@ -1,4 +1,3 @@
-from connector.connector import delete_query
 import mysql.connector
 from mysql.connector import Error
 import sys
@@ -45,19 +44,11 @@ def get_event_from_location(serverId, channelId, messageId):
     event = get_event(id)
     return event
 
-def create_event(event):
-    id = connector.insert_query(f"""INSERT INTO event (players, time) VALUES ("{event.players}", "{event.time}") """)
-    connector.inset
-    return id
-
-def update_event(event):
-    if event.id <= 0:
-        return create_event(event)
-    id = connector.inser_query(f"""UPDATE  """)
-
+def create_event(event, location):
+    eventId = connector.insert_query(f"""INSERT INTO event (players, time) VALUES ("{event.players}", "{event.time}") """)
+    locationId = connector.inset_query(f"""INSERT INTO discordLocation (serverId, channelId, messageId, eventId) VALUES ({location.serverId}, {location.channelId}, {location.messageId}, {eventId}) """)
+    return eventId
 
 def delete_event(id):
     connector.delete_query(f""" DELETE FROM discordLocation WHERE eventId = {id} """)
     connector.delete_query(f""" DELETE FROM event WHERE id = {id} """)
-
-

@@ -28,17 +28,7 @@ author=None
 @client.event
 async def on_ready():
     print('We have logged in as {0.user}'.format(client))
-    print('\n\n!planning-sot-4-20h30-here')
-    Reset()
-    print('-------- testing ---------')
-    test = event_rep.get_all_event()
-    for ev in test:
-        print(f'id {ev.id} players {ev.players}')
-    event_rep.create_event()
-    event = event_rep.get_event_from_location(1, 1, 1)
-    print(f"event from location {event.id}, {event.players}, {event.time}")
-    print('------ testing end -------')
-    
+    print('\n\n!planning-sot-4-20h30-here')   
 
 # Registering Receving Message event
 @client.event
