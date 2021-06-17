@@ -39,7 +39,7 @@ import keys
 from discord.ext.commands import Bot
 from discord_components import DiscordComponents, Button
 
-bot = Bot(command_prefix = "$")
+bot = Bot(command_prefix = "!")
 
 
 @bot.event
