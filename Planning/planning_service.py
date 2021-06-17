@@ -59,7 +59,8 @@ async def next_step(message, authorDb, event, client):
 
 async def CancelCurrentEvent(message):
     authorDb = await get_or_create_user(message.author)
-    event = await get_last_event_by_userId(authorDb.id)
 
-    await delete_event_from_authorId(authorDb.id)
+    value = await delete_event_from_authorId(authorDb.id)
+    if value == None:
+        await message.author.send(res.msg_dict['nothing_cancel'])
     await message.author.send(res.msg_dict['cancel'])

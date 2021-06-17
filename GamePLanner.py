@@ -114,8 +114,7 @@ async def Commades(message):
                                             \n\t{com.commandSign}{com.planning} pour créer une session de jeu étape par étape\
                                             \n\t{com.commandSign}{com.planning}-GameName-NombreDeJoueurs-Date-Role pour créer une session en une seule commande\
                                             \n\t{com.commandSign}{com.clear}: supprime tous les messages du bot\
-                                            \n\t{com.commandSign}{com.cancel}: annule la session en cours de création\
-                                            \n\t{com.commandSign}{com.reset}: réinitialise les variable de l\évènement en cours. A utiliser si le bot est bloqué')
+                                            \n\t{com.commandSign}{com.cancel}: annule la session en cours de création')
     elif message.content.startswith(com.commandSign + com.set_channel):
         channel = message.channel
         await channel.send(f">>> Je posterais à présent dans ce chan")
@@ -125,7 +124,7 @@ async def Commades(message):
         await PlanningCommand(message)
     elif message.content == com.commandSign + com.clear:
         await msg_serv.FullClear(message)
-    elif message.content == com.commandSign + com.cancel or message.content == com.commandSign + com.reset:
+    elif message.content == com.commandSign + com.cancel:
         await plan_serv.CancelCurrentEvent(message)
         await msg_serv.FullClear(message)
     else:

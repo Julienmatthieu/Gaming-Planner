@@ -9,12 +9,13 @@ emojis_dict = {
 } 
  
 msg_dict = {
-    'game_name':    '>>> Bonjour! Quel est le nom du jeu ?',
-    'cancel':       '>>> La session a été annulée.',
-    'slots':        '>>> Combien de joueurs dans cette session ?',
-    'time':         '>>> A quelle heure la session débutera ? (hh:mm)',
-    'role':         '>>> Qui peut participer ? (Role ou pseudo si une seul personne)',
-    'done':         '>>> La session est en cours de rédaction. Merci pour votre temps !'
+    'game_name':        '>>> Bonjour! Quel est le nom du jeu ?',
+    'cancel':           '>>> La session a été annulée.',
+    'nothing_cancel':   '>>> Aucun session à annuler.',
+    'slots':            '>>> Combien de joueurs dans cette session ?',
+    'time':             '>>> A quelle heure la session débutera ? (hh:mm)',
+    'role':             '>>> Qui peut participer ? (Role ou pseudo si une seul personne)',
+    'done':             '>>> La session est en cours de rédaction. Merci pour votre temps !'
 }
 
 error = {
