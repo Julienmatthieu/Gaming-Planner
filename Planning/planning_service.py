@@ -36,20 +36,6 @@ async def next_step(message, authorDb, event, bot):
         event.gameName = message.content
         event.step = res.steps['slots']
         await update_event(event)
-
-        await message.channel.send(
-            "Hello, World!",
-            components = [
-                Button(label = "WOW button!")
-            ]
-        )
-
-        interaction = await bot.wait_for("button_click", check = lambda i: i.component.label.startswith("WOW"))
-        await interaction.respond(content = "Button clicked!")
-        interaction = await bot.wait_for("button_click", check = lambda i: i.component.label.startswith("WOW"))
-        await interaction.respond(content = "Button clicked!")
-
-
         await message.author.send(res.msg_dict['slots'])
 
     elif event.step == res.steps['slots']:
