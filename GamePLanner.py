@@ -30,7 +30,7 @@ client = discord.Client(intents=intents)
 # AJOUTER UN talbe pour lister les chan autorisé pour le bot
 
 #global
-channel= ''
+channel= 'tachatte le channel'
 even_message_id=None
 planningStep=0
 slots=-1
