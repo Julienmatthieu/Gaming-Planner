@@ -149,7 +149,7 @@ async def PlanningCommand(message):
         await message.channel.send(msg_serv.BuildInvitMessage(event, authorDb))
         return
     else:
-        event.step = res.steps['gameName']
+        event.step = res.steps['game_name']
         await event_serv.update_event(event)
         await message.author.send(res.msg_dict['game_name'])
 
