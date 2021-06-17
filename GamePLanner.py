@@ -6,7 +6,7 @@ import discord
 path = pathlib.Path().absolute()
 sys.path.append(f'{path}/Ressources/')
 sys.path.append(f'{path}/User/')
-sys.path.append(f'{path}/connector/event')
+sys.path.append(f'{path}/Event')
 import ressources as res
 import commands as com
 import event_repository as event_rep
