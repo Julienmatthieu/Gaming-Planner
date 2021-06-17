@@ -21,8 +21,8 @@ async def get_last_location(guildId, channelId):
 # update 
 
 async def update_event(event):
-    query = f"""UPDATE event SET players = \"{event.players}\", time = \"{event.time}\", slots = \"{event.slots}\", gameName = \"{event.gameName}\" \
-        authorId = \"{event.authorId}\", role = \"{event.role}\", step = \"{event.step}" WHERE id = {event.id} """
+    query = f"""UPDATE event SET players = \"{event.players}\", time = \"{event.time}\", slots = \"{event.slots}\", gameName = \"{event.gameName}\", \
+                                authorId = \"{event.authorId}\", role = \"{event.role}\", step = \"{event.step}" WHERE id = {event.id} """
     print(f"\n\n{query}\n\n")
     connector.alter_query(query)
     return event   
