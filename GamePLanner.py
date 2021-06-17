@@ -98,10 +98,10 @@ async def Steps(message):
 def BuildNewInvMessage(event):
     players = event.get_list_players()
 
-    message= f'@{role} '         
+    message= f'@{event.role} '         
     message += f'\n>>> \n\t**{event.author}** lance une session de  **{event.gameName}**'
-    message += f'\n\t\theure:  **{event.time}** \t\t **{str(slots - len(players))}** place(s)\n'
-    for slot in range(slots):
+    message += f'\n\t\theure:  **{event.time}** \t\t **{str(event.slots - len(players))}** place(s)\n'
+    for slot in range(event.slots):
         if slot < len(players):
             message += f'\n\t- {players[slot]}'
         else:
