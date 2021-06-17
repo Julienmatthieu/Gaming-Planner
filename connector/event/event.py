@@ -10,7 +10,7 @@ class Event(object):
     slots = 1
     gameName = ''
     role = ''
-    author = ''
+    author = 0
     step = 0
     
     def __init__(self, id, player, time, slots, gameName, author, role, step):

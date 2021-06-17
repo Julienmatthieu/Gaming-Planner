@@ -9,7 +9,7 @@ import connector
 
 #approuved 
 async def create_event(event, location):
-    query = f"""INSERT INTO event (players, time, slots, gameName, author, role, step) VALUES (\"{event.players}\", \"{event.time}\", {event.slots}, \"{event.gameName}\", \"{event.author}\", \"{event.role}\", {event.step})  """
+    query = f"""INSERT INTO event (players, time, slots, gameName, author, role, step) VALUES (\"{event.players}\", \"{event.time}\", {event.slots}, \"{event.gameName}\", {event.author}, \"{event.role}\", {event.step})  """
     eventId = connector.alter_query(query)
     query = f"""INSERT INTO discordLocation (guildId, channelId, messageId, eventId) VALUES (\"{location.guildId}\", \"{location.channelId}\", \"{location.messageId}\", {eventId}) """
     locationId = connector.alter_query(query)

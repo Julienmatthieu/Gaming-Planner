@@ -10,7 +10,7 @@ sys.path.append(f'{path}/connector/event')
 import ressources as res
 import commands as com
 import event_repository as event_rep
-import user_repository as usr_rep
+import user_service
 from  user import User
 from event import Event, Location
 import keys
@@ -190,15 +190,12 @@ async def Commades(message):
 async def PlanningCommand(message):
     author = message.author
 
-    if await usr_rep.get_user_discordId(author.id) == None:
-        user = User(0, author.name, author.id, author.avatar_url, author.display_name, author.mention)
-        await usr_rep.create_user(user)
-        user.print()
+    user = user_service.get_or_create_user(message.author)
     if message.content != com.commandSign + com.planning:
-        await DirectPLanning(message)
+        await DirectPLanning(message, user)
         return
     else:
-        await SimplePLanning(message)
+        await SimplePLanning(message, user)
         await message.channel.send(res.msg_dict['game_name'])
 
 async def MessageFromBot(message):
@@ -214,6 +211,7 @@ async def MessageFromBot(message):
             await message.add_reaction(emoji)
 
 async def SimplePLanning(message):
+
     new_event = Event(id=0, player=message.author.name, time="", slots=1, gameName="", author=message.author.name, role="", step=res.steps['init'])
     new_location = Location(id = 0, guildId=message.guild.id, channelId=message.channel.id, messageId=0, eventId=0)
     await event_rep.create_event(new_event, new_location)
