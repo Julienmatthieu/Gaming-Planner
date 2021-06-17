@@ -191,7 +191,7 @@ async def Commades(message):
 async def PlanningCommand(message):
     author = message.author
 
-    user = user_service.get_or_create_user(message.author)
+    user = await user_service.get_or_create_user(message.author)
     if message.content != com.commandSign + com.planning:
         await DirectPLanning(message, user)
         return
