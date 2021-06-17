@@ -1,6 +1,6 @@
 from os import error
 from sys import audit
-import discord 
+from discord.ext.commands import Bot
 from discord_components import DiscordComponents, Button
 
 
