@@ -165,7 +165,7 @@ async def PlanningCommand(message):
 
     authorDb = await usr_serv.get_or_create_user(message.author)
     
-    user2 = await client.get_user_info(authorDb.discordId)
+    user2 = await client.get_user(authorDb.discordId)
     await client.send_message(user2, "Hello World")
 
 
