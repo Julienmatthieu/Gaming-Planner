@@ -35,8 +35,6 @@ async def on_ready():
     print(f"Logged in as {bot.user}!")
 
 
-
-
 @bot.command(name='list', help="test a changer")
 async def button(ctx):
     await ctx.send(
@@ -126,6 +124,17 @@ async def clear(ctx):
 
 @bot.command(name=res.planning, help=res.help['planning'])
 async def PlanningCommand(ctx):
+
+    await ctx.send(
+        "Hello, World!",
+        components = [
+            Button(label = "WOW button!")
+        ]
+    )
+
+    interaction = await bot.wait_for("button_click", check = lambda i: i.component.label.startswith("WOW"))
+    await interaction.respond(content = "Button clicked!")
+
     message = ctx.message
     if str(message.channel.type) == res.msg_type['dm']:
         await message.channel.send(res.error['not_here'])
