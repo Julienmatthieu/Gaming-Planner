@@ -16,6 +16,7 @@ async def building_together(message, client):
         await message.author.send(res.error['event-not-found'])
         return
     await next_step(message, authorDb, event, client)
+    msg_serv.ClearHisto(message.channel)    
 
 #Steps
 async def next_step(message, authorDb, event, client):

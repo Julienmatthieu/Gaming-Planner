@@ -17,3 +17,11 @@ def BuildInvitMessage(event, author):
             message += f'\n\t  - '
     message += '\n\n   '
     return message
+
+async def ClearHisto(channel):
+    async for message in channel.history(limit=2):
+            await message.delete()
+
+async def FullClear(channel):
+    async for message in channel.history(limit=None):
+                await message.delete()

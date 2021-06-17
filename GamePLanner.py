@@ -122,7 +122,7 @@ async def Commades(message):
     elif message.content.startswith(com.commandSign + com.planning):
         await PlanningCommand(message)
     elif message.content == com.commandSign + com.clear:
-        await FullClear(message.channel)
+        await msg_serv.FullClear(message.channel)
     elif message.content == com.commandSign + com.cancel:
         await CancelCurrentEvent()  
     elif message.content == com.commandSign + com.reset:
@@ -179,15 +179,6 @@ async def UpdateMessage(message_id, channel, content):
         await message.add_reaction(res.emojis_dict['thumbs_down'])
         await message.add_reaction(res.emojis_dict['cross'])
 
-async def ClearHisto(channel):
-    async for message in channel.history(limit=3):
-        if not message.content.startswith(f'{str(planningStep)}: '):
-            await message.delete()
-
-async def FullClear(channel):
-    async for message in channel.history(limit=None):
-            if message.author == client.user:
-                await message.delete()
 
 # Run bot (arg is the bot token)
 client.run(keys.botToken)
