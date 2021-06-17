@@ -10,11 +10,11 @@ class User(object):
     displayName = ""
     mention = ""
 
-    def __init__(self, id, name, discordId, avaterUrl, displayName, mention):
+    def __init__(self, id, name, discordId, avatarUrl, displayName, mention):
         self.id = id
         self.name = name
         self.discordId = discordId
-        self.avaterUrl = avaterUrl
+        self.avatarUrl = avatarUrl
         self.displayName = displayName
         self.mention = mention
 
@@ -23,7 +23,7 @@ class User(object):
         print(f"this is user {self.id}: \n\
                             \t name = {self.name} \n\
                             \t discordId = {self.discordId} \n\
-                            \t avaterUrl = {self.avaterUrl} \n\
+                            \t avatarUrl = {self.avatarUrl} \n\
                             \t displayName = {self.displayName} \n\
                             \t mention = {self.mention} \n\
                             \n")
