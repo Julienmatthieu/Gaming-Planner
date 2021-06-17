@@ -134,7 +134,7 @@ async def Commades(message):
 
 async def PlanningCommand(message):
     if str(message.channel.type) == res.msg_type['dm']:
-        message.channel.send(res.error['not_here'])
+        await message.channel.send(res.error['not_here'])
         return
 
     authorDb = await usr_serv.get_or_create_user(message.author)
