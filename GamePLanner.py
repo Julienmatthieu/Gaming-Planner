@@ -166,13 +166,13 @@ async def PlanningCommand(message):
     authorDb = await usr_serv.get_or_create_user(message.author)
     
     user2 = client.get_user(225743846934446081)
-    user2.send("hello world")
+    await user2.send("hello world")
 #    await client.send(user2, "Hello World")
 
 
-    event = await event_serv.new_event(message, user)
+    event = await event_serv.new_event(message, author)
     if message.content != com.commandSign + com.planning:
-        event = await event_serv.no_step(message.content, user, event)
+        event = await event_serv.no_step(message.content, author, event)
         await message.channel.send(msg_serv.BuildInvitMessage(event, authorDb))
         return
     else:
