@@ -1,7 +1,7 @@
 from os import error
 from sys import audit
 import discord 
-from discord_components import Button
+from discord_components import DiscordComponents, Button
 
 
 from user_service import get_or_create_user
