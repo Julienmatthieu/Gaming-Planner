@@ -51,6 +51,9 @@ async def on_ready():
 async def on_message(message):
     global planningStep, slots, gameName, hours, min, even_message_id, channel
 
+    if message.content.startswith('$hello'):
+        await message.channel.send('Hello!')
+
     if channel != '' and channel != message.channel or channel == '' and not message.content.startswith(com.commandSign):
         return
 
