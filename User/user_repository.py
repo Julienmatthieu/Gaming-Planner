@@ -1,9 +1,3 @@
-import mysql.connector
-from mysql.connector import Error
-import sys
-import pathlib
-path = pathlib.Path().absolute()
-sys.path.append(f'{path}/connector/')
 import connector 
 from user import User
 
