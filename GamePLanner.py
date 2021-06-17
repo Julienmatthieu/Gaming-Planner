@@ -5,7 +5,7 @@ import pathlib
 from discord.ext.commands import Bot
 from discord_components import DiscordComponents, Button
 
-#path = pathlib.Path().absolute()
+path = pathlib.Path().absolute()
 sys.path.append(f'{path}/Resources/')
 #sys.path.append(f'{path}/Connector/')
 #sys.path.append(f'{path}/Planning/')
