@@ -86,28 +86,28 @@ async def on_ready():
 #
 #@client.event
 #async def on_raw_reaction_add(payload):
-#    global even_message_id
-#
-#    if payload.channel_id != channel.id or payload.message_id != even_message_id or payload.user_id == client.user.id:
-#        return
-#    await UpdateCurrentEvent(payload)
+    global even_message_id
+
+    if payload.channel_id != channel.id or payload.message_id != even_message_id or payload.user_id == client.user.id:
+        return
+    await UpdateCurrentEvent(payload)
 #
 #def CreatePlayerList(author):
-#    global players
+    global players
 
-#    players = list()
-#    players.append(author)
+    players = list()
+    players.append(author)
 #
 #def AddUserToEvent(user):
-#    if len(players) < slots:
-#        players.append(user.name)
+    if len(players) < slots:
+        players.append(user.name)
 #
 #def RemoveUserFromEvent(user):
-#    global author
+    global author
 
-#    players.remove(user.name)
-#    if user.name == author and len(players) > 0:
-#        author = players[0]
+    players.remove(user.name)
+    if user.name == author and len(players) > 0:
+        author = players[0]
 #
 #async def UpdateCurrentEvent(payload):
 #    print("\n\n-----------------------  TO DO ---------------------------\n\n")
