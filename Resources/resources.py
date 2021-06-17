@@ -19,8 +19,8 @@ msg_dict = {
 }
 
 error = {
-    'event-not-found':  'Aucun évènement en cours. Vous pouvez en créer un nouveau avec la commande !planning',
-    'not_here':         'Cette commande n\'est utilisable que sur un serveur de jeu.'   
+    'event-not-found':  '>>> Aucun évènement en cours. Vous pouvez en créer un nouveau avec la commande !planning',
+    'not_here':         '>>> Cette commande n\'est utilisable que sur un serveur de jeu.'   
 }
 
 msg_type = {
