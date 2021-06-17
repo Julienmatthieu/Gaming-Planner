@@ -201,7 +201,7 @@ async def PlanningEvent(message):
     await message.delete()
 
 async def DirectPLanning(message):
-    PlanningEvent(message)
+    await PlanningEvent(message)
     return
     global planningStep, slots, gameName, date, role, author, even_message_id
 
