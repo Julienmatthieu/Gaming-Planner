@@ -1,6 +1,6 @@
 from event import Event
 from user import User
-from resources import msg_type 
+from ressources import msg_type 
 
 # Event setting
 def BuildInvitMessage(event, author):

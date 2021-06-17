@@ -4,7 +4,7 @@ import pathlib
 import discord 
 
 path = pathlib.Path().absolute()
-sys.path.append(f'{path}/Ressources/')
+sys.path.append(f'{path}/Resources/')
 sys.path.append(f'{path}/Connector/')
 sys.path.append(f'{path}/Planning/')
 sys.path.append(f'{path}/Message/')
@@ -124,10 +124,10 @@ async def Commades(message):
     elif message.content.startswith(com.commandSign + com.planning):
         await PlanningCommand(message)
     elif message.content == com.commandSign + com.clear:
-        await msg_serv.FullClear(message.channel)
+        await msg_serv.FullClear(message)
     elif message.content == com.commandSign + com.cancel or message.content == com.commandSign + com.reset:
         await plan_serv.CancelCurrentEvent(message)
-        await msg_serv.FullClear(message.channel)
+        await msg_serv.FullClear(message)
     else:
         await message.channel.send('>>> Commande inconnue. Utilisez !help pour de l\'aide')
     await message.delete()
