@@ -1,59 +1,70 @@
 from os import name
 import sys
 import pathlib
-import discord 
 
-path = pathlib.Path().absolute()
-sys.path.append(f'{path}/Resources/')
-sys.path.append(f'{path}/Connector/')
-sys.path.append(f'{path}/Planning/')
-sys.path.append(f'{path}/Message/')
-sys.path.append(f'{path}/User/')
-sys.path.append(f'{path}/Event')
-import resources as res
-import commands as com
-import user_service as usr_serv
-import event_service as event_serv
-import message_service as msg_serv
-import planning_service as plan_serv
-from  user import User
-from event import Event, Location
+from discord.ext.commands import Bot
+from discord_components import DiscordComponents, Button
+
+#path = pathlib.Path().absolute()
+#sys.path.append(f'{path}/Resources/')
+#sys.path.append(f'{path}/Connector/')
+#sys.path.append(f'{path}/Planning/')
+#sys.path.append(f'{path}/Message/')
+#sys.path.append(f'{path}/User/')
+#sys.path.append(f'{path}/Event')
+#import resources as res
+#import commands as com
+#import user_service as usr_serv
+#import event_service as event_serv
+#import message_service as msg_serv
+#import planning_service as plan_serv
+#from  user import User
+#from event import Event, Location
 import keys
 
  
-intents = discord.Intents.default()
-intents.members = True
-client = discord.Client(intents=intents)
+#intents = discord.Intents.default()
+#intents.members = True
+#client = discord.Client(intents=intents)
 
 
-# button testing
 
 # TO DO LIST 
 # AJOUTER UN talbe pour lister les chan autorisé pour le bot
 
-#global
-channel= 'tachatte le channel'
-even_message_id=None
-planningStep=0
-slots=-1
-gameName=''
-date=''
-role=''
-players= list()
-author=None
 # TO DELETE AFTER UPDATE -----------------------------------------------
+
+bot = Bot(command_prefix = "!")
+
+@bot.event
+async def on_ready():
+    DiscordComponents(bot)
+    print(f"Logged in as {bot.user}!")
+
+
+@bot.command(name='btn')
+async def button(ctx):
+    await ctx.send(
+        "Hello, World!",
+        components = [
+            Button(label = "WOW button!")
+        ]
+    )
+
+    interaction = await bot.wait_for("button_click", check = lambda i: i.component.label.startswith("WOW"))
+    await interaction.respond(content = "Button clicked!")
 
 
 # Registering Loggin event
-@client.event
+@bot.event
 async def on_ready():
-    print('We have logged in as {0.user}'.format(client))
+    print('We have logged in as {0.user}'.format(bot))
     print('\n\n!planning-Sea Of Thieves-4-20h30-here')   
 
 # Registering Receving Message event
-@client.event
+@bot.event
 async def on_message(message):
-    message.channel.send("I can see that")
+    await message.channel.send("I can see that")
     # def tool
 #    if message.content.startswith(com.commandSign):
 #        await Commades(message)
@@ -176,4 +187,4 @@ async def on_message(message):
 
 
 # Run bot (arg is the bot token)
-client.run(keys.botToken)
+bot.run(keys.botToken)
