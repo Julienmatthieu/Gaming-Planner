@@ -1,3 +1,8 @@
+from sys import setprofile
+
+
+databaseSeparator='⠀' # Not a space (U+2800)
+
 class Event(object):
     id = 0
     players = ''
@@ -15,6 +20,23 @@ class Event(object):
         self.gameName = gameName
         self.author = author
         self.role = role
+    
+    def get_list_players(self):
+        players = list()
+        for player in self.players.split(databaseSeparator):
+            players.append(player)
+        return players
+
+    def AddUserToEvent(self, userName):
+        if len(get_list_players()) < slots:
+            self.players += databaseSeparator + userName
+
+    #def RemoveUserFromEvent(user):
+    #    global author
+#
+    #    players.remove(user.name)
+    #    if user.name == author and len(players) > 0:
+    #        author = players[0]
 
 class Location(object):
     id = 0

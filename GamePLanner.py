@@ -95,6 +95,21 @@ async def Steps(message):
         await UpdateMessage(even_message_id, message.channel, BuildInvitMessage())
 
 # Event setting
+def BuildNewInvMessage(event):
+    players = event.get_list_players()
+
+    message= f'@{role} '         
+    message += f'\n>>> \n\t**{event.author}** lance une session de  **{event.gameName}**'
+    message += f'\n\t\theure:  **{event.time}** \t\t **{str(slots - len(players))}** place(s)\n'
+    for slot in range(slots):
+        if slot < len(players):
+            message += f'\n\t- {players[slot]}'
+        else:
+            message += f'\n\t- '
+    message += '\n\n   '
+    return message
+
+
 def BuildInvitMessage():
     global role, slots, gameName, date, author
 
@@ -190,38 +205,17 @@ async def Commades(message):
         await message.channel.send('>>> Commande inconnue. Utilisez !help pour de l\'aide')
     await message.delete()
 
-async def PlanningEvent(message):
+async def DirectPLanning(message):
     data=message.content.split('-')
     author = message.author.name
     new_event = Event(id=0, gameName=data[1], slots=int(data[2]), time=data[3], author=author, player=author, role=data[4])
     new_location = Location(id = 0, guildId=message.guild.id, channelId=message.channel.id, messageId=0, eventId=0)
 
-    print("\n")
-    print("\n")
-    print(f"new event gn = ->{new_event.gameName}<-, slots= {new_event.slots} author = {new_event.author} eetcc ")
-    print(f"new location GId = ->{new_location.guildId}<-, channelId= {new_location.channelId}  eetcc")
-
     testId = event_rep.create_event(new_event, new_location)
-    print(f"OUR FIRST EVENT ID IS {testId}")
 
-    print("\n")
-    print("\n")
-
-
-async def DirectPLanning(message):
-    await PlanningEvent(message)
-    return
-    global planningStep, slots, gameName, date, role, author, even_message_id
-
-    data=message.content.split('-')
-    gameName = data[1]
-    slots = int(data[2])
-    CreatePlayerList(message.author.name)
-    date = data[3]
-    role = data[4]
-    author = message.author
-    await message.channel.send(BuildInvitMessage())
+    await message.channel.send(BuildNewInvMessage(new_event))
     await message.delete()
+
 
 # Managing messages
 async def CancelCurrentEvent():

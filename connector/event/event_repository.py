@@ -7,6 +7,14 @@ sys.path.append(f'{path}/connector/')
 import event
 import connector 
 
+#approuved 
+def create_event(event, location):
+    query = f"""INSERT INTO event (players, time, slots, gameName, author, role) VALUES (\"{event.players}\", \"{event.time}\", {event.slots}, \"{event.gameName}\", \"{event.author}\", \"{event.role}\")  """
+    eventId = connector.insert_query(query)
+    query = f"""INSERT INTO discordLocation (guildId, channelId, messageId, eventId) VALUES (\"{location.guildId}\", \"{location.channelId}\", \"{location.messageId}\", {eventId}) """
+    locationId = connector.insert_query(query)
+    return eventId
+
 # Getters 
 def get_event(event_id):
     records = connector.select_query(f"""SELECT * FROM event WHERE id = {event_id}""")
@@ -44,16 +52,6 @@ def get_event_from_location(guildId, channelId, messageId):
     event = get_event(id)
     return event
 
-def create_event(event, location):
-
-    query = f"""INSERT INTO event (players, time, slots, gameName, author, role) VALUES (\"{event.players}\", \"{event.time}\", {event.slots}, \"{event.gameName}\", \"{event.author}\", \"{event.role}\")  """
-    eventId = connector.insert_query(query)
-    query = f"""INSERT INTO discordLocation (guildId, channelId, messageId, eventId) VALUES (\"{location.guildId}\", \"{location.channelId}\", \"{location.messageId}\", {eventId}) """
-
-    print(f"\n\n\n {query} \n\n\n")
-
-    locationId = connector.insert_query(query)
-    return eventId
 
 def delete_event(id):
     connector.delete_query(f""" DELETE FROM discordLocation WHERE eventId = {id} """)
