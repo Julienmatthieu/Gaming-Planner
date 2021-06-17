@@ -3,15 +3,15 @@ from sys import audit
 import discord 
 
 from user_service import get_or_create_user
-from event_service import new_event, update_event, get_location_by_event
+from event_service import new_event, update_event, get_location_by_event, get_last_event_by_userId
 import message_service as msg_serv
 import resource as res
 from Event.event import Location
-from GamePLanner import client 
+#from GamePLanner import client 
 
 async def building_together(message):
     authorDb = await get_or_create_user(message.author)
-    event = event_serv.get_last_event_by_userId(authorDb.id)
+    event = get_last_event_by_userId(authorDb.id)
     authorDb.print()
     event.print()
     print(f" this is the event i found from {authorDb.name} - {event.print()}")
@@ -57,6 +57,5 @@ async def next_step(message, authorDb, event):
         await update_event(event)
         message.author.send(res.msg_dict['done'])
         Location = get_location_by_event(event)
-        channel = client.get_channel(int(Location.channelId))
-        channel.send(await msg_serv.BuildInvitMessage(event, authorDb))
-
+       # channel = client.get_channel(int(Location.channelId))
+       # channel.send(await msg_serv.BuildInvitMessage(event, authorDb))
