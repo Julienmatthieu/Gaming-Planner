@@ -15,6 +15,35 @@ intents = discord.Intents.default()
 intents.members = True
 client = discord.Client(intents=intents)
 
+
+
+
+# TO DELETE AFTER UPDATE -----------------------------------------------
+def BuildInvitMessageOld():
+    global role, slots, gameName, date, author
+
+    message= f'@{role} '         
+    message += f'\n>>> \n\t**{author.name}** lance une session de  **{str(gameName)}**'
+    message += f'\n\t\theure:  **{str(date)}** \t\t **{str(slots - len(players))}** place(s)\n'
+    for slot in range(slots):
+        if slot < len(players):
+            message += f'\n\t- {players[slot]}'
+        else:
+            message += f'\n\t- '
+    message += '\n\n   '
+    return message
+#Managing Data
+def Reset():
+    global planningStep, slots, gameName, date, players, author, even_message_id, role
+
+    planningStep = 0
+    slots = -1
+    gameName = ''
+    date = ''
+    players = list()
+    author=None
+    role=''
+    even_message_id = None
 #global
 channel= ''
 even_message_id=None
@@ -25,6 +54,8 @@ date=''
 role=''
 players= list()
 author=None
+# TO DELETE AFTER UPDATE -----------------------------------------------
+
 
 # Registering Loggin event
 @client.event
@@ -225,34 +256,3 @@ async def FullClear(channel):
 
 # Run bot (arg is the bot token)
 client.run(keys.botToken)
-
-
-# TO DELETE AFTER UPDATE -----------------------------------------------
-def BuildInvitMessageOld():
-    global role, slots, gameName, date, author
-
-    message= f'@{role} '         
-    message += f'\n>>> \n\t**{author.name}** lance une session de  **{str(gameName)}**'
-    message += f'\n\t\theure:  **{str(date)}** \t\t **{str(slots - len(players))}** place(s)\n'
-    for slot in range(slots):
-        if slot < len(players):
-            message += f'\n\t- {players[slot]}'
-        else:
-            message += f'\n\t- '
-    message += '\n\n   '
-    return message
-
-    #Managing Data
-def Reset():
-    global planningStep, slots, gameName, date, players, author, even_message_id, role
-
-    planningStep = 0
-    slots = -1
-    gameName = ''
-    date = ''
-    players = list()
-    author=None
-    role=''
-    even_message_id = None
-
-# TO DELETE AFTER UPDATE -----------------------------------------------
