@@ -161,22 +161,15 @@ async def Commades(message):
     await message.delete()
 
 async def PlanningCommand(message):
-    author = message.author
-
     authorDb = await usr_serv.get_or_create_user(message.author)
     
-#    user2 = client.get_user(int(authorDb.discordId))
-#    await user2.send("hello world")
-#    return
-#    await client.send(user2, "Hello World")
-
-
     event = await event_serv.new_event(message, authorDb)
     if message.content != com.commandSign + com.planning:
         event = await event_serv.no_step(message.content, authorDb, event)
         await message.channel.send(msg_serv.BuildInvitMessage(event, authorDb))
         return
     else:
+        await message.author.send(res.msg_dict['game_name'])
         await message.channel.send(res.msg_dict['game_name'])
 
 async def MessageFromBot(message):
