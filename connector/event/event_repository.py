@@ -11,7 +11,7 @@ import connector
 def get_event(event_id):
     records = connector.select_query(f"""SELECT * FROM event WHERE id = {event_id}""")
     row = records[0]
-    current = event.build_event(row[0], row[1], row[2], row[3]) 
+    current = event.Event(row[0], row[1], row[2], row[3]) 
     return current
 
 def get_all_event():
@@ -19,14 +19,14 @@ def get_all_event():
 
     records = connector.select_query("""SELECT * FROM event""")
     for row in records:
-        current = event.build_event(row[0], row[1], row[2], row[3]) 
+        current = event.Event(row[0], row[1], row[2], row[3]) 
         list.append(current)
     return list
 
 def get_location(location):
     records = connector.select_query(f"""SELECT * FROM discordLocation WHERE serverId = {location.serverId} AND channelId = {location.channelId} AND messageId = {location.messageId} """)
     row = records[0]
-    current = event.build_location(row[0], row[1], row[2], row[3], row[4]) 
+    current = event.Location(row[0], row[1], row[2], row[3], row[4]) 
     return current
 
 def get_eventid_by_location(location):
@@ -36,7 +36,7 @@ def get_eventid_by_location(location):
 def get_location_by_event(eventId):
     records = connector.select_query(f"""SELECT * FROM discordLocation WHERE eventId = {eventId} """)
     row = records[0]
-    current = event.build_location(row[0], row[1], row[2], row[3], row[4]) 
+    current = event.Location(row[0], row[1], row[2], row[3], row[4]) 
     return current
 
 def get_event_from_location(serverId, channelId, messageId):

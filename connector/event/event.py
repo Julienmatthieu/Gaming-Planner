@@ -9,9 +9,6 @@ class Event(object):
         self.players = player
         self.time = time
         self.slots = slots
-   
-def build_event(id, players, time, slots):
-    return Event(id, players, time, slots)
 
 class Location(object):
     id = 0
@@ -25,6 +22,3 @@ class Location(object):
         self.channelId = channelId
         self.messageId = messageId
         self.eventId = eventId
-
-def build_location(id, serverId, channelId, messageId, eventId):
-    return Location(id, serverId, channelId, messageId, eventId)
