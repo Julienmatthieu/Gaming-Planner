@@ -26,9 +26,7 @@ import keys
  
 intents = discord.Intents.default()
 intents.members = True
-client = Bot(command_prefix = "$")
-#client = discord.Client(intents=intents)
-
+client = discord.Client(intents=intents)
 
 
 # TO DO LIST 
@@ -53,6 +51,19 @@ async def on_ready():
     print('We have logged in as {0.user}'.format(client))
     print('\n\n!planning-Sea Of Thieves-4-20h30-here')   
 
+@client.command()
+async def button(ctx):
+    await ctx.send(
+        "Hello, World!",
+        components = [
+            Button(label = "WOW button!")
+        ]
+    )
+
+    interaction = await client.wait_for("button_click", check = lambda i: i.component.label.startswith("WOW"))
+    await interaction.respond(content = "Button clicked!")
+
+
 # Registering Receving Message event
 @client.event
 async def on_message(message):
@@ -64,6 +75,8 @@ async def on_message(message):
         await MessageFromBot(message)
     elif str(message.channel.type) == res.msg_type['dm'] and message.author != client.user:
         await plan_serv.building_together(message, client)
+
+
 
 @client.event
 async def on_raw_reaction_add(payload):
