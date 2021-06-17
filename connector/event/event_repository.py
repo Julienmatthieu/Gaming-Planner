@@ -24,7 +24,7 @@ def get_all_event():
     return list
 
 def get_location(location):
-    records = connector.select_query(f"""SELECT * FROM discordLocation WHERE serverId = {location.serverId} AND channelId = {location.channelId} AND messageId = {location.messageId} """)
+    records = connector.select_query(f"""SELECT * FROM discordLocation WHERE guildId = {location.guildId} AND channelId = {location.channelId} AND messageId = {location.messageId} """)
     row = records[0]
     current = event.Location(row[0], row[1], row[2], row[3], row[4]) 
     return current
@@ -39,14 +39,14 @@ def get_location_by_event(eventId):
     current = event.Location(row[0], row[1], row[2], row[3], row[4]) 
     return current
 
-def get_event_from_location(serverId, channelId, messageId):
-    id = get_eventid_by_location(serverId, channelId, messageId)
+def get_event_from_location(guildId, channelId, messageId):
+    id = get_eventid_by_location(guildId, channelId, messageId)
     event = get_event(id)
     return event
 
 def create_event(event, location):
     eventId = connector.insert_query(f"""INSERT INTO event (players, time) VALUES ("{event.players}", "{event.time}") """)
-    locationId = connector.inset_query(f"""INSERT INTO discordLocation (serverId, channelId, messageId, eventId) VALUES ({location.serverId}, {location.channelId}, {location.messageId}, {eventId}) """)
+    locationId = connector.inset_query(f"""INSERT INTO discordLocation (guildId, channelId, messageId, eventId) VALUES ({location.guildId}, {location.channelId}, {location.messageId}, {eventId}) """)
     return eventId
 
 def delete_event(id):

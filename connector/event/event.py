@@ -12,13 +12,13 @@ class Event(object):
 
 class Location(object):
     id = 0
-    serverId = 0
+    guildId = 0
     channelId = 0
     messageId = 0
     eventId = 0
-    def __init__(self, id, serverId, channelId, messageId, eventId):
+    def __init__(self, id, guildId, channelId, messageId, eventId):
         self.id = id
-        self.serverId = serverId
+        self.guildId = guildId
         self.channelId = channelId
         self.messageId = messageId
         self.eventId = eventId
