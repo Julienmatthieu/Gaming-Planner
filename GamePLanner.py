@@ -40,7 +40,7 @@ async def on_ready():
 
 @bot.command(name='list')
 
-@bot.command()
+@bot.command(name="bite")
 async def button(ctx):
     await ctx.send(
         "Hello, World!",
