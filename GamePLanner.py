@@ -130,7 +130,8 @@ async def Commades(message):
         await msg_serv.FullClear(message)
     else:
         await message.channel.send('>>> Commande inconnue. Utilisez !help pour de l\'aide')
-    await message.delete()
+    if str(message.channel.type) != res.msg_type['dm']:
+        await message.delete()
 
 async def PlanningCommand(message):
     authorDb = await usr_serv.get_or_create_user(message.author)
