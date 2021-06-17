@@ -11,6 +11,7 @@ import ressources as res
 import commands as com
 import event_repository as event_rep
 import user_service
+import event_service
 from  user import User
 from event import Event, Location
 import keys
@@ -195,31 +196,21 @@ async def PlanningCommand(message):
         await DirectPLanning(message, user)
         return
     else:
-        await SimplePLanning(message, user)
+        await event_service.new_event(message, user)
         await message.channel.send(res.msg_dict['game_name'])
 
 async def MessageFromBot(message):
-    location = await event_rep.get_last_location(message.guild.id, message.channel.id)
-    if (location == None):
+    event = event_service.get_last_unset_event(message)
+    if event == None:
         return
-    location.messageId = message.id
-    await event_rep.update_location_message(location)
-    event = await event_rep.get_event(location.eventId)
     if event.step == res.steps['done']:
         emojis = [res.emojis_dict['thumbs_up'], res.emojis_dict['thumbs_down'], res.emojis_dict['cross']]
         for emoji in emojis:
             await message.add_reaction(emoji)
 
-async def SimplePLanning(message):
-
-    new_event = Event(id=0, player=message.author.name, time="", slots=1, gameName="", author=message.author.name, role="", step=res.steps['init'])
-    new_location = Location(id = 0, guildId=message.guild.id, channelId=message.channel.id, messageId=0, eventId=0)
-    await event_rep.create_event(new_event, new_location)
-
-async def DirectPLanning(message):
+async def DirectPLanning(message, author):
     data=message.content.split('-')
-    author = message.author.name
-    new_event = Event(id=0, gameName=data[1], slots=int(data[2]), time=data[3], author=author, player=author, role=data[4], step=res.steps['done'])
+    new_event = Event(id=0, gameName=data[1], slots=int(data[2]), time=data[3], author=author.id, player=author.name, role=data[4], step=res.steps['done'])
     new_location = Location(id = 0, guildId=message.guild.id, channelId=message.channel.id, messageId=0, eventId=0)
     await event_rep.create_event(new_event, new_location)
     # testing 
