@@ -197,7 +197,7 @@ async def MessageFromBot(message):
     location.messageId = message.id
     print(f" \n\n ASSIGNING THIS MESSAGE {message.id} to location {location.id}")
     await event_rep.update_location_message(location)
-    event = event_rep.get_event(location.eventId)
+    event = await event_rep.get_event(location.eventId)
     event.print()
     return
     if message.content.startswith('@'):
