@@ -1,3 +1,4 @@
+from connector.connector import delete_query
 import mysql.connector
 from mysql.connector import Error
 import sys
@@ -7,31 +8,56 @@ sys.path.append(f'{path}/connector/')
 import event
 import connector 
 
+# Getters 
 def get_event(event_id):
-    records = connector.select_query(f"""select * from event where id = {event_id}""")
+    records = connector.select_query(f"""SELECT * FROM event WHERE id = {event_id}""")
     row = records[0]
-    current = event.make_event(row[0], row[1], row[2]) 
+    current = event.build_event(row[0], row[1], row[2]) 
     return current
 
 def get_all_event():
     list = []
 
-    records = connector.select_query("""select * from event""")
+    records = connector.select_query("""SELECT * FROM event""")
     for row in records:
-        current = event.make_event(row[0], row[1], row[2]) 
+        current = event.build_event(row[0], row[1], row[2]) 
         list.append(current)
     return list
 
-def get_eventid_by_location(serverId, channelId, messageId):
-    records = connector.select_query(f"""select eventId from discordLocation where serverId = {serverId} AND channelId = {channelId} AND messageId = {messageId} """)
-    return records[0][0]
+def get_location(location):
+    records = connector.select_query(f"""SELECT * FROM discordLocation WHERE serverId = {location.serverId} AND channelId = {location.channelId} AND messageId = {location.messageId} """)
+    row = records[0]
+    current = event.build_location(row[0], row[1], row[2], row[3], row[4]) 
+    return current
+
+def get_eventid_by_location(location):
+    location = get_location(location)
+    return location.eventId
+
+def get_location_by_event(eventId):
+    records = connector.select_query(f"""SELECT * FROM discordLocation WHERE eventId = {eventId} """)
+    row = records[0]
+    current = event.build_location(row[0], row[1], row[2], row[3], row[4]) 
+    return current
 
 def get_event_from_location(serverId, channelId, messageId):
     id = get_eventid_by_location(serverId, channelId, messageId)
     event = get_event(id)
     return event
 
-def create_event():
-    id = connector.insert_query(f"""INSERT INTO event (players, time) VALUES ("juju, steve", "asap") """)
-    print(f"this is my creation query: {id}")
-    return None
+def create_event(event):
+    id = connector.insert_query(f"""INSERT INTO event (players, time) VALUES ("{event.players}", "{event.time}") """)
+    connector.inset
+    return id
+
+def update_event(event):
+    if event.id <= 0:
+        return create_event(event)
+    id = connector.inser_query(f"""UPDATE  """)
+
+
+def delete_event(id):
+    connector.delete_query(f""" DELETE FROM discordLocation WHERE eventId = {id} """)
+    connector.delete_query(f""" DELETE FROM event WHERE id = {id} """)
+
+
