@@ -39,7 +39,7 @@ date=''
 role=''
 players= list()
 author=None
-# TO DELETE AFTER UPDATE -----------------------------------------------
+# TO DELETE AFTER UPDATE  DEV -----------------------------------------------
 
 
 # Registering Loggin event
