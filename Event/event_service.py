@@ -27,8 +27,8 @@ async def update_event(event):
     return await repo.update_event(event)
 
 async def get_last_event_by_userId(userId):
-    return repo.get_by_userId(userId)
+    return await repo.get_by_userId(userId)
 
 async def get_location_by_event(event):
-    return repo.get_location_by_event(event)
+    return await repo.get_location_by_event(event)
     
