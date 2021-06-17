@@ -63,4 +63,5 @@ async def CancelCurrentEvent(message):
     value = await delete_event_from_authorId(authorDb.id)
     if value == None:
         await message.author.send(res.msg_dict['nothing_cancel'])
-    await message.author.send(res.msg_dict['cancel'])
+    else:
+        await message.author.send(res.msg_dict['cancel'])
