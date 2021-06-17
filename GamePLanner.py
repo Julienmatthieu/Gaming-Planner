@@ -52,9 +52,6 @@ async def on_ready():
 @client.event
 async def on_message(message):
 
-    if channel != '' and channel != message.channel or channel == '' and not message.content.startswith(com.commandSign):
-        return
-
     # def tool
     if message.content.startswith(com.commandSign) and message.channel.type != res.msg_type['dm']:
         await Commades(message)
