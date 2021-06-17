@@ -58,7 +58,7 @@ async def next_step(message, authorDb, event, bot):
         Location = await get_location_by_event(event)
         channel = bot.get_channel(int(Location.channelId))
         await channel.send(
-            msg_serv.BuildInvitMessage(event, authorDb),
+            msg_serv.BuildInvitMessage(event, authorDb) + " https://cdn.discordapp.com/avatars/225743846934446081/02bb90eb50bd3c1070acf282c0dd0c3c.webp?size=1024",
             components = [
                 Button(disabled=0, label = "I\'m in 💪", style = 3),
                 Button(disabled=0, label = "Cancel ❌", style = 4)
