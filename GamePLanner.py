@@ -26,7 +26,7 @@ import keys
 # AJOUTER UN talbe pour lister les chan autorisé pour le bot
 
 
-bot = Bot(command_prefix = res.commandSign)
+bot = Bot(command_prefix = "!")
 
 
 @bot.event
@@ -37,9 +37,6 @@ async def on_ready():
 
 @bot.command(name='list', help="test a changer")
 async def button(ctx):
-    print("\n\n\n")
-    print(str(type(ctx.send())))
-    print("\n\n\n")
     await ctx.send(
         content ="Hello, World!",
         components = [
