@@ -71,10 +71,10 @@ async def button(ctx):
 #    print('\n\n!planning-Sea Of Thieves-4-20h30-here')   
 
 # Registering Receving Message event
-#@bot.event
-#async def on_message(message):
-#    if message.author.id != bot.user.id:
-#        await message.channel.send("I can see that")
+@bot.event
+async def on_message(message):
+    if message.author.id != bot.user.id:
+        await message.channel.send("I can see that")
     # def tool
 #    if message.content.startswith(com.commandSign):
 #        await Commades(message)
