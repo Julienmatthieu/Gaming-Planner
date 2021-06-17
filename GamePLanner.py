@@ -5,6 +5,7 @@ import discord
 
 path = pathlib.Path().absolute()
 sys.path.append(f'{path}/Ressources/')
+sys.path.append(f'{path}/Connector/')
 sys.path.append(f'{path}/Message/')
 sys.path.append(f'{path}/User/')
 sys.path.append(f'{path}/Event')
