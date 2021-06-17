@@ -62,7 +62,7 @@ async def on_message(message):
             Button(label = "WOW button!")
         ]
     )
-    interaction = await bot.wait_for("button_click", check = lambda i: i.component.label.startswith("WOW"))
+    interaction = await client.wait_for("button_click", check = lambda i: i.component.label.startswith("WOW"))
     await interaction.respond(content = "Button clicked!")
 
     return
