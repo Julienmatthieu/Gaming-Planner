@@ -210,7 +210,7 @@ async def MessageFromBot(message):
         even_message_id = message.id
 
 async def SimplePLanning(message):
-    new_event = Event(0, None, 0, None, message.author.name, message.author.name, None, step=res.build_steps['init'])
+    new_event = Event(id=0, player=message.author.name, time="", slots=1, gameName="", author=message.author.name, role="", step=res.build_steps['init'])
     new_location = Location(id = 0, guildId=message.guild.id, channelId=message.channel.id, messageId=0, eventId=0)
     await event_rep.create_event(new_event, new_location)
 
