@@ -200,7 +200,7 @@ async def PlanningCommand(message):
         await message.channel.send(res.msg_dict['game_name'])
 
 async def MessageFromBot(message):
-    event = event_service.get_last_unset_event(message)
+    event = await event_service.get_last_unset_event(message)
     if event == None:
         return
     if event.step == res.steps['done']:
