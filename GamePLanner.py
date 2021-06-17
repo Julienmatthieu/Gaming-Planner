@@ -191,7 +191,7 @@ async def PlanningCommand(message):
     author = message.author
 
     print("creating a user")
-    if get_user_discordId(author.id) == None:
+    if usr_rep.get_user_discordId(author.id) == None:
         user = User(0, author.name, author.id, author.avatar_url, author.display_name, author.mention)
         await usr_rep.create_user(user)
         user.print()
