@@ -57,4 +57,4 @@ async def next_step(message, authorDb, event, client):
         await message.author.send(res.msg_dict['done'])
         Location = await get_location_by_event(event)
         channel = client.get_channel(int(Location.channelId))
-        channel.send(await msg_serv.BuildInvitMessage(event, authorDb))
+        channel.send(msg_serv.BuildInvitMessage(event, authorDb))
