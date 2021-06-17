@@ -37,4 +37,4 @@ async def delete_event_from_authorId(authorId):
 
     if event == None:
         return
-    repo.delete_event(event.id)
+    await repo.delete_event(event.id)
