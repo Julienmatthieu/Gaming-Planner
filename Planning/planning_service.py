@@ -58,9 +58,8 @@ async def next_step(message, authorDb, event, bot):
         Location = await get_location_by_event(event)
         channel = bot.get_channel(int(Location.channelId))
 
-        message = msg_serv.BuildInvitMessage(event, authorDb) + " " + bot.user.avatar
         await channel.send(
-            message,
+            msg_serv.BuildInvitMessage(event, authorDb) ,
             components = [
                 Button(disabled=0, label = "I\'m in 💪", style = 3),
                 Button(disabled=0, label = "Cancel ❌", style = 4)
