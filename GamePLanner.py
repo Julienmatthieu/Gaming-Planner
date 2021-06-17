@@ -9,9 +9,9 @@ sys.path.append(f'{path}/User/')
 sys.path.append(f'{path}/connector/event')
 import ressources as res
 import commands as com
-import user
 import event_repository as event_rep
 import user_repository as usr_rep
+from  user import User
 from event import Event, Location
 import keys
 
@@ -191,7 +191,8 @@ async def PlanningCommand(message):
     author = message.author
 
     print("creating a user")
-    usr_rep.create_user(0, author.name, author.id, author.avatar_url, author.display_name, author.mention)
+    user = User(0, author.name, author.id, author.avatar_url, author.display_name, author.mention)
+    await usr_rep.create_user(user)
     print("did it work ? ")
     return 
     if message.content != com.commandSign + com.planning:
