@@ -114,7 +114,7 @@ async def UpdateCurrentEvent(payload):
 async def default(ctx):
     await ctx.channel.send('>>> Commande inconnue. Utilisez !help pour de l\'aide')
 
-@bot.command(name=res.clear, description=res.help.clear)
+@bot.command(name=res.clear, help=res.help.clear)
 async def clear(ctx):
     await msg_serv.FullClear(ctx.message)
 
