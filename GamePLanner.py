@@ -164,6 +164,11 @@ async def PlanningCommand(message):
     author = message.author
 
     authorDb = await usr_serv.get_or_create_user(message.author)
+    
+    user2 = await client.get_user_info(authorDb.discordId)
+    await client.send_message(user2, "Hello World")
+
+
     event = await event_serv.new_event(message, user)
     if message.content != com.commandSign + com.planning:
         event = await event_serv.no_step(message.content, user, event)
