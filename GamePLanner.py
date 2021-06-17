@@ -2,7 +2,7 @@
 import sys
 import pathlib
 from discord.ext.commands import Bot
-from discord_components import DiscordComponents, Button
+from discord_components import *
 
 
 path = pathlib.Path().absolute()
@@ -26,46 +26,38 @@ import keys
 # AJOUTER UN talbe pour lister les chan autorisé pour le bot
 
 
-bot = Bot(command_prefix = "!")
-
-
-# Registering Loggin event
-#@bot.event
-#async def on_ready():
-#    print('We have logged in as {0.user}'.format(bot))
-#    print('\n\n!planning-Sea Of Thieves-4-20h30-here')   
+bot = Bot(command_prefix = res.commandSign)
 
 @bot.event
 async def on_ready():
     DiscordComponents(bot)
     print(f"Logged in as {bot.user}!")
-
+    print('We have logged in as {0.user}'.format(bot))
+    print('\n\n!planning-Sea Of Thieves-4-20h30-here')   
 
 @bot.command(name='list', help="test a changer")
 async def button(ctx):
-    await ctx.send(
-        content ="Hello, World!",
-        components = [
-            Button(label = "WOW button!")
-        ]
-    )
+        await ctx.send(
+            "Hello, World!",
+            components = [
+                Button(label = "WOW button!")
+            ]
+        )
 
-    interaction = await bot.wait_for("button_click", check = lambda i: i.component.label.startswith("WOW"))
-    await interaction.respond(content = "Button clicked!")
-
-
+        interaction = await bot.wait_for("button_click", check = lambda i: i.component.label.startswith("WOW"))
+        await interaction.respond(content = "Button clicked!")
 
 
-## Registering Receving Message event
-#@bot.event
-#async def on_message(message):
-#    # def tool
-#    if message.content.startswith(res.commandSign):
-#        await bot.process_commands(message)
-#    elif message.author == bot.user and str(message.channel.type) != res.msg_type['dm']:
-#        await MessageFromBot(message)
-#    elif str(message.channel.type) == res.msg_type['dm'] and message.author != bot.user:
-#        await plan_serv.building_together(message, bot)
+# Registering Receving Message event
+@bot.event
+async def on_message(message):
+    # def tool
+    if message.content.startswith(res.commandSign):
+        await bot.process_commands(message)
+    elif message.author == bot.user and str(message.channel.type) != res.msg_type['dm']:
+        await MessageFromBot(message)
+    elif str(message.channel.type) == res.msg_type['dm'] and message.author != bot.user:
+        await plan_serv.building_together(message, bot)
 
 @bot.event
 async def on_raw_reaction_add(payload):
@@ -110,9 +102,9 @@ async def UpdateCurrentEvent(payload):
             return
     await UpdateMessage(payload.message_id, bot.get_channel(payload.channel_id), msg_serv.BuildInvitMessage(None))
 
-#@bot.command()
-#async def default(ctx):
-#    await ctx.channel.send('>>> Commande inconnue. Utilisez !help pour de l\'aide')
+@bot.command()
+async def default(ctx):
+    await ctx.channel.send('>>> Commande inconnue. Utilisez !help pour de l\'aide')
 
 @bot.command(name=res.clear, help=res.help['clear'])
 async def clear(ctx):
@@ -126,6 +118,16 @@ async def clear(ctx):
 
 @bot.command(name=res.planning, help=res.help['planning'])
 async def PlanningCommand(ctx):
+
+    await ctx.channel.send(
+        "Hello, World!",
+        components = [
+            Button(label = "WOW button!")
+        ]
+    )
+
+    interaction = await bot.wait_for("button_click", check = lambda i: i.component.label.startswith("WOW"))
+    await interaction.respond(content = "Button clicked!")
 
     message = ctx.message
     if str(message.channel.type) == res.msg_type['dm']:
