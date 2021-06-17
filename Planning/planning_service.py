@@ -13,6 +13,7 @@ async def building_together(message, client):
     authorDb = await get_or_create_user(message.author)
     event = await get_last_event_by_userId(authorDb.id)
     if event == None:
+        print(f"\n\n  Client USer name : {message.author.name} ------- \n")
         await message.author.send(res.error['event-not-found'])
         return
     await next_step(message, authorDb, event, client)
