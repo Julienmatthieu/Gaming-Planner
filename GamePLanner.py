@@ -3,6 +3,9 @@ import sys
 import pathlib
 import discord 
 
+from discord.ext.commands import Bot
+from discord_components import DiscordComponents, Button
+
 path = pathlib.Path().absolute()
 sys.path.append(f'{path}/Resources/')
 sys.path.append(f'{path}/Connector/')
@@ -52,6 +55,18 @@ async def on_ready():
 @client.event
 async def on_message(message):
 
+
+    await message.channel.send(
+        "Hello, World!",
+        components = [
+            Button(label = "WOW button!")
+        ]
+    )
+    interaction = await bot.wait_for("button_click", check = lambda i: i.component.label.startswith("WOW"))
+    await interaction.respond(content = "Button clicked!")
+
+    return
+
     # def tool
     if message.content.startswith(com.commandSign):
         await Commades(message)
@@ -59,6 +74,8 @@ async def on_message(message):
         await MessageFromBot(message)
     elif str(message.channel.type) == res.msg_type['dm'] and message.author != client.user:
         await plan_serv.building_together(message, client)
+
+
 
 @client.event
 async def on_raw_reaction_add(payload):
