@@ -51,7 +51,7 @@ async def on_ready():
     print('We have logged in as {0.user}'.format(client))
     print('\n\n!planning-Sea Of Thieves-4-20h30-here')   
 
-@bot.command()
+@client.command()
 async def button(ctx):
     await ctx.send(
         "Hello, World!",
