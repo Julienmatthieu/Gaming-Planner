@@ -1,4 +1,3 @@
-from GamePLanner import ClearHisto
 from os import error
 from sys import audit
 import discord 
