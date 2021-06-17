@@ -29,14 +29,13 @@ msg_dict = {
     'done':             '>>> La session est en cours de rédaction. Merci pour votre temps !'
 }
 
-
 help = {
-    cancel:  'Défini le chan d\'acttion du bot. A configurer a chaque redémarage',
-    planning: 'Créer une session de jeu étape par étape (Non utilisable en MP)',
+    'cancel':  'Défini le chan d\'acttion du bot. A configurer a chaque redémarage',
+    'planning': 'Créer une session de jeu étape par étape (Non utilisable en MP)',
     # TO DO PARAM
 #        \n\t{com.commandSign}{com.planning}-GameName-NombreDeJoueurs-Date-Role pour créer une session en une seule commande (Non utilisable en MP)\
-    clear: 'Supprime tous les messages du bot',
-    cancel: 'Annule la session en cours de création'
+    'clear': 'Supprime tous les messages du bot',
+    'cancel': 'Annule la session en cours de création'
 }
 #        \n\t{com.commandSign}{com.cancel}:  \
 #        \n\t  **Ce bot est actuellement en cours de dévelopement. Pour tout feedback ou idée n\' hésitez pas à contacter Stalingrad#9674**')
