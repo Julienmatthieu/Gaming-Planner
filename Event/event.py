@@ -28,7 +28,7 @@ class Event(object):
         self.time = other.time
         self.slots = other.slots
         self.gameName = other.gameName
-        self.authorId = other.author
+        self.authorId = other.authorId
         self.role = other.role
         self.step = other.step
 
