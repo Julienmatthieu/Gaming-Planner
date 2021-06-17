@@ -58,7 +58,7 @@ async def on_message(message):
     elif message.author == client.user and str(message.channel.type) != res.msg_type['dm']:
         await MessageFromBot(message)
     elif str(message.channel.type) == res.msg_type['dm']:
-        await plan_serv.building_together(message)
+        await plan_serv.building_together(message, client)
 
 @client.event
 async def on_raw_reaction_add(payload):

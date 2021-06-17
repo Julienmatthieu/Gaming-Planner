@@ -8,20 +8,18 @@ from event_service import new_event, update_event, get_location_by_event, get_la
 import message_service as msg_serv
 import ressources as res
 from event import Event, Location
-#from GamePLanner import client 
 
-async def building_together(message):
+async def building_together(message, client):
     
     authorDb = await get_or_create_user(message.author)
     event = await get_last_event_by_userId(authorDb.id)
     if event == None:
         await message.author.send(res.error['event-not-found'])
         return
-    await next_step(message, authorDb, event)
+    await next_step(message, authorDb, event, client)
 
 #Steps
-async def next_step(message, authorDb, event):
-    global client
+async def next_step(message, authorDb, event, client):
 
     test = client.get_user(int(authorDb.discordDb))
 
