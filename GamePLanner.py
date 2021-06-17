@@ -26,6 +26,8 @@ intents.members = True
 client = discord.Client(intents=intents)
 
 
+# button testing
+
 # TO DO LIST 
 # AJOUTER UN talbe pour lister les chan autorisé pour le bot
 
