@@ -51,9 +51,6 @@ async def button(ctx):
     await interaction.respond(content = "Button clicked!")
 
 
-
-
-
 # Registering Loggin event
 @bot.event
 async def on_ready():
