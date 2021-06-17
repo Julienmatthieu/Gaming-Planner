@@ -125,7 +125,7 @@ async def clear(ctx):
 @bot.command(name=res.planning, help=res.help['planning'])
 async def PlanningCommand(ctx):
 
-    await ctx.send(
+    await ctx.channel.send(
         "Hello, World!",
         components = [
             Button(label = "WOW button!")
