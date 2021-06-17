@@ -13,7 +13,6 @@ sys.path.append(f'{path}/Message/')
 sys.path.append(f'{path}/User/')
 sys.path.append(f'{path}/Event')
 import resources as res
-import commands as com
 import user_service as usr_serv
 import event_service as event_serv
 import message_service as msg_serv
@@ -27,7 +26,7 @@ import keys
 # AJOUTER UN talbe pour lister les chan autorisé pour le bot
 
 
-bot = Bot(command_prefix = com.commandSign)
+bot = Bot(command_prefix = res.commandSign)
 
 
 @bot.event
@@ -61,7 +60,7 @@ async def on_ready():
 @bot.event
 async def on_message(message):
     # def tool
-    if message.content.startswith(com.commandSign):
+    if message.content.startswith(res.commandSign):
         await bot.process_commands(message)
     elif message.author == bot.user and str(message.channel.type) != res.msg_type['dm']:
         await MessageFromBot(message)
@@ -115,28 +114,17 @@ async def UpdateCurrentEvent(payload):
 async def default(ctx):
     await ctx.channel.send('>>> Commande inconnue. Utilisez !help pour de l\'aide')
 
-@bot.command(name=com.clear)
+@bot.command(name=res.clear, description=res.help.clear)
 async def clear(ctx):
     await msg_serv.FullClear(ctx.message)
 
-@bot.command(name=com.cancel)
+@bot.command(name=res.cancel)
 async def clear(ctx):
     message = ctx.message
     await plan_serv.CancelCurrentEvent(message)
     await msg_serv.FullClear(message)
 
-#@bot.command(name=com.help)
-#async def need_help(ctx):
-#    await ctx.channel.send(f'>>> Commades disponible:\
-#        \n\t{com.commandSign}{com.set_channel}: défini le chan d\'acttion du bot. A configurer a chaque redémarage\
-#        \n\t{com.commandSign}{com.unset_channel}: annule la configuration du chan\
-#        \n\t{com.commandSign}{com.planning} pour créer une session de jeu étape par étape (Non utilisable en MP)\
-#        \n\t{com.commandSign}{com.planning}-GameName-NombreDeJoueurs-Date-Role pour créer une session en une seule commande (Non utilisable en MP)\
-#        \n\t{com.commandSign}{com.clear}: supprime tous les messages du bot\
-#        \n\t{com.commandSign}{com.cancel}: annule la session en cours de création \
-#        \n\t  **Ce bot est actuellement en cours de dévelopement. Pour tout feedback ou idée n\' hésitez pas à contacter Stalingrad#9674**')
-
-@bot.command(name=com.planning)
+@bot.command(name=res.planning)
 async def PlanningCommand(ctx):
     message = ctx.message
     if str(message.channel.type) == res.msg_type['dm']:
@@ -146,7 +134,7 @@ async def PlanningCommand(ctx):
     authorDb = await usr_serv.get_or_create_user(message.author)
    
     event = await event_serv.new_event(message, authorDb)
-    if message.content != com.commandSign + com.planning:
+    if message.content != res.commandSign + res.planning:
         event = await event_serv.no_step(message.content, authorDb, event)
         await message.channel.send(msg_serv.BuildInvitMessage(event, authorDb))
         return
