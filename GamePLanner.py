@@ -111,7 +111,6 @@ async def UpdateCurrentEvent(payload):
             return
     await UpdateMessage(payload.message_id, bot.get_channel(payload.channel_id), msg_serv.BuildInvitMessage(None))
 
-
 @bot.command()
 async def default(ctx):
     await ctx.channel.send('>>> Commande inconnue. Utilisez !help pour de l\'aide')
