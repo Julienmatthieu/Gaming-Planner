@@ -51,7 +51,7 @@ async def on_ready():
 async def on_message(message):
     global planningStep, slots, gameName, hours, min, even_message_id, channel
 
-    print(f"\n\nmessage.channel.type\n\n")
+    print(f"\n\n{message.channel.type}\n\n")
 
     if message.channel.type == 'dm':
         await message.channel.send('Hello!')
