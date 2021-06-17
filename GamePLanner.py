@@ -2,7 +2,7 @@
 import sys
 import pathlib
 from discord.ext.commands import Bot
-from discord_components import DiscordComponents, Button
+from discord_components import *
 
 
 path = pathlib.Path().absolute()

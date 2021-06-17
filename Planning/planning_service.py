@@ -1,7 +1,7 @@
 from os import error
 from sys import audit
 from discord.ext.commands import Bot
-from discord_components import DiscordComponents, Button
+from discord_components import *
 
 from user_service import get_or_create_user
 from event_service import new_event, update_event, get_location_by_event, get_last_event_by_userId, delete_event_from_authorId
