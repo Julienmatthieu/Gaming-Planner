@@ -57,7 +57,7 @@ async def on_message(message):
         await Commades(message)
     elif message.author == client.user and str(message.channel.type) != res.msg_type['dm']:
         await MessageFromBot(message)
-    elif str(message.channel.type) == res.msg_type['dm']:
+    elif str(message.channel.type) == res.msg_type['dm'] and message.author != client.user:
         await plan_serv.building_together(message, client)
 
 @client.event
