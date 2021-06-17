@@ -11,7 +11,7 @@ import connector
 def get_event(event_id):
     records = connector.select_query(f"""SELECT * FROM event WHERE id = {event_id}""")
     row = records[0]
-    current = event.build_event(row[0], row[1], row[2]) 
+    current = event.build_event(row[0], row[1], row[2], row[3]) 
     return current
 
 def get_all_event():
@@ -19,7 +19,7 @@ def get_all_event():
 
     records = connector.select_query("""SELECT * FROM event""")
     for row in records:
-        current = event.build_event(row[0], row[1], row[2]) 
+        current = event.build_event(row[0], row[1], row[2], row[3]) 
         list.append(current)
     return list
 

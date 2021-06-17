@@ -2,14 +2,16 @@ class Event(object):
     id = 0
     players = ''
     time = ''
+    slots = 1
 
-    def __init__(self, id, player, time):
+    def __init__(self, id, player, time, slots):
         self.id = id
         self.players = player
         self.time = time
+        self.slots = slots
    
-def build_event(id, players, time):
-    return Event(id, players, time)
+def build_event(id, players, time, slots):
+    return Event(id, players, time, slots)
 
 class Location(object):
     id = 0
