@@ -64,7 +64,8 @@ async def on_ready():
 # Registering Receving Message event
 @bot.event
 async def on_message(message):
-    await message.channel.send("I can see that")
+    if message.user.id != bot.user.id:
+        await message.channel.send("I can see that")
     # def tool
 #    if message.content.startswith(com.commandSign):
 #        await Commades(message)
