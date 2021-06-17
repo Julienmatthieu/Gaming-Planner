@@ -53,11 +53,15 @@ async def on_ready():
 async def on_message(message):
 
     print(f"--{message.channel.type}--")
+    print(f"{type(message.channel.type)}")
     print(f"--{res.msg_type['dm']}--")
+    print(f"{type(res.msg_type['dm'])}")
     print("-------\n\n")
     if message.channel.type == res.msg_type['dm']:
         print('i am in a dm message')
         await plan_serv.planning_event(message)
+    else:
+        print("not the sames")
 
     if channel != '' and channel != message.channel or channel == '' and not message.content.startswith(com.commandSign):
         return
