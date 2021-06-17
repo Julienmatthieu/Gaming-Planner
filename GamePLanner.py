@@ -163,11 +163,11 @@ async def Commades(message):
 async def PlanningCommand(message):
     author = message.author
 
-    user = await usr_serv.get_or_create_user(message.author)
+    authorDb = await usr_serv.get_or_create_user(message.author)
     event = await event_serv.new_event(message, user)
     if message.content != com.commandSign + com.planning:
         event = await event_serv.no_step(message.content, user, event)
-        await message.channel.send(msg_serv.BuildInvitMessage(event))
+        await message.channel.send(msg_serv.BuildInvitMessage(event, authorDb))
         return
     else:
         await message.channel.send(res.msg_dict['game_name'])
