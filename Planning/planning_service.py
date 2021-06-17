@@ -3,11 +3,10 @@ from sys import audit
 from discord.ext.commands import Bot
 from discord_components import DiscordComponents, Button
 
-
 from user_service import get_or_create_user
 from event_service import new_event, update_event, get_location_by_event, get_last_event_by_userId, delete_event_from_authorId
-import message_service as msg_serv
 import resources as res
+import message_service as msg_serv
 from event import Event, Location
 
 async def building_together(message, bot):
@@ -21,6 +20,7 @@ async def building_together(message, bot):
 
 #Steps
 async def next_step(message, authorDb, event, bot):
+    ctx = await bot.get_context(message)
     if event.step == res.steps['none']:
         new_event(message, authorDb)
         event.step = res.steps['game_name']
@@ -36,6 +36,17 @@ async def next_step(message, authorDb, event, bot):
         event.gameName = message.content
         event.step = res.steps['slots']
         await update_event(event)
+
+
+        await ctx.send(
+            "Hello, World!",
+            components = [
+                Button(label = "WOW button!")
+            ]
+        )
+
+        interaction = await bot.wait_for("button_click", check = lambda i: i.component.label.startswith("WOW"))
+        await interaction.respond(content = "Button clicked!")
 
 
         await message.channel.send(
