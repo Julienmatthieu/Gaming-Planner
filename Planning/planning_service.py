@@ -10,7 +10,7 @@ import resource as res
 from Event.event import Location
 from GamePLanner import client 
 
-async def planning_event(message):
+async def building_together(message):
     authorDb = await usr_serv.get_or_create_user(message.author)
     event = event_serv.get_last_event_by_userId(authorDb.id)
     authorDb.print()
