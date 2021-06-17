@@ -29,7 +29,23 @@ intents.members = True
 client = Bot(command_prefix = "$")
 #client = discord.Client(intents=intents)
 
+@client.event
+async def on_ready():
+    DiscordComponents(client)
+    print(f"Logged in as {client.user}!")
 
+
+@client.command(name='btn')
+async def button(ctx):
+    await ctx.send(
+        "Hello, World!",
+        components = [
+            Button(label = "WOW button!")
+        ]
+    )
+
+    interaction = await client.wait_for("button_click", check = lambda i: i.component.label.startswith("WOW"))
+    await interaction.respond(content = "Button clicked!")
 
 # TO DO LIST 
 # AJOUTER UN talbe pour lister les chan autorisé pour le bot
