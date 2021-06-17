@@ -111,37 +111,33 @@ async def UpdateCurrentEvent(payload):
             return
     await UpdateMessage(payload.message_id, bot.get_channel(payload.channel_id), msg_serv.BuildInvitMessage(None))
 
-#Comandes 
-async def Commades(message):
-    global planningStep, channel
 
-    if message.content == com.commandSign + com.help:
-        await message.channel.send(f'>>> Commades disponible:\
-                                            \n\t{com.commandSign}{com.set_channel}: défini le chan d\'acttion du bot. A configurer a chaque redémarage\
-                                            \n\t{com.commandSign}{com.unset_channel}: annule la configuration du chan\
-                                            \n\t{com.commandSign}{com.planning} pour créer une session de jeu étape par étape (Non utilisable en MP)\
-                                            \n\t{com.commandSign}{com.planning}-GameName-NombreDeJoueurs-Date-Role pour créer une session en une seule commande (Non utilisable en MP)\
-                                            \n\t{com.commandSign}{com.clear}: supprime tous les messages du bot\
-                                            \n\t{com.commandSign}{com.cancel}: annule la session en cours de création \
-                                            \n\t  **Ce bot est actuellement en cours de dévelopement. Pour tout feedback ou idée n\' hésitez pas à contacter Stalingrad#9674**')
-    elif message.content.startswith(com.commandSign + com.set_channel):
-        channel = message.channel
-        await channel.send(f">>> Je posterais à présent dans ce chan")
-    elif channel == '':
-        await message.channel.send(f'>>> Vous devez d\'abord m\'assigner a un chan. {com.commandSign}{com.set_channel}')
-    elif message.content.startswith(com.commandSign + com.planning):
-        await PlanningCommand(message)
-    elif message.content == com.commandSign + com.clear:
-        await msg_serv.FullClear(message)
-    elif message.content == com.commandSign + com.cancel:
-        await plan_serv.CancelCurrentEvent(message)
-        await msg_serv.FullClear(message)
-    else:
-        await message.channel.send('>>> Commande inconnue. Utilisez !help pour de l\'aide')
-    if str(message.channel.type) != res.msg_type['dm']:
-        await message.delete()
+@bot.command()
+async def clear(ctx):
+    await ctx.channel.send('>>> Commande inconnue. Utilisez !help pour de l\'aide')
 
-@bot.command(name='planning')
+@bot.command(name=com.clear)
+async def clear(ctx):
+    await msg_serv.FullClear(ctx.message)
+
+@bot.command(name=com.cancel)
+async def clear(ctx):
+    message = ctx.message
+    await plan_serv.CancelCurrentEvent(message)
+    await msg_serv.FullClear(message)
+
+@bot.command(name=com.help)
+async def help(ctx):
+    await ctx.channel.send(f'>>> Commades disponible:\
+        \n\t{com.commandSign}{com.set_channel}: défini le chan d\'acttion du bot. A configurer a chaque redémarage\
+        \n\t{com.commandSign}{com.unset_channel}: annule la configuration du chan\
+        \n\t{com.commandSign}{com.planning} pour créer une session de jeu étape par étape (Non utilisable en MP)\
+        \n\t{com.commandSign}{com.planning}-GameName-NombreDeJoueurs-Date-Role pour créer une session en une seule commande (Non utilisable en MP)\
+        \n\t{com.commandSign}{com.clear}: supprime tous les messages du bot\
+        \n\t{com.commandSign}{com.cancel}: annule la session en cours de création \
+        \n\t  **Ce bot est actuellement en cours de dévelopement. Pour tout feedback ou idée n\' hésitez pas à contacter Stalingrad#9674**')
+
+@bot.command(name=com.planning)
 async def PlanningCommand(ctx):
     message = ctx.message
     if str(message.channel.type) == res.msg_type['dm']:
