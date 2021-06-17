@@ -5,6 +5,7 @@ import discord
 
 path = pathlib.Path().absolute()
 sys.path.append(f'{path}/Ressources/')
+sys.path.append(f'{path}/Message/')
 sys.path.append(f'{path}/User/')
 sys.path.append(f'{path}/Event')
 import ressources as res
@@ -12,6 +13,7 @@ import commands as com
 import event_repository as event_rep
 import user_service
 import event_service
+import message_service as msg_serv
 from  user import User
 from event import Event, Location
 import keys
@@ -24,22 +26,6 @@ client = discord.Client(intents=intents)
 
 # TO DO LIST 
 # AJOUTER UN talbe pour lister les chan autorisé pour le bot
-
-
-# TO DELETE AFTER UPDATE -----------------------------------------------
-def BuildInvitMessageOld():
-    global role, slots, gameName, date, author
-
-    message= f'@{role} '         
-    message += f'\n>>> \n\t**{author.name}** lance une session de  **{str(gameName)}**'
-    message += f'\n\t\theure:  **{str(date)}** \t\t **{str(slots - len(players))}** place(s)\n'
-    for slot in range(slots):
-        if slot < len(players):
-            message += f'\n\t- {players[slot]}'
-        else:
-            message += f'\n\t- '
-    message += '\n\n   '
-    return message
 
 #global
 channel= ''
@@ -113,22 +99,8 @@ async def NextStep(message, event, location):
     elif planningStep == 4:
         role = message.content
         planningStep = 5 
-        await UpdateMessage(even_message_id, message.channel, BuildInvitMessageOld())
+        await UpdateMessage(even_message_id, message.channel, msg_serv.BuildInvitMessage(None))
 
-# Event setting
-def BuildInvitMessage(event):
-    players = event.get_list_players()
-
-    message= f'@{event.role} '         
-    message += f'\n>>> \n\t**{event.author}** lance une session de  **{event.gameName}**'
-    message += f'\n\t\theure:  **{event.time}** \t\t **{str(event.slots - len(players))}** place(s)\n'
-    for slot in range(event.slots):
-        if slot < len(players):
-            message += f'\n\t  - {players[slot]}'
-        else:
-            message += f'\n\t  - '
-    message += '\n\n   '
-    return message
 
 def AddUserToEvent(user):
     if len(players) < slots:
@@ -155,7 +127,7 @@ async def UpdateCurrentEvent(payload):
         if len(players) == 0:
             await CancelCurrentEvent()
             return
-    await UpdateMessage(payload.message_id, client.get_channel(payload.channel_id), BuildInvitMessageOld())
+    await UpdateMessage(payload.message_id, client.get_channel(payload.channel_id), msg_serv.BuildInvitMessage(None))
 
 #Comandes 
 async def Commades(message):
@@ -214,7 +186,7 @@ async def DirectPLanning(message, author):
     new_location = Location(id = 0, guildId=message.guild.id, channelId=message.channel.id, messageId=0, eventId=0)
     await event_rep.create_event(new_event, new_location)
     # testing 
-    await message.channel.send(BuildInvitMessage(new_event))
+    await message.channel.send(msg_serv.BuildInvitMessage(new_event))
 
 # Managing messages
 async def CancelCurrentEvent():
