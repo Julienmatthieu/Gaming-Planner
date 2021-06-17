@@ -58,6 +58,8 @@ async def next_step(message, authorDb, event, bot):
         Location = await get_location_by_event(event)
         channel = bot.get_channel(int(Location.channelId))
 
+        print(f"\n\n ------ {str(type(bot))} ------- \n\n")
+
         message = msg_serv.BuildInvitMessage(event, authorDb) + " " + bot.avatar
         await channel.send(
             message,
