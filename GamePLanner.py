@@ -65,8 +65,8 @@ async def on_message(message):
     # def tool
     if message.content.startswith(res.commandSign):
         await bot.process_commands(message)
-    elif message.author == bot.user and str(message.channel.type) != res.msg_type['dm']:
-        await MessageFromBot(message)
+#    elif message.author == bot.user and str(message.channel.type) != res.msg_type['dm']:
+#        await MessageFromBot(message)
     elif str(message.channel.type) == res.msg_type['dm'] and message.author != bot.user:
         await plan_serv.building_together(message, bot)
 
