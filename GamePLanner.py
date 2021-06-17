@@ -37,31 +37,27 @@ async def on_ready():
 
 @bot.command(name='list', help="test a changer")
 async def button(ctx):
-        await ctx.send(
-            "Hello, World!",
-            components = [
-                Button(disabled=0, label = "Prymary", style = 1),
-                Button(disabled=0, label = "Secondary 💀", style = 2),
-                Button(disabled=0, label = "I\'m in 💪", style = 3),
-                Button(disabled=0, label = "Cancel ❌", style = 4)
-#                Button(disabled=1, label = "Link", style = 5, url='http://google.com'),
-#                Button(disabled=0, label = "Prymary", style = 1),
-#                Button(disabled=0, label = "Secondary", style = 2),
-#                Button(disabled=0, label = "Success", style = 3),
-#                Button(disabled=0, label = "Danger", style = 4),
-#                Button(disabled=0, label = "Link", style = 5, url='http://google.com')         
-            ]
-        )
-
-        interaction = await bot.wait_for("button_click", check = lambda i: i.component.label.startswith("WOW"))
-        await interaction.respond(content = "Button clicked!")
-
-
-        # Note multi click 
-
-        #while True:
-        #    interaction = await <discord.ext.commands.Bot or discord.Client>.wait_for("button_click")
-        #    await interaction.respond(content = "Wow")
+    await ctx.send(
+        "Hello, World!",
+        components = [
+            Button(disabled=0, label = "Prymary", style = 1),
+            Button(disabled=0, label = "Secondary 💀", style = 2),
+            Button(disabled=0, label = "I\'m in 💪", style = 3),
+            Button(disabled=0, label = "Cancel ❌", style = 4)
+#               Button(disabled=1, label = "Link", style = 5, url='http://google.com'),
+#               Button(disabled=0, label = "Prymary", style = 1),
+#               Button(disabled=0, label = "Secondary", style = 2),
+#               Button(disabled=0, label = "Success", style = 3),
+#               Button(disabled=0, label = "Danger", style = 4),
+#               Button(disabled=0, label = "Link", style = 5, url='http://google.com')         
+        ]
+    )
+    interaction = await bot.wait_for("button_click", check = lambda i: i.component.label.startswith("WOW"))
+    await interaction.respond(content = "Button clicked!")
+    # Note multi click 
+    #while True:
+    #    interaction = await <discord.ext.commands.Bot or discord.Client>.wait_for("button_click")
+    #    await interaction.respond(content = "Wow")
 
 # Registering Receving Message event
 @bot.event
