@@ -3,7 +3,7 @@ from sys import audit
 import discord 
 
 import user_service as usr_serv
-form event_service import new_event, update_event, get_location_by_event
+from event_service import new_event, update_event, get_location_by_event
 import message_service as msg_serv
 import resource as res
 from Event.event import Location
