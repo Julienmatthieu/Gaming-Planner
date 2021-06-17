@@ -73,7 +73,7 @@ async def button(ctx):
 # Registering Receving Message event
 @bot.event
 async def on_message(message):
-    if message.author.id != bot.user.id:
+    if message.author.id != bot.user.id and not message.content.startswith( "!"):
         await message.channel.send("I can see that")
     await bot.process_commands(message)
 
