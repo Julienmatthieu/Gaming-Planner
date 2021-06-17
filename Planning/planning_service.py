@@ -51,16 +51,12 @@ async def next_step(message, authorDb, event, bot):
         await message.author.send(res.msg_dict['role'])
 
     elif event.step == res.steps['role']:
-        event.rome = message.content
+        event.role = message.content
         event.step = res.steps['done']
         await update_event(event)
         await message.author.send(res.msg_dict['done'])
         Location = await get_location_by_event(event)
         channel = bot.get_channel(int(Location.channelId))
-
-        print(f"\n\n ------ {str(type(bot))} ------- \n\n")
-        print(f"\n\n ------ {str(type(bot.user))} ------- \n\n")
-        print(f"\n\n ------ {str(type(bot.user.avatar))} ------- \n\n")
 
         message = msg_serv.BuildInvitMessage(event, authorDb) + " " + bot.user.avatar
         await channel.send(
