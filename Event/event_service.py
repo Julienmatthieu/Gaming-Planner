@@ -32,3 +32,9 @@ async def get_last_event_by_userId(userId):
 async def get_location_by_event(event):
     return await repo.get_location_by_event(event)
     
+async def delete_event_from_authorId(authorId):
+    event = await get_last_event_by_userId(authorDb.id)
+
+    if event == None:
+        return
+    repo.delete_event(event.id)

@@ -53,7 +53,7 @@ async def on_ready():
 async def on_message(message):
 
     # def tool
-    if message.content.startswith(com.commandSign) and str(message.channel.type) != res.msg_type['dm']:
+    if message.content.startswith(com.commandSign):
         await Commades(message)
     elif message.author == client.user and str(message.channel.type) != res.msg_type['dm']:
         await MessageFromBot(message)
@@ -86,18 +86,20 @@ def RemoveUserFromEvent(user):
         author = players[0]
 
 async def UpdateCurrentEvent(payload):
+    print("\n\n-----------------------  TO DO ---------------------------\n\n")
+    return 
     global msg_dict, channel
     user = client.get_user(payload.user_id)
 
     if payload.emoji.name == res.emojis_dict['cross'] and payload.user_id == author.id:
-        await CancelCurrentEvent()
+        await plan_serv.CancelCurrentEvent(message, client)
         return
     if payload.emoji.name == res.emojis_dict['thumbs_up'] and not user.name in players:
         AddUserToEvent(user)
     elif payload.emoji.name == res.emojis_dict['thumbs_down'] and user.name in players:
         RemoveUserFromEvent(user)
         if len(players) == 0:
-            await CancelCurrentEvent()
+            await plan_serv.CancelCurrentEvent(message, client)
             return
     await UpdateMessage(payload.message_id, client.get_channel(payload.channel_id), msg_serv.BuildInvitMessage(None))
 
@@ -123,11 +125,9 @@ async def Commades(message):
         await PlanningCommand(message)
     elif message.content == com.commandSign + com.clear:
         await msg_serv.FullClear(message.channel)
-    elif message.content == com.commandSign + com.cancel:
-        await CancelCurrentEvent()  
-    elif message.content == com.commandSign + com.reset:
-        if planningStep > 0:
-            await CancelCurrentEvent()
+    elif message.content == com.commandSign + com.cancel or message.content == com.commandSign + com.reset:
+        await plan_serv.CancelCurrentEvent(message, client)
+        await msg_serv.FullClear(message.channel)
     else:
         await message.channel.send('>>> Commande inconnue. Utilisez !help pour de l\'aide')
     await message.delete()
@@ -153,18 +153,6 @@ async def MessageFromBot(message):
         emojis = [res.emojis_dict['thumbs_up'], res.emojis_dict['thumbs_down'], res.emojis_dict['cross']]
         for emoji in emojis:
             await message.add_reaction(emoji)
-
-
-# Managing messages
-async def CancelCurrentEvent():
-    global even_message_id, channel
-
-    if even_message_id == None:
-        return 
-    message = await channel.fetch_message(even_message_id)
-    await message.edit(content=res.msg_dict[com.cancel])
-    await message.clear_reactions()
-    await message.add_reaction(res.emojis_dict['skull'])
 
 async def UpdateMessage(message_id, channel, content):
     message = await channel.fetch_message(message_id)
