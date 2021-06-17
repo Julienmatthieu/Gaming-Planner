@@ -1,9 +1,9 @@
-from os import name
+#from os import name
 import sys
 import pathlib
-
-from discord.ext.commands import Bot
-from discord_components import DiscordComponents, Button
+#
+#from discord.ext.commands import Bot
+#from discord_components import DiscordComponents, Button
 
 path = pathlib.Path().absolute()
 sys.path.append(f'{path}/Resources/')
@@ -34,7 +34,13 @@ import keys
 
 # TO DELETE AFTER UPDATE -----------------------------------------------
 
-bot = Bot(command_prefix = "!")
+
+
+from discord.ext.commands import Bot
+from discord_components import DiscordComponents, Button
+
+bot = Bot(command_prefix = "$")
+
 
 @bot.event
 async def on_ready():
@@ -42,7 +48,7 @@ async def on_ready():
     print(f"Logged in as {bot.user}!")
 
 
-@bot.command(name='btn')
+@bot.command(name='list')
 async def button(ctx):
     await ctx.send(
         "Hello, World!",
@@ -55,11 +61,14 @@ async def button(ctx):
     await interaction.respond(content = "Button clicked!")
 
 
+
+
+
 # Registering Loggin event
-@bot.event
-async def on_ready():
-    print('We have logged in as {0.user}'.format(bot))
-    print('\n\n!planning-Sea Of Thieves-4-20h30-here')   
+#@bot.event
+#async def on_ready():
+#    print('We have logged in as {0.user}'.format(bot))
+#    print('\n\n!planning-Sea Of Thieves-4-20h30-here')   
 
 # Registering Receving Message event
 #@bot.event
