@@ -115,7 +115,7 @@ async def Commades(message):
                                             \n\t{com.commandSign}{com.planning}-GameName-NombreDeJoueurs-Date-Role pour créer une session en une seule commande (Non utilisable en MP)\
                                             \n\t{com.commandSign}{com.clear}: supprime tous les messages du bot\
                                             \n\t{com.commandSign}{com.cancel}: annule la session en cours de création \
-                                            \n\t  **Ce bot est actuellement en cours de dévelopement. Pour tout feedback ou idée n\'hésitez pas à contacter Stalingrad#9674**')
+                                            \n\t  **Ce bot est actuellement en cours de dévelopement. Pour tout feedback ou idée n\' hésitez pas à contacter Stalingrad#9674**')
     elif message.content.startswith(com.commandSign + com.set_channel):
         channel = message.channel
         await channel.send(f">>> Je posterais à présent dans ce chan")
