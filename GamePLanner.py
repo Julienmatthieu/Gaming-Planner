@@ -66,19 +66,7 @@ async def on_message(message):
     if message.content.startswith(com.commandSign):
         await Commades(message)
     elif message.author == client.user and channel != '':
-        location = event_rep.get_last_location(message.guild.id, message.channel.id)
-        location.messageId = message.id
-        print(f" \n\n ASSIGNING THIS MESSAGE {message.id} to location {location.id}")
-        event_rep.update_location_message(location)
-        return
-        if message.content.startswith('@'):
-            if even_message_id == None:
-                even_message_id = message.id
-            emojis = [res.emojis_dict['thumbs_up'], res.emojis_dict['thumbs_down'], res.emojis_dict['cross']]
-            for emoji in emojis:
-                await message.add_reaction(emoji)
-        elif planningStep != 0 and even_message_id == None: 
-            even_message_id = message.id
+        PlanningCommand(message)
     elif planningStep > 0 and channel != '':
         await Steps(message)
         return
@@ -198,6 +186,21 @@ async def Commades(message):
     else:
         await message.channel.send('>>> Commande inconnue. Utilisez !help pour de l\'aide')
     await message.delete()
+
+async def PlanningCommand(message):
+    location = await event_rep.get_last_location(message.guild.id, message.channel.id)
+    location.messageId = message.id
+    print(f" \n\n ASSIGNING THIS MESSAGE {message.id} to location {location.id}")
+    await event_rep.update_location_message(location)
+    return
+    if message.content.startswith('@'):
+        if even_message_id == None:
+            even_message_id = message.id
+        emojis = [res.emojis_dict['thumbs_up'], res.emojis_dict['thumbs_down'], res.emojis_dict['cross']]
+        for emoji in emojis:
+            await message.add_reaction(emoji)
+    elif planningStep != 0 and even_message_id == None: 
+        even_message_id = message.id
 
 async def SimplePLanning(message):
     new_event = Event(0, None, 0, None, message.author.name, message.author.name, None, step=res.build_steps['init'])
