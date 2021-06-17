@@ -51,22 +51,21 @@ async def on_ready():
     print('We have logged in as {0.user}'.format(client))
     print('\n\n!planning-Sea Of Thieves-4-20h30-here')   
 
-@bot.command()
-async def button(ctx):
-    await ctx.send(
+# Registering Receving Message event
+@client.event
+async def on_message(message):
+
+
+    await message.channel.send(
         "Hello, World!",
         components = [
             Button(label = "WOW button!")
         ]
     )
-
     interaction = await client.wait_for("button_click", check = lambda i: i.component.label.startswith("WOW"))
     await interaction.respond(content = "Button clicked!")
 
-
-# Registering Receving Message event
-@client.event
-async def on_message(message):
+    return
 
     # def tool
     if message.content.startswith(com.commandSign):
