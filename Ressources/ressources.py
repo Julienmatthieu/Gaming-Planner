@@ -16,4 +16,7 @@ msg_dict = {
 
 build_steps = {
     'done': -1,
+    'none': 0,
+    'init': 1,
+    'gameName': 2
 }

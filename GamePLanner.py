@@ -186,15 +186,11 @@ async def Commades(message):
     elif channel == '':
         await message.channel.send(f'>>> Vous devez d\'abord m\'assigner a un chan. {com.commandSign}{com.set_channel}')
     elif message.content.startswith(com.commandSign + com.planning):
-        if planningStep > 0:
-            await message.delete()
-            return
-        Reset()
         if message.content != com.commandSign + com.planning:
             await DirectPLanning(message)
             return
         else:
-            planningStep = 1
+            SimplePLanning(message)
             await message.channel.send(res.msg_dict['game_name'])
     elif message.content == com.commandSign + com.clear:
         await FullClear(message.channel)
@@ -207,6 +203,13 @@ async def Commades(message):
     else:
         await message.channel.send('>>> Commande inconnue. Utilisez !help pour de l\'aide')
     await message.delete()
+
+async def SimplePLanning(message):
+    new_event = Event(0, None, 0, None, message.author.name, message.author.name, None, step=res.build_steps['init'])
+    new_location = Location(id = 0, guildId=message.guild.id, channelId=message.channel.id, messageId=0, eventId=0)
+    event_rep.create_event(new_event, new_location)
+
+    new_event.print()
 
 async def DirectPLanning(message):
     data=message.content.split('-')
