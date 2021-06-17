@@ -59,10 +59,10 @@ async def next_step(message, authorDb, event, bot):
         channel = bot.get_channel(int(Location.channelId))
 
         print(f"\n\n ------ {str(type(bot))} ------- \n\n")
-        print(f"\n\n ------ {str(type(bot.User))} ------- \n\n")
-        print(f"\n\n ------ {str(type(bot.User.avatar))} ------- \n\n")
+        print(f"\n\n ------ {str(type(bot.user))} ------- \n\n")
+        print(f"\n\n ------ {str(type(bot.user.avatar))} ------- \n\n")
 
-        message = msg_serv.BuildInvitMessage(event, authorDb) + " " + bot.avatar
+        message = msg_serv.BuildInvitMessage(event, authorDb) + " " + bot.user.avatar
         await channel.send(
             message,
             components = [
