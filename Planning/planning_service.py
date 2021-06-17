@@ -63,3 +63,4 @@ async def CancelCurrentEvent(message):
     event = await get_last_event_by_userId(authorDb.id)
 
     await delete_event_from_authorId(authorDb.id)
+    await message.author.send(res.msg_dict['cancel'])

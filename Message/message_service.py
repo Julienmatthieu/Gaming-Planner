@@ -1,5 +1,6 @@
 from event import Event
 from user import User
+from resources import msg_type 
 
 # Event setting
 def BuildInvitMessage(event, author):
@@ -22,6 +23,8 @@ async def ClearHisto(channel):
     async for message in channel.history(limit=2):
             await message.delete()
 
-async def FullClear(channel):
-    async for message in channel.history(limit=None):
-                await message.delete()
+async def FullClear(message):
+    if str(message.channel.type) == msg_type['dm']:
+        return
+    async for message in message.channel.history(limit=None):
+        await message.delete()
