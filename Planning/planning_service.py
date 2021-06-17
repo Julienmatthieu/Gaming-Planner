@@ -8,17 +8,17 @@ import message_service as msg_serv
 import resources as res
 from event import Event, Location
 
-async def building_together(message, client):
+async def building_together(message, bot):
     
     authorDb = await get_or_create_user(message.author)
     event = await get_last_event_by_userId(authorDb.id)
     if event == None:
         await message.author.send(res.error['event-not-found'])
         return
-    await next_step(message, authorDb, event, client)
+    await next_step(message, authorDb, event, bot)
 
 #Steps
-async def next_step(message, authorDb, event, client):
+async def next_step(message, authorDb, event, bot):
     if event.step == res.steps['none']:
         new_event(message, authorDb)
         event.step = res.steps['game_name']
@@ -54,7 +54,7 @@ async def next_step(message, authorDb, event, client):
         await update_event(event)
         await message.author.send(res.msg_dict['done'])
         Location = await get_location_by_event(event)
-        channel = client.get_channel(int(Location.channelId))
+        channel = bot.get_channel(int(Location.channelId))
         await channel.send(msg_serv.BuildInvitMessage(event, authorDb))
 
 async def CancelCurrentEvent(message):
