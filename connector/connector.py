@@ -20,7 +20,7 @@ def select_query(query):
     close_connection(connection)
     return records
 
-def insert_query(query):
+def alter_query(query):
     try:
         connection = get_connection()
         cursor = connection.cursor()

@@ -16,6 +16,8 @@ intents.members = True
 client = discord.Client(intents=intents)
 
 
+# TO DO LIST 
+# AJOUTER UN talbe pour lister les chan autorisé pour le bot
 
 
 # TO DELETE AFTER UPDATE -----------------------------------------------
@@ -32,18 +34,7 @@ def BuildInvitMessageOld():
             message += f'\n\t- '
     message += '\n\n   '
     return message
-#Managing Data
-def Reset():
-    global planningStep, slots, gameName, date, players, author, even_message_id, role
 
-    planningStep = 0
-    slots = -1
-    gameName = ''
-    date = ''
-    players = list()
-    author=None
-    role=''
-    even_message_id = None
 #global
 channel= ''
 even_message_id=None
@@ -75,6 +66,11 @@ async def on_message(message):
     if message.content.startswith(com.commandSign):
         await Commades(message)
     elif message.author == client.user and channel != '':
+        location = event_rep.get_last_location(message.guild.id, message.channel.id)
+        location.messageId = message.id
+        print(f" \n\n ASSIGNING THIS MESSAGE {message.id} to location {location.id}")
+        event_rep.update_location_message(location)
+        return
         if message.content.startswith('@'):
             if even_message_id == None:
                 even_message_id = message.id
@@ -199,7 +195,6 @@ async def Commades(message):
     elif message.content == com.commandSign + com.reset:
         if planningStep > 0:
             await CancelCurrentEvent()
-        Reset() 
     else:
         await message.channel.send('>>> Commande inconnue. Utilisez !help pour de l\'aide')
     await message.delete()
@@ -231,7 +226,6 @@ async def CancelCurrentEvent():
     await message.edit(content=res.msg_dict[com.cancel])
     await message.clear_reactions()
     await message.add_reaction(res.emojis_dict['skull'])
-    Reset()
 
 async def UpdateMessage(message_id, channel, content):
     message = await channel.fetch_message(message_id)
@@ -241,7 +235,6 @@ async def UpdateMessage(message_id, channel, content):
         await message.clear_reactions()
         await message.add_reaction(res.emojis_dict['check'])
         await message.add_reaction(res.emojis_dict['cross'])
-        Reset()
     elif planningStep == 5:
         await message.add_reaction(res.emojis_dict['thumbs_up'])
         await message.add_reaction(res.emojis_dict['thumbs_down'])
