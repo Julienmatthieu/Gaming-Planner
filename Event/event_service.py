@@ -17,7 +17,7 @@ async def new_event(message, author):
     new_location = Location(id = 0, guildId=message.guild.id, channelId=message.channel.id, messageId=0, eventId=0)
     return await repo.create_event(new_event, new_location)
 
-async def update_event(content, author, event):
+async def no_step(content, author, event):
     data=content.split('-')
     new_event = Event(id=0, gameName=data[1], slots=int(data[2]), time=data[3], authorId=author.id, player=author.name, role=data[4], step=res.steps['done'])
     event.merge(new_event)

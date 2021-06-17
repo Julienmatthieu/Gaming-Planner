@@ -11,7 +11,6 @@ async def create_event(event, location):
     return event
 
 async def get_last_location(guildId, channelId):
-    print("\n\n --------------- ICI ---------------\n\n")
     records = connector.select_query(f"""SELECT * FROM discordLocation WHERE guildId = {guildId} AND channelId = {channelId} AND messageId = 0 ORDER BY eventId DESC""")
     if len(records) == 0:
         return None
