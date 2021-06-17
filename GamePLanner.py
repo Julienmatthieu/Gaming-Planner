@@ -57,7 +57,7 @@ async def on_message(message):
     print(f"--{res.msg_type['dm']}--")
     print(f"{type(res.msg_type['dm'])}")
     print("-------\n\n")
-    if message.channel.type == res.msg_type['dm']:
+    if str(message.channel.type) == res.msg_type['dm']:
         print('i am in a dm message')
         await plan_serv.planning_event(message)
     else:
