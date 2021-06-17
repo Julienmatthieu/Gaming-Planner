@@ -40,10 +40,10 @@ async def button(ctx):
         await ctx.send(
             "Hello, World!",
             components = [
-                Button(disabled=1, label = "Prymary", style = 1),
-                Button(disabled=1, label = "Secondary", style = 2),
-                Button(disabled=1, label = "Success", style = 3),
-                Button(disabled=1, label = "Danger", style = 4)
+                Button(disabled=0, label = "Prymary", style = 1),
+                Button(disabled=0, label = "Secondary 💀", style = 2),
+                Button(disabled=0, label = "Success", style = 3),
+                Button(disabled=0, label = "Danger ❌", style = 4)
 #                Button(disabled=1, label = "Link", style = 5, url='http://google.com'),
 #                Button(disabled=0, label = "Prymary", style = 1),
 #                Button(disabled=0, label = "Secondary", style = 2),
