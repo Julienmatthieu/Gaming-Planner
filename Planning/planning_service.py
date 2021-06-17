@@ -13,6 +13,8 @@ from GamePLanner import client
 async def planning_event(message):
     authorDb = await usr_serv.get_or_create_user(message.author)
     event = event_serv.get_last_event_by_userId(authorDb.id)
+    authorDb.print()
+    event.print()
     print(f" this is the event i found from {authorDb.name} - {event.print()}")
     if event == None:
         await message.author.send(res.error['event-not-found'])
