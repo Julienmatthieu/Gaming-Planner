@@ -224,7 +224,6 @@ async def DirectPLanning(message):
     await event_rep.create_event(new_event, new_location)
     # testing 
     await message.channel.send(BuildInvitMessage(new_event))
-    await message.delete()
 
 # Managing messages
 async def CancelCurrentEvent():
