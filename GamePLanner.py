@@ -30,7 +30,7 @@ author=None
 @client.event
 async def on_ready():
     print('We have logged in as {0.user}'.format(client))
-    print('\n\n!planning-sot-4-20h30-here')   
+    print('\n\n!planning-Sea Of Thieves-4-20h30-here')   
 
 # Registering Receving Message event
 @client.event
@@ -194,11 +194,19 @@ async def PlanningEvent(message):
     data=message.content.split('-')
     author = message.author.name
     new_event = Event(id=0, gameName=data[1], slots=int(data[2]), time=data[3], author=author, player=author, role=data[4])
+    new_location = Location(id = 0, guildId=message.guild.id, channelId=message.channel.id, messageId=0, eventId=0)
 
-    print(f"new event gn = {new_event.gameName}, slots= {new_event.slots} author = {new_event.author} eetcc ")
+    print("\n")
+    print("\n")
+    print(f"new event gn = ->{new_event.gameName}<-, slots= {new_event.slots} author = {new_event.author} eetcc ")
+    print(f"new location GId = ->{new_event.guildId}<-, channelId= {new_event.channelId}  eetcc")
 
-    await message.channel.send(BuildInvitMessage())
-    await message.delete()
+    testId = event_rep.create_event(new_event, new_location)
+    print(f"OUR FIRST EVENT ID IS {testId}")
+
+    print("\n")
+    print("\n")
+
 
 async def DirectPLanning(message):
     await PlanningEvent(message)
