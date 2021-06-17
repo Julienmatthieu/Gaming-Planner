@@ -1,5 +1,6 @@
-import event
+from event import Event, Location 
 import connector 
+import resource as res
 
 #approuved 
 async def create_event(event, location):
@@ -15,8 +16,14 @@ async def get_last_location(guildId, channelId):
     if len(records) == 0:
         return None
     row = records[0]
-    location = event.Location(row[0], row[1], row[2], row[3], row[4]) 
-    return location  
+    location = Location(row[0], row[1], row[2], row[3], row[4]) 
+    return location 
+
+async def get_event(event_id):
+    records = connector.select_query(f"""SELECT * FROM event WHERE id = {event_id}""")
+    row = records[0]
+    current = Event(row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7]) 
+    return current 
 
 # update 
 
@@ -34,25 +41,37 @@ async def update_location_message(location):
 # -------------------------------------------
 
 # Getters 
-async def get_event(event_id):
-    records = connector.select_query(f"""SELECT * FROM event WHERE id = {event_id}""")
+
+async def get_by_userId(userId):
+    query = f""" SELECT * FROM event WHERE step >= {res.steps['init']}  AND authorId == {userId} ORDER BY id desc """
+    records = connector.select_query(query)
+    if len(records) == 0:
+        return None
     row = records[0]
-    current = event.Event(row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7]) 
-    return current
+    return Event(row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7]) 
+
+async def get_location_by_event(event):
+    query = f""" SELECT * FROM discordLocation WHERE eventId = {event.id} """
+    records = connector.select_query(query)
+    if len(records) == 0:
+        return None
+    row = records[0]
+    return Location(row[0], row[1], row[2], row[3], row[4]) 
+
 
 async def get_all_event():
     list = []
 
     records = connector.select_query("""SELECT * FROM event""")
     for row in records:
-        current = event.Event(row[0], row[1], row[2], row[3]) 
+        current = Event(row[0], row[1], row[2], row[3]) 
         list.append(current)
     return list
 
 async def get_location(location):
     records = connector.select_query(f"""SELECT * FROM discordLocation WHERE guildId = {location.guildId} AND channelId = {location.channelId} AND messageId = {location.messageId} """)
     row = records[0]
-    location = event.Location(row[0], row[1], row[2], row[3], row[4]) 
+    location = Location(row[0], row[1], row[2], row[3], row[4]) 
     return location
 
 async def get_eventid_by_location(location):
@@ -62,8 +81,7 @@ async def get_eventid_by_location(location):
 async def get_location_by_event(eventId):
     records = connector.select_query(f"""SELECT * FROM discordLocation WHERE eventId = {eventId} """)
     row = records[0]
-    current = event.Location(row[0], row[1], row[2], row[3], row[4]) 
-    return current
+    return Location(row[0], row[1], row[2], row[3], row[4]) 
 
 async def get_event_from_location(guildId, channelId, messageId):
     id = get_eventid_by_location(guildId, channelId, messageId)

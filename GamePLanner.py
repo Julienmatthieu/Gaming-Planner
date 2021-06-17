@@ -6,6 +6,7 @@ import discord
 path = pathlib.Path().absolute()
 sys.path.append(f'{path}/Ressources/')
 sys.path.append(f'{path}/Connector/')
+sys.path.append(f'{path}/Planning/')
 sys.path.append(f'{path}/Message/')
 sys.path.append(f'{path}/User/')
 sys.path.append(f'{path}/Event')
@@ -14,6 +15,7 @@ import commands as com
 import user_service as usr_serv
 import event_service as event_serv
 import message_service as msg_serv
+import planning_service as plan_serv
 from  user import User
 from event import Event, Location
 import keys
@@ -53,20 +55,17 @@ async def on_message(message):
 
     print(f"\n\n{message.channel.type}\n\n")
 
-    if message.channel.type == 'dm':
-        await message.channel.send('Hello!')
+    if message.channel.type == res.msg_type['dm']:
+        await plan_serv.planning_event(message)
 
     if channel != '' and channel != message.channel or channel == '' and not message.content.startswith(com.commandSign):
         return
 
     # def tool
-    if message.content.startswith(com.commandSign):
+    if message.content.startswith(com.commandSign) and message.channel.type != res.msg_type['dm']:
         await Commades(message)
     elif message.author == client.user and channel != '':
         await MessageFromBot(message)
-    elif planningStep > 0 and channel != '':
-        #await Steps(message)
-        return
 
 @client.event
 async def on_raw_reaction_add(payload):
@@ -81,30 +80,6 @@ def CreatePlayerList(author):
 
     players = list()
     players.append(author)
-
-#Steps
-async def NextStep(message, event, location):
-    global planningStep, slots, gameName, date, role, author
-    await message.delete()
-
-    if planningStep == 1:
-        gameName = message.content
-        author = message.author
-        planningStep = 2
-        await UpdateMessage(even_message_id, message.channel, res.msg_dict['players'])
-    elif planningStep == 2:
-        slots = int(message.content)
-        CreatePlayerList(message.author.name)
-        planningStep = 3
-        await UpdateMessage(even_message_id, message.channel, res.msg_dict['time'])
-    elif planningStep == 3:
-        date=message.content
-        planningStep = 4
-        await UpdateMessage(even_message_id, message.channel, res.msg_dict['role'])
-    elif planningStep == 4:
-        role = message.content
-        planningStep = 5 
-        await UpdateMessage(even_message_id, message.channel, msg_serv.BuildInvitMessage(None))
 
 
 def AddUserToEvent(user):
@@ -174,8 +149,9 @@ async def PlanningCommand(message):
         await message.channel.send(msg_serv.BuildInvitMessage(event, authorDb))
         return
     else:
+        event.step = res.steps['gameName']
+        await event_serv.update_event(event)
         await message.author.send(res.msg_dict['game_name'])
-        await message.channel.send(res.msg_dict['game_name'])
 
 async def MessageFromBot(message):
     event = await event_serv.get_last_unset_event(message)
