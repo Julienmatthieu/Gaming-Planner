@@ -29,6 +29,12 @@ import keys
 bot = Bot(command_prefix = "!")
 
 
+# Registering Loggin event
+#@bot.event
+#async def on_ready():
+#    print('We have logged in as {0.user}'.format(bot))
+#    print('\n\n!planning-Sea Of Thieves-4-20h30-here')   
+
 @bot.event
 async def on_ready():
     DiscordComponents(bot)
@@ -49,11 +55,6 @@ async def button(ctx):
 
 
 
-# Registering Loggin event
-@bot.event
-async def on_ready():
-    print('We have logged in as {0.user}'.format(bot))
-    print('\n\n!planning-Sea Of Thieves-4-20h30-here')   
 
 ## Registering Receving Message event
 #@bot.event
