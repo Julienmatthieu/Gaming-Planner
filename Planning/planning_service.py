@@ -1,6 +1,8 @@
 from os import error
 from sys import audit
 import discord 
+from discord_components import Button
+
 
 from user_service import get_or_create_user
 from event_service import new_event, update_event, get_location_by_event, get_last_event_by_userId, delete_event_from_authorId
