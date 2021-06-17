@@ -66,7 +66,7 @@ async def on_message(message):
     if message.content.startswith(com.commandSign):
         await Commades(message)
     elif message.author == client.user and channel != '':
-        PlanningCommand(message)
+        await PlanningCommand(message)
     elif planningStep > 0 and channel != '':
         await Steps(message)
         return
