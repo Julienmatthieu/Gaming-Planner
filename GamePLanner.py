@@ -213,6 +213,8 @@ async def DirectPLanning(message):
 
     testId = event_rep.create_event(new_event, new_location)
 
+    new_event.print()
+
     await message.channel.send(BuildNewInvMessage(new_event))
     await message.delete()
 
