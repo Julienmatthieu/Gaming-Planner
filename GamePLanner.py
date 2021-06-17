@@ -40,13 +40,28 @@ async def button(ctx):
         await ctx.send(
             "Hello, World!",
             components = [
-                Button(label = "WOW button!")
+                Button(disable=1, label = "Prymary", style = 1),
+                Button(disable=1, label = "Secondary", style = 2),
+                Button(disable=1, label = "Success", style = 3),
+                Button(disable=1, label = "Danger", style = 4),
+                Button(disable=1, label = "Link", style = 5),
+                Button(disable=0, label = "Prymary", style = 1),
+                Button(disable=0, label = "Secondary", style = 2),
+                Button(disable=0, label = "Success", style = 3),
+                Button(disable=0, label = "Danger", style = 4),
+                Button(disable=0, label = "Link", style = 5)         
             ]
         )
 
         interaction = await bot.wait_for("button_click", check = lambda i: i.component.label.startswith("WOW"))
         await interaction.respond(content = "Button clicked!")
 
+
+        # Note multi click 
+
+        #while True:
+        #    interaction = await <discord.ext.commands.Bot or discord.Client>.wait_for("button_click")
+        #    await interaction.respond(content = "Wow")
 
 # Registering Receving Message event
 @bot.event
