@@ -70,14 +70,6 @@ async def on_message(message):
     elif str(message.channel.type) == res.msg_type['dm'] and message.author != bot.user:
         await plan_serv.building_together(message, bot)
 
-@bot.event
-async def on_raw_reaction_add(payload):
-    global even_message_id
-
-    if payload.channel_id != channel.id or payload.message_id != even_message_id or payload.user_id == bot.user.id:
-        return
-    await UpdateCurrentEvent(payload)
-
 def CreatePlayerList(author):
     global players
 
