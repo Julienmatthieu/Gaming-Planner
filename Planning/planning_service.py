@@ -58,7 +58,7 @@ async def next_step(message, authorDb, event, bot):
         Location = await get_location_by_event(event)
         channel = bot.get_channel(int(Location.channelId))
 
-        user = bot.get_user(225743846934446081)
+        user = await bot.get_user(225743846934446081)
         message = msg_serv.BuildInvitMessage(event, authorDb) + " " + user.avatar
         await channel.send(
             message,
