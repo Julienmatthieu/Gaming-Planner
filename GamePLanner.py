@@ -55,7 +55,7 @@ async def on_message(message):
     # def tool
     if message.content.startswith(com.commandSign) and message.channel.type != res.msg_type['dm']:
         await Commades(message)
-    elif message.author == client.user and channel != '':
+    elif message.author == client.user and message.channel.type != res.msg_type['dm']:
         await MessageFromBot(message)
     elif str(message.channel.type) == res.msg_type['dm']:
         await plan_serv.building_together(message)
