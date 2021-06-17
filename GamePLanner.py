@@ -2,7 +2,7 @@
 import sys
 import pathlib
 from discord.ext.commands import Bot
-from discord_components import *
+from discord_components import DiscordComponents, Button
 
 
 path = pathlib.Path().absolute()
@@ -37,6 +37,9 @@ async def on_ready():
 
 @bot.command(name='list', help="test a changer")
 async def button(ctx):
+    print("\n\n\n")
+    print(str(type(ctx.send())))
+    print("\n\n\n")
     await ctx.send(
         content ="Hello, World!",
         components = [
