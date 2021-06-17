@@ -11,8 +11,9 @@ class Event(object):
     gameName = ''
     role = ''
     author = ''
-
-    def __init__(self, id, gameName, slots, time, author, player, role):
+    step = 0
+    
+    def __init__(self, id, gameName, slots, time, author, player, role, step):
         self.id = id
         self.players = player
         self.time = time
@@ -20,6 +21,7 @@ class Event(object):
         self.gameName = gameName
         self.author = author
         self.role = role
+        self.step = step
     
     def get_list_players(self):
         players = list()

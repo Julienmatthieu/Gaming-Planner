@@ -109,21 +109,6 @@ def BuildInvitMessage(event):
     message += '\n\n   '
     return message
 
-
-def BuildInvitMessageOld():
-    global role, slots, gameName, date, author
-
-    message= f'@{role} '         
-    message += f'\n>>> \n\t**{author.name}** lance une session de  **{str(gameName)}**'
-    message += f'\n\t\theure:  **{str(date)}** \t\t **{str(slots - len(players))}** place(s)\n'
-    for slot in range(slots):
-        if slot < len(players):
-            message += f'\n\t- {players[slot]}'
-        else:
-            message += f'\n\t- '
-    message += '\n\n   '
-    return message
-
 def AddUserToEvent(user):
     if len(players) < slots:
         players.append(user.name)
@@ -150,19 +135,6 @@ async def UpdateCurrentEvent(payload):
             await CancelCurrentEvent()
             return
     await UpdateMessage(payload.message_id, client.get_channel(payload.channel_id), BuildInvitMessageOld())
-
-#Managing Data
-def Reset():
-    global planningStep, slots, gameName, date, players, author, even_message_id, role
-
-    planningStep = 0
-    slots = -1
-    gameName = ''
-    date = ''
-    players = list()
-    author=None
-    role=''
-    even_message_id = None
 
 #Comandes 
 async def Commades(message):
@@ -210,14 +182,10 @@ async def DirectPLanning(message):
     author = message.author.name
     new_event = Event(id=0, gameName=data[1], slots=int(data[2]), time=data[3], author=author, player=author, role=data[4])
     new_location = Location(id = 0, guildId=message.guild.id, channelId=message.channel.id, messageId=0, eventId=0)
-
-    testId = event_rep.create_event(new_event, new_location)
-
-    new_event.print()
-
+    event_rep.create_event(new_event, new_location)
+    # testing 
     await message.channel.send(BuildInvitMessage(new_event))
     await message.delete()
-
 
 # Managing messages
 async def CancelCurrentEvent():
@@ -257,3 +225,34 @@ async def FullClear(channel):
 
 # Run bot (arg is the bot token)
 client.run(keys.botToken)
+
+
+# TO DELETE AFTER UPDATE -----------------------------------------------
+def BuildInvitMessageOld():
+    global role, slots, gameName, date, author
+
+    message= f'@{role} '         
+    message += f'\n>>> \n\t**{author.name}** lance une session de  **{str(gameName)}**'
+    message += f'\n\t\theure:  **{str(date)}** \t\t **{str(slots - len(players))}** place(s)\n'
+    for slot in range(slots):
+        if slot < len(players):
+            message += f'\n\t- {players[slot]}'
+        else:
+            message += f'\n\t- '
+    message += '\n\n   '
+    return message
+
+    #Managing Data
+def Reset():
+    global planningStep, slots, gameName, date, players, author, even_message_id, role
+
+    planningStep = 0
+    slots = -1
+    gameName = ''
+    date = ''
+    players = list()
+    author=None
+    role=''
+    even_message_id = None
+
+# TO DELETE AFTER UPDATE -----------------------------------------------
