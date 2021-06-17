@@ -125,7 +125,7 @@ async def clear(ctx):
     await msg_serv.FullClear(message)
 
 @bot.command(name=res.planning, help=res.help['planning'])
-async def PlanningCommand(ctx, arg):
+async def PlanningCommand(ctx):
     message = ctx.message
     if str(message.channel.type) == res.msg_type['dm']:
         await message.channel.send(res.error['not_here'])
