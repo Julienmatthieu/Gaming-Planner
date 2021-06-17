@@ -211,7 +211,7 @@ async def Commades(message):
 async def DirectPLanning(message):
     data=message.content.split('-')
     author = message.author.name
-    new_event = Event(id=0, gameName=data[1], slots=int(data[2]), time=data[3], author=author, player=author, role=data[4])
+    new_event = Event(id=0, gameName=data[1], slots=int(data[2]), time=data[3], author=author, player=author, role=data[4], step=res.build_steps['done'])
     new_location = Location(id = 0, guildId=message.guild.id, channelId=message.channel.id, messageId=0, eventId=0)
     event_rep.create_event(new_event, new_location)
     # testing 

@@ -13,3 +13,7 @@ msg_dict = {
     'time':         '>>> A quelle heure la session débutera ? (hh:mm)',
     'role':         '>>> Qui peut participer ? (Role ou pseudo si une seul personne)'
 }
+
+build_steps = {
+    'done': -1,
+}
