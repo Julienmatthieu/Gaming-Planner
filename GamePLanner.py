@@ -1,15 +1,20 @@
 from os import name
-import discord 
 import sys
 import pathlib
+import discord 
+
 path = pathlib.Path().absolute()
 sys.path.append(f'{path}/Ressources/')
+sys.path.append(f'{path}/User/')
 sys.path.append(f'{path}/connector/event')
 import ressources as res
 import commands as com
+import user
 import event_repository as event_rep
-import keys
+import user_repository as usr_rep
 from event import Event, Location
+import keys
+
  
 intents = discord.Intents.default()
 intents.members = True
@@ -68,7 +73,7 @@ async def on_message(message):
     elif message.author == client.user and channel != '':
         await MessageFromBot(message)
     elif planningStep > 0 and channel != '':
-        await Steps(message)
+        #await Steps(message)
         return
 
 @client.event
@@ -86,7 +91,7 @@ def CreatePlayerList(author):
     players.append(author)
 
 #Steps
-async def Steps(message):
+async def NextStep(message, event, location):
     global planningStep, slots, gameName, date, role, author
     await message.delete()
 
@@ -183,6 +188,12 @@ async def Commades(message):
     await message.delete()
 
 async def PlanningCommand(message):
+    author = message.author
+
+    print("creating a user")
+    usr_rep.create_user(0, author.name, author.id, author.avatar_url, author.display_name, author.mention)
+    print("did it work ? ")
+    return 
     if message.content != com.commandSign + com.planning:
         await DirectPLanning(message)
         return
@@ -195,31 +206,22 @@ async def MessageFromBot(message):
     if (location == None):
         return
     location.messageId = message.id
-    print(f" \n\n ASSIGNING THIS MESSAGE {message.id} to location {location.id}")
     await event_rep.update_location_message(location)
     event = await event_rep.get_event(location.eventId)
-    event.print()
-    return
-    if message.content.startswith('@'):
-        if even_message_id == None:
-            even_message_id = message.id
+    if event.step == res.steps['done']:
         emojis = [res.emojis_dict['thumbs_up'], res.emojis_dict['thumbs_down'], res.emojis_dict['cross']]
         for emoji in emojis:
             await message.add_reaction(emoji)
-    elif planningStep != 0 and even_message_id == None: 
-        even_message_id = message.id
 
 async def SimplePLanning(message):
-    new_event = Event(id=0, player=message.author.name, time="", slots=1, gameName="", author=message.author.name, role="", step=res.build_steps['init'])
+    new_event = Event(id=0, player=message.author.name, time="", slots=1, gameName="", author=message.author.name, role="", step=res.steps['init'])
     new_location = Location(id = 0, guildId=message.guild.id, channelId=message.channel.id, messageId=0, eventId=0)
     await event_rep.create_event(new_event, new_location)
-
-    new_event.print()
 
 async def DirectPLanning(message):
     data=message.content.split('-')
     author = message.author.name
-    new_event = Event(id=0, gameName=data[1], slots=int(data[2]), time=data[3], author=author, player=author, role=data[4], step=res.build_steps['done'])
+    new_event = Event(id=0, gameName=data[1], slots=int(data[2]), time=data[3], author=author, player=author, role=data[4], step=res.steps['done'])
     new_location = Location(id = 0, guildId=message.guild.id, channelId=message.channel.id, messageId=0, eventId=0)
     await event_rep.create_event(new_event, new_location)
     # testing 

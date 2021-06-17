@@ -14,7 +14,7 @@ msg_dict = {
     'role':         '>>> Qui peut participer ? (Role ou pseudo si une seul personne)'
 }
 
-build_steps = {
+steps = {
     'done': -1,
     'none': 0,
     'init': 1,
