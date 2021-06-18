@@ -39,12 +39,20 @@ async def DefaultPlanning(ctx):
     
     authorDb = await usr_serv.get_or_create_user(ctx.message.author)
     event = await event_serv.get_by_id(153)
+
     await ctx.message.channel.send(
         type = 1,
         embed=msg_serv.BuildInvitMessage(event, authorDb),
-        components = []
+        components = [
+            Button(disabled=0, label = "I\'m in", style = 3),
+            Button(disabled=0, label = "Cancel", style = 4)
+        ]
     )
-
+    interaction = await bot.wait_for("button_click")
+    print("\n-----------\n")
+    print(f"type {interaction.author.name}")
+    print("\n------------\n")
+    await interaction.channel.send(f"Cliccked by {interaction.author.name} on {interaction.component.label} name  ")
 
 @bot.command(name='list', help="test a changer")
 async def button(ctx):
