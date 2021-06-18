@@ -3,6 +3,7 @@ import sys
 import pathlib
 from discord.ext.commands import Bot
 from discord_components import *
+import time
 
 
 path = pathlib.Path().absolute()
@@ -101,6 +102,10 @@ async def on_message(message):
 #        await MessageFromBot(message)
     elif str(message.channel.type) == res.msg_type['dm'] and message.author != bot.user:
         await plan_serv.building_together(message, bot)
+    elif message.author == bot.user:
+        if message.content.startswith("TEST"):
+            time.sleep(5)
+            message.delete()
 
 def CreatePlayerList(author):
     global players
