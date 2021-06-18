@@ -19,7 +19,6 @@ import event_service as event_serv
 import message_service as msg_serv
 import planning_service as plan_serv
 from  user import User
-from event import Event, Location
 import keys
 
 # TO DO LIST 
