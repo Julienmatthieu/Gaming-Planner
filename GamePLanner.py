@@ -51,7 +51,6 @@ async def DefaultPlanning(ctx):
         ]
     )
     interaction = await bot.wait_for("button_click", check = lambda i: i.component.label.startswith("I"))
-    await interaction.respond(type= 4)
     if interaction.component.label == "I\'m in":
         await interaction.message.edit(
             type = 1,
