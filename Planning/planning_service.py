@@ -59,20 +59,8 @@ async def next_step(message, authorDb, event, bot):
         Location = await get_location_by_event(event)
         channel = bot.get_channel(int(Location.channelId))
 
-        embed = discord.Embed()
-        embed.add_field(name="Ranked stats for RANKED_SOLO_5x5:",
-                        value="**➤ Rank:** `SILVER I`\n**➤ Wins:** 25\n**➤ Losses:** 22\n**➤ LP:** 5", inline=False)
-        embed.add_field(name="Ranked stats for RANKED_FLEX_SR:",
-                        value="**➤ Rank:** `SILVER IV`\n**➤ Wins:** 78\n**➤ Losses:** 86\n**➤ LP:** 25", inline=False)
-        embed.add_field(name="Thresh", value="**➤ Name:** `Thresh`\n**➤ Level:** 7\n**➤ Points:** 61074", inline=True)
-        embed.add_field(name="Blitzcrank", value="**➤ Name:** `Blitzcrank`\n**➤ Level:** 7\n**➤ Points:** 53040",
-                        inline=True)
-        embed.add_field(name="Senna", value="**➤ Name:** `Senna`\n**➤ Level:** 5\n**➤ Points:** 24526", inline=True)
-        await ctx.send(embed=embed)
-
-
         await channel.send(
-            embed= embed,
+            msg_serv.BuildInvitMessage(event, authorDb),
             components = [
                 Button(disabled=0, label = "I\'m in", style = 3),
                 Button(disabled=0, label = "Cancel", style = 4)
