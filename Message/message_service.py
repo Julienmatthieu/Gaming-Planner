@@ -50,7 +50,7 @@ async def default_event_message_send(send_to, bot, event, authorDb, color=Color.
             type = 1,
             embed=BuildInvitMessage(event, authorDb, color),
             components = buttons
-        )
+    )
 
 async def FullClear(message):
     if str(message.channel.type) == msg_type['dm']:
