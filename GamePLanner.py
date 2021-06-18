@@ -54,11 +54,12 @@ async def DefaultPlanning(ctx):
     interaction = await bot.wait_for("button_click")
  #    interaction2 = await bot.wait_for("button_click", check = lambda i: i.component.label.startswith("C"))
 
-    print(interaction.data["custom_id"])
-    print(interaction.data["custom_id"])
-    print(interaction.data["custom_id"])
-    print(interaction.data["custom_id"])
-    print(interaction.data["custom_id"])
+    print(interaction.component.label)
+    print(interaction.component.label)
+    print(interaction.component.label)
+    print(interaction.component.label)
+    print(interaction.component.label)
+    print(interaction.component.label)
 #    interaction = await bot.wait_for("button_click", check = lambda i: i.component.label == res.button['ok'])
 #    interaction2 = await bot.wait_for("button_click", check = lambda i: i.component.label == res.button['cancel'])
     if interaction.label == res.button['ok']:
