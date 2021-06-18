@@ -38,18 +38,6 @@ class Event(object):
             players.append(player)
         return players
 
-    def AddUserToEvent(self, userName):
-        if len(get_list_players()) < slots:
-            self.players += databaseSeparator + userName
-
-
-    #def RemoveUserFromEvent(user):
-    #    global author
-#
-    #    players.remove(user.name)
-    #    if user.name == author and len(players) > 0:
-    #        author = players[0]
-
     #testing 
     def print(self):
         print(f"this is event {self.id}: \n\

@@ -62,7 +62,6 @@ async def DefaultPlanning(ctx):
             await msg_serv.send_or_edit_event_message(bot_message, event, authorDb, Color.red(), [], True)
             return
     await msg_serv.send_or_edit_event_message(bot_message, event, authorDb, Color.green(), [], True)
-    await ctx.message.channel.send("Done")
 
 
 # Registering Receving Message event
