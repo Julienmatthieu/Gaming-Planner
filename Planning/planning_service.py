@@ -72,6 +72,9 @@ async def next_step(message, authorDb, event, bot):
         interaction = await bot.wait_for("button_click")
         print("\n-----------\n")
         print(str(type(interaction)))
+        print(f"version {interaction.version}")
+        print(f"type {interaction.type}")
+        print(f"channel_id {interaction.channel_id}")
         print("\n------------\n")
         await interaction.respond(content = "Wow")
 
