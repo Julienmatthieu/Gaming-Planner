@@ -104,6 +104,11 @@ async def on_message(message):
             time.sleep(5)
             message.delete()
 
+@bot.event
+async def on_respond(message):
+    print("HHHHHHHHHHHHHHHHHHHHHEEEEEEEEEEEEEEERRRRRRRRRRRRRRRREEEEEEEEEEEEEEEEEE")
+
+
 def CreatePlayerList(author):
     global players
 
