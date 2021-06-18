@@ -52,7 +52,15 @@ async def DefaultPlanning(ctx):
     )
     interaction = await bot.wait_for("button_click", check = lambda i: i.component.label.startswith("I"))
     await interaction.respond(type= 4)
-    
+    if interaction.component.label == "I\'m in":
+        await interaction.message.edit(
+            type = 1,
+            embed=msg_serv.BuildInvitMessage(event, authorDb),
+            components = [
+                Button(disabled=0, label = "I\'m in 2 ", style = 3),
+                Button(disabled=0, label = "Cancel 2 ", style = 4)
+            ]
+        )
     print("\n\n-----------\n")
     print(interaction.__dict__)
     print("\n\n-----------\n")
@@ -60,15 +68,7 @@ async def DefaultPlanning(ctx):
 #    await interaction.channel.send(f"TEST Cliccked by {interaction.author.name} on {interaction.component.label} name  ")
 
 #    while test == True:
-#        if interaction.component.label == "I\'m in":
-#            await interaction.message.edit(
-#                type = 1,
-#                embed=msg_serv.BuildInvitMessage(event, authorDb),
-#                components = [
-#                    Button(disabled=0, label = "I\'m in 2 ", style = 3),
-#                    Button(disabled=0, label = "Cancel 2 ", style = 4)
-#                ]
-#            )
+
 #            test = False
 #        else:
 #            await interaction.channel.send(f"Cliccked by {interaction.author.name}")
