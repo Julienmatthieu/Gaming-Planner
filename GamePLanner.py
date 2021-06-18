@@ -59,15 +59,15 @@ async def DefaultPlanning(ctx):
             ppl += 1
         else:
             await interaction.respond(content="correctly cancel")
-            break
+            await bot_message.edit(
+                type = 1,
+                embed=msg_serv.BuildInvitMessage(event, authorDb, Color.red()),
+                components=[]
+            )
+            return
 
-    ctx.message.channel.send("Done")
+    await ctx.message.channel.send("Done")
 
-    await bot_message.edit(
-        type = 1,
-        embed=msg_serv.BuildInvitMessage(event, authorDb, Color.green()),
-        components=[]
-    )
 
 # Registering Receving Message event
 @bot.event
