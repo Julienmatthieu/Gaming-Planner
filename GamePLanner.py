@@ -51,12 +51,15 @@ async def DefaultPlanning(ctx):
             
         ]
     )
-    interaction = await bot.wait_for("button_click")
+    click = 0
+    while click < 10:
+        interaction = await bot.wait_for("button_click")
 
-    if interaction.component.label == res.button['ok']:
-        await interaction.respond(content=res.msg_dict['added'])
-    else:
-        await interaction.respond(content="correctly cancel")
+        if interaction.component.label == res.button['ok']:
+            await interaction.respond(content=res.msg_dict['added'])
+        else:
+            await interaction.respond(content="correctly cancel")
+        click++
 
 @bot.command(name='list', help="test a changer")
 async def button(ctx):
