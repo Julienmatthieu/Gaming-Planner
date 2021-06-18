@@ -51,7 +51,7 @@ async def DefaultPlanning(ctx):
             
         ]
     )
-    interaction = await bot.wait_for("button_click", check = lambda i: i.component.label.startswith("I"))
+    interaction = await bot.wait_for("button_click", check = lambda i: i.component.label == res.button['ok'])
     print("\n\n")
     print(interaction.custom_id)
     print("\n\n")
