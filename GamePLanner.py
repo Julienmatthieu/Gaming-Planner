@@ -50,52 +50,28 @@ async def DefaultPlanning(ctx):
             Button(disabled=0, label=res.button['cancel'], style = 4, id=res.button['cancel'])
         ]
     )
-    click = 0
-    while click < 4:
+    ppl = 1
+    while click < event.slots:
         interaction = await bot.wait_for("button_click")
 
         if interaction.component.label == res.button['ok']:
             await interaction.respond(content=res.msg_dict['added'])
+            ppl += 1
         else:
             await interaction.respond(content="correctly cancel")
-        click += 1
-    
+            break
+
+    ctx.message.channel.send("Done")
+
     await bot_message.edit(
         type = 1,
         embed=msg_serv.BuildInvitMessage(event, authorDb, Color.green()),
         components=[]
     )
 
-@bot.command(name='list', help="test a changer")
-async def button(ctx):
-    await ctx.send(
-        "Hello, World!",
-        components = [
-            Button(disabled=0, label = "Prymary", style = 1),
-            Button(disabled=0, label = "Secondary 💀", style = 2),
-            Button(disabled=0, label = "I\'m in 💪", style = 3),
-            Button(disabled=0, label = "Cancel ❌", style = 4)
-#               Button(disabled=1, label = "Link", style = 5, url='http://google.com'),
-#               Button(disabled=0, label = "Prymary", style = 1),
-#               Button(disabled=0, label = "Secondary", style = 2),
-#               Button(disabled=0, label = "Success", style = 3),
-#               Button(disabled=0, label = "Danger", style = 4),
-#               Button(disabled=0, label = "Link", style = 5, url='http://google.com')         
-        ]
-    )
-    interaction = await bot.wait_for("button_click", check = lambda i: i.component.label.startswith("WOW"))
-    await interaction.respond(content = "Button clicked!")
-    # Note multi click 
-    #while True:
-    #    interaction = await <discord.ext.commands.Bot or discord.Client>.wait_for("button_click")
-    #    await interaction.respond(content = "Wow")
-
 # Registering Receving Message event
 @bot.event
 async def on_message(message):
-    if message.content ==  "TEST":
-        await message.channel.send("hello")
-
     # def tool
     if message.content.startswith(res.commandSign):
         await bot.process_commands(message)
@@ -136,7 +112,6 @@ async def UpdateCurrentEvent(payload):
         if len(players) == 0:
             await plan_serv.CancelCurrentEvent(message)
             return
-    await UpdateMessage(payload.message_id, bot.get_channel(payload.channel_id), msg_serv.BuildInvitMessage(None))
 
 @bot.command()
 async def default(ctx):
@@ -169,19 +144,6 @@ async def PlanningCommand(ctx):
         event.step = res.steps['game_name']
         await event_serv.update_event(event)
         await message.author.send(res.msg_dict['game_name'])
-
-async def UpdateMessage(message_id, channel, content):
-    message = await channel.fetch_message(message_id)
-    await message.edit(content=content)
-
-    if len(players) == slots:
-        await message.clear_reactions()
-        await message.add_reaction(res.emojis_dict['check'])
-        await message.add_reaction(res.emojis_dict['cross'])
-    elif planningStep == 5:
-        await message.add_reaction(res.emojis_dict['thumbs_up'])
-        await message.add_reaction(res.emojis_dict['thumbs_down'])
-        await message.add_reaction(res.emojis_dict['cross'])
 
 # Run bot (arg is the bot token)
 bot.run(keys.botToken)
