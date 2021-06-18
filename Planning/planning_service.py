@@ -1,6 +1,6 @@
 from os import error, name
 from sys import audit
-import discord
+from discord import Color 
 from discord.ext.commands import Bot
 from discord_components import DiscordComponents, Button
 
@@ -58,24 +58,28 @@ async def next_step(message, authorDb, event, bot):
         await message.author.send(res.msg_dict['done'])
         Location = await get_location_by_event(event)
         channel = bot.get_channel(int(Location.channelId))
+        bot_message = await msg_serv.send_or_edit_event_message(ctx.message.channel, 
+                                            event, authorDb, Color.gold(), 
+                                            [
+                                                Button(disabled=0, label=res.button['ok'], style = 3, id=res.button['ok']),
+                                                Button(disabled=0, label=res.button['cancel'], style = 4, id=res.button['cancel'])
+                                            ], 
+                                            False)
+        await buttons_management(bot_message, authorDb, event, bot)
 
-        await channel.send(
-            type = 1,
-            embed=msg_serv.BuildInvitMessage(event, authorDb),
-            components = [
-                Button(disabled=0, label = "I\'m in", style = 3),
-                Button(disabled=0, label = "Cancel", style = 4)
-            ]
-        )
-
-
+async def  buttons_management(bot_message, authorDb, event, bot):
+    ppl = 1 #event get_list_players TO DO
+    while ppl < event.slots:
         interaction = await bot.wait_for("button_click")
-        print("\n-----------\n")
-        print(f"type {interaction.author.name}")
-        print("\n------------\n")
-        await interaction.channel.send(f"Cliccked by {interaction.author.name} on ")
-#        interaction = await bot.wait_for("button_click", check = lambda i: i.component.label.startswith("WOW"))
-#        await interaction.respond(content = "Button clicked!")
+
+        if interaction.component.label == res.button['ok']:
+            await interaction.respond(content=res.msg_dict['added'])
+            ppl += 1
+        else:
+            await interaction.respond(content="correctly cancel")
+            await msg_serv.send_or_edit_event_message(bot_message, event, authorDb, Color.red(), [], True)
+            return
+    await msg_serv.send_or_edit_event_message(bot_message, event, authorDb, Color.green(), [], True)
 
 async def CancelCurrentEvent(message):
     authorDb = await get_or_create_user(message.author)
