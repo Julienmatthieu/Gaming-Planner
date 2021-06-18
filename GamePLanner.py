@@ -49,9 +49,8 @@ async def DefaultPlanning(ctx):
             Button(disabled=0, label = "Cancel", style = 4)
         ]
     )
-    test = True
-    while test == True:
-        interaction = await bot.wait_for("button_click", check = lambda i: i.component.label.startswith("I"))
+    interaction = await bot.wait_for("button_click", check = lambda i: i.component.label.startswith("I"))
+#    while test == True:
 #        if interaction.component.label == "I\'m in":
 #            await interaction.respond(content=f"TEST {interaction.author.mention} you have been added to the team  ")
 #            await interaction.channel.send(f"TEST Cliccked by {interaction.author.name} on {interaction.component.label} name  ")
@@ -63,7 +62,7 @@ async def DefaultPlanning(ctx):
 #                    Button(disabled=0, label = "Cancel 2 ", style = 4)
 #                ]
 #            )
-            test = False
+#            test = False
         else:
             await interaction.channel.send(f"Cliccked by {interaction.author.name}")
 
