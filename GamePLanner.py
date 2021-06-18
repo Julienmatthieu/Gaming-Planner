@@ -43,15 +43,14 @@ async def DefaultPlanning(ctx):
     event = await event_serv.get_by_id(153)
 
 
-    bot_message = await msg_serv.default_event_message_send(ctx.message.channel, bot, 
+    bot_message = await msg_serv.send_or_edit_event_message(ctx.message.channel, bot, 
                                                             event, authorDb, Color.gold(), 
                                                             [
                                                                 Button(disabled=0, label=res.button['ok'], style = 3, id=res.button['ok']),
                                                                 Button(disabled=0, label=res.button['cancel'], style = 4, id=res.button['cancel'])
                                                             ], 
                                                             False)
-
-    ppl = 1
+    ppl = 1 #event get_list_players TO DO
     while ppl < event.slots:
         interaction = await bot.wait_for("button_click")
 
@@ -60,9 +59,9 @@ async def DefaultPlanning(ctx):
             ppl += 1
         else:
             await interaction.respond(content="correctly cancel")
-            await msg_serv.default_event_message_send(ctx.message.channel, bot, event, authorDb, Color.gold(), [], False)
+            await msg_serv.send_or_edit_event_message(ctx.message.channel, bot, event, authorDb, Color.gold(), [], False)
             return
-    bot_message = await msg_serv.default_event_message_send(ctx.message.channel, bot, event, authorDb, Color.green(), [], False, False)
+    bot_message = await msg_serv.send_or_edit_event_message(ctx.message.channel, bot, event, authorDb, Color.green(), [], False, False)
     await ctx.message.channel.send("Done")
 
 
