@@ -50,6 +50,7 @@ async def DefaultPlanning(ctx):
         ]
     )
     interaction = await bot.wait_for("button_click", check = lambda i: i.component.label.startswith("I"))
+    interaction.channel.send("message bien reçu")
 #    while test == True:
 #        if interaction.component.label == "I\'m in":
 #            await interaction.respond(content=f"TEST {interaction.author.mention} you have been added to the team  ")
