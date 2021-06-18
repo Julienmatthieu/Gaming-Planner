@@ -19,7 +19,7 @@ async def new_event(message, author):
 
 async def no_step(content, author, event):
     data=content.split('-')
-    new_event = Event(id=0, gameName=data[1], slots=int(data[2]), time=data[3], authorId=author.id, player=author.display_name, role=data[4], step=res.steps['done'], players_id=author.id)
+    new_event = Event(id=0, gameName=data[1], slots=int(data[2]), time=data[3], authorId=author.id, players=author.display_name, role=data[4], step=res.steps['done'], players_id=author.id)
     event.merge(new_event)
     return await repo.update_event(event)
 
