@@ -10,6 +10,11 @@ def BuildInvitMessage(event, author):
         return ''
     players = event.get_list_players()
 
+
+    embed=discord.Embed(title="Sample Embed", url="https://realdrewdata.medium.com/", description="This is an embed that will show how to build an embed and the different components", color=discord.Color.red())
+
+    embed.set_author(name=author.display_name, icon_url=author.avatarUrl)
+
     message = ""
     for slot in range(event.slots):
         if slot < len(players):
