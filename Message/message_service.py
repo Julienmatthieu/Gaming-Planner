@@ -15,16 +15,16 @@ def BuildInvitMessage(event, author):
 
     embed.set_author(name=author.displayName, icon_url=author.avatarUrl)
 
-    message = ""
-    for slot in range(event.slots):
-        if slot < len(players):
-            message += f'\n\t  **➤ {players[slot]}**'
-        else:
-            message += f'\n\t  **➤** '
-    embed.add_field(name=f"**{author.mention}** lance une session de  **{event.gameName}** ", value=f"**Heure:** **`{event.time}`\n**➤ Places:**{str(event.slots - len(players))}** \n", inline=True)
-    embed.add_field(name=f"\n Participant: ", value=message, inline=False)
+#    message = ""
+#    for slot in range(event.slots):
+#        if slot < len(players):
+#            message += f'\n\t  **➤ {players[slot]}**'
+#        else:
+#            message += f'\n\t  **➤** '
+#    embed.add_field(name=f"**{author.mention}** lance une session de  **{event.gameName}** ", value=f"**Heure:** **`{event.time}`\n**➤ Places:**{str(event.slots - len(players))}** \n", inline=True)
+#    embed.add_field(name=f"\n Participant: ", value=message, inline=False)
 
-    return message
+    return embed
 
 async def FullClear(message):
     if str(message.channel.type) == msg_type['dm']:
