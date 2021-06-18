@@ -100,7 +100,7 @@ async def button(ctx):
 # Registering Receving Message event
 @bot.event
 async def on_message(message):
-
+    print("azeazeaz")
     if message.content ==  "TEST":
         message.channel.send("hello")
 
