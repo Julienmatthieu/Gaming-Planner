@@ -21,7 +21,6 @@ from  user import User
 from event import Event, Location
 import keys
 
- 
 # TO DO LIST 
 # AJOUTER UN talbe pour lister les chan autorisé pour le bot
 
