@@ -63,8 +63,8 @@ async def DefaultPlanning(ctx):
 #                ]
 #            )
 #            test = False
-        else:
-            await interaction.channel.send(f"Cliccked by {interaction.author.name}")
+#        else:
+#            await interaction.channel.send(f"Cliccked by {interaction.author.name}")
 
 @bot.command(name='list', help="test a changer")
 async def button(ctx):
