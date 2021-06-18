@@ -52,8 +52,8 @@ async def DefaultPlanning(ctx):
     test = True
     while test == True:
         interaction = await bot.wait_for("button_click", check = lambda i: i.component.label.startswith("I"))
-        if interaction.component.label == "I\'m in":
-            await interaction.respond(content=f"TEST {interaction.author.mention} you have been added to the team  ")
+#        if interaction.component.label == "I\'m in":
+#            await interaction.respond(content=f"TEST {interaction.author.mention} you have been added to the team  ")
 #            await interaction.channel.send(f"TEST Cliccked by {interaction.author.name} on {interaction.component.label} name  ")
 #            await interaction.message.edit(
 #                type = 1,
@@ -94,8 +94,6 @@ async def button(ctx):
 # Registering Receving Message event
 @bot.event
 async def on_message(message):
-    print("HHHHHHHHHHHHHHHHHHHHHEEEEEEEEEEEEEEERRRRRRRRRRRRRRRREEEEEEEEEEEEEEEEEE")
-
     # def tool
     if message.content.startswith(res.commandSign):
         await bot.process_commands(message)
@@ -105,11 +103,6 @@ async def on_message(message):
         if message.content.startswith("TEST"):
             time.sleep(5)
             message.delete()
-
-@bot.event
-async def on_reaction_add(reaction, user):
-    print("-------------------------------------------------- REACTION ----------------------------------------")
-
 
 def CreatePlayerList(author):
     global players
