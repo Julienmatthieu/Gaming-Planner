@@ -75,7 +75,7 @@ async def get_location(location):
     return location
 
 async def get_eventid_by_location(location):
-    location = get_location(location)
+    location = await get_location(location)
     return location.eventId
 
 async def get_location_by_event(event):
@@ -85,7 +85,7 @@ async def get_location_by_event(event):
 
 async def get_event_from_location(guildId, channelId, messageId):
     id = get_eventid_by_location(guildId, channelId, messageId)
-    event = get_event(id)
+    event = await get_event(id)
     return event
 
 async def delete_event(id):
