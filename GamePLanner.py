@@ -62,7 +62,7 @@ async def DefaultPlanning(ctx):
                 ]
             )
 
-            await interaction.respond(content=f"Cliccked by {interaction.author.name} on {interaction.component.label} name  ")
+#            await interaction.respond(content=f"Cliccked by {interaction.author.name} on {interaction.component.label} name  ")
             test = False
         else:
             await interaction.channel.send(f"Cliccked by {interaction.author.name}")
