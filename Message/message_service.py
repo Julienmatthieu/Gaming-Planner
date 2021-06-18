@@ -11,7 +11,8 @@ def BuildInvitMessage(event, author):
     players = event.get_list_players()
 
 
-    embed=discord.Embed(title=f"Let's play some {event.gameName}", description=f"Hi I\'m  looking for **{event.slots}** people(s) to join me to play some **{event.gameName}**  to join me.", color=discord.Color.dark_gold())
+    embed=discord.Embed(title=f"Let's play some {event.gameName}", description=f"I\'m looking for **{event.slots}** people(s) to join me to play some **{event.gameName}**  to join me. \n\
+                                Game session will start at {event.time}.", color=discord.Color.dark_gold())
     embed.set_thumbnail(url="https://compass-ssl.xboxlive.com/assets/1f/35/1f355aca-753c-4213-8a42-563128129070.jpg?n=Parallax_Sections_Large_Desktop_01.jpg")
     embed.set_author(name=author.displayName, icon_url=author.avatarUrl)
     message = ""
