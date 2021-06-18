@@ -52,7 +52,7 @@ async def DefaultPlanning(ctx):
         ]
     )
     click = 0
-    while click < 10:
+    while click < 4:
         interaction = await bot.wait_for("button_click")
 
         if interaction.component.label == res.button['ok']:
@@ -61,14 +61,9 @@ async def DefaultPlanning(ctx):
             await interaction.respond(content="correctly cancel")
         click += 1
     
-    await ctx.message.channel.send(
+    await ctx.message.edit(
         type = 1,
-        embed=msg_serv.BuildInvitMessage(event, authorDb, Color.green()),
-        components = [
-            Button(disabled=0, label=res.button['ok'], style = 3, id=res.button['ok']),
-            Button(disabled=0, label=res.button['cancel'], style = 4, id=res.button['cancel'])
-            
-        ]
+        embed=msg_serv.BuildInvitMessage(event, authorDb, Color.green())
     )
 
 @bot.command(name='list', help="test a changer")
