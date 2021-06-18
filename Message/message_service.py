@@ -3,6 +3,9 @@ from user import User
 from resources import msg_type 
 from discord import Color, Embed
 
+from discord.ext.commands import Bot
+from discord_components import Button
+
 import resources as res
 
 # Event setting
