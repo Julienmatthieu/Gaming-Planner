@@ -34,6 +34,20 @@ async def on_ready():
     print('We have logged in as {0.user}'.format(bot))
     print('\n\n!planning-Sea Of Thieves-4-20h30-here')   
 
+@bot.command(name='test', help="test a default event")
+async def DefaultPlanning(ctx):
+    message = ctx.message
+    if str(message.channel.type) == res.msg_type['dm']:
+        await message.channel.send(res.error['not_here'])
+        return
+    authorDb = await usr_serv.get_or_create_user(message.author)
+    message.content = "!planning-Sea Of Thieves-4-20h30-here"
+    event = await event_serv.new_event(message, authorDb)
+    if message.content != res.commandSign + res.planning:
+        event = await event_serv.no_step(message.content, authorDb, event)
+        await message.channel.send(msg_serv.BuildInvitMessage(event, authorDb))
+        return
+
 @bot.command(name='list', help="test a changer")
 async def button(ctx):
     await ctx.send(
