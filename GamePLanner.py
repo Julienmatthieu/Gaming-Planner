@@ -59,7 +59,7 @@ async def DefaultPlanning(ctx):
             await interaction.respond(content=res.msg_dict['added'])
         else:
             await interaction.respond(content="correctly cancel")
-        click++
+        click += 1
 
 @bot.command(name='list', help="test a changer")
 async def button(ctx):
