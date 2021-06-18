@@ -31,7 +31,7 @@ def BuildInvitMessage(event, author, color=Color.gold()):
 
     return embed
 
-async def send_or_edit_event_message(send_to, bot, event, authorDb, color=Color.gold(), buttons=[] , is_edit=False):
+async def send_or_edit_event_message(send_to, event, authorDb, color=Color.gold(), buttons=[] , is_edit=False):
 
     if is_edit:
         return await send_to.edit(

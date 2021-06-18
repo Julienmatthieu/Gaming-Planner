@@ -43,7 +43,7 @@ async def DefaultPlanning(ctx):
     event = await event_serv.get_by_id(153)
 
 
-    bot_message = await msg_serv.send_or_edit_event_message(ctx.message.channel, bot, 
+    bot_message = await msg_serv.send_or_edit_event_message(ctx.message.channel, 
                                                             event, authorDb, Color.gold(), 
                                                             [
                                                                 Button(disabled=0, label=res.button['ok'], style = 3, id=res.button['ok']),
@@ -59,9 +59,9 @@ async def DefaultPlanning(ctx):
             ppl += 1
         else:
             await interaction.respond(content="correctly cancel")
-            await msg_serv.send_or_edit_event_message(ctx.message.channel, bot, event, authorDb, Color.gold(), [], False)
+            await msg_serv.send_or_edit_event_message(bot_message, event, authorDb, Color.gold(), [], False)
             return
-    bot_message = await msg_serv.send_or_edit_event_message(ctx.message.channel, bot, event, authorDb, Color.green(), [], False, False)
+    await msg_serv.send_or_edit_event_message(bot_message, event, authorDb, Color.green(), [], True)
     await ctx.message.channel.send("Done")
 
 
