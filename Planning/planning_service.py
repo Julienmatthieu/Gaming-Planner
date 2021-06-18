@@ -59,7 +59,7 @@ async def next_step(message, authorDb, event, bot):
         channel = bot.get_channel(int(Location.channelId))
 
         await channel.send(
-            msg_serv.BuildInvitMessage(event, authorDb) ,
+            #"", #msg_serv.BuildInvitMessage(event, authorDb) ,
             components = [
                 Button(disabled=0, label = "I\'m in", style = 3),
                 Button(disabled=0, label = "Cancel", style = 4)
