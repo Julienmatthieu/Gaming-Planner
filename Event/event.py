@@ -1,11 +1,12 @@
 from sys import setprofile
 
+from resources import databaseSeparator
 
-databaseSeparator='⠀' # Not a space (U+2800)
 
 class Event(object):
     id = 0
-    players = ''
+    players = []
+    players_id = []
     time = ''
     slots = 1
     gameName = ''
@@ -13,9 +14,12 @@ class Event(object):
     authorId = 0
     step = 0
     
-    def __init__(self, id, player, time, slots, gameName, authorId, role, step):
+    def __init__(self, id, players, time, slots, gameName, authorId, role, step, players_id):
         self.id = id
-        self.players = player
+        for p in player.split(databaseSeparator):
+            self.players.append(p)
+        for p in players_id.split(databaseSeparator):
+            self.players_id.append(p)
         self.time = time
         self.slots = slots
         self.gameName = gameName
@@ -25,6 +29,7 @@ class Event(object):
     
     def merge(self, other):
         self.players = other.players
+        self.players_id = other.players_id
         self.time = other.time
         self.slots = other.slots
         self.gameName = other.gameName
@@ -32,13 +37,12 @@ class Event(object):
         self.role = other.role
         self.step = other.step
 
-    def get_list_players(self):
-        players = list()
-        for player in self.players.split(databaseSeparator):
-            players.append(player)
-        return players
-
-    #testing 
+    def add_user(self, user):
+#        if user.display_name in self.players:
+        index = self.players.index(user.display_name)
+        del self.players[user.display_name]
+        self.players_id.pop(index)
+    
     def print(self):
         print(f"this is event {self.id}: \n\
                             \tplayers = {self.players} \n\

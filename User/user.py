@@ -1,7 +1,5 @@
 from sys import setprofile
 
-databaseSeparator='⠀' # Not a space (U+2800)
-
 class User(object):
     id = 0
     name = ""

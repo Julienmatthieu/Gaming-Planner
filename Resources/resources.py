@@ -1,6 +1,7 @@
 from os import error
 
 #commands
+databaseSeparator='¤'
 commandSign='!'
 cancel='cancel'
 planning='planning'
