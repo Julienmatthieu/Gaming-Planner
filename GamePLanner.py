@@ -53,17 +53,16 @@ async def DefaultPlanning(ctx):
     while test == True:
         interaction = await bot.wait_for("button_click", check = lambda i: i.component.label.startswith("I"))
         if interaction.component.label == "I\'m in":
-            await interaction.channel.send(f"TEST Cliccked by {interaction.author.name} on {interaction.component.label} name  ")
-            await interaction.message.edit(
-                type = 1,
-                embed=msg_serv.BuildInvitMessage(event, authorDb),
-                components = [
-                Button(disabled=0, label = "I\'m in 2 ", style = 3),
-                Button(disabled=0, label = "Cancel 2 ", style = 4)
-                ]
-            )
-
             await interaction.respond(content=f"TEST {interaction.author.mention} you have been added to the team  ")
+#            await interaction.channel.send(f"TEST Cliccked by {interaction.author.name} on {interaction.component.label} name  ")
+#            await interaction.message.edit(
+#                type = 1,
+#                embed=msg_serv.BuildInvitMessage(event, authorDb),
+#                components = [
+#                    Button(disabled=0, label = "I\'m in 2 ", style = 3),
+#                    Button(disabled=0, label = "Cancel 2 ", style = 4)
+#                ]
+#            )
             test = False
         else:
             await interaction.channel.send(f"Cliccked by {interaction.author.name}")
