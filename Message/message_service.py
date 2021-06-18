@@ -26,12 +26,3 @@ async def FullClear(message):
         return
     async for message in message.channel.history(limit=None):
         await message.delete()
-
-
-       
-
-        list = ""
-
-
-        embed.add_field(name="Senna", value="**➤ Name:** `Senna`\n**➤ Level:** 5\n**➤ Points:** 24526", inline=True)
-        await ctx.send(embed=embed)
