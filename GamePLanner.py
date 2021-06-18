@@ -48,16 +48,17 @@ async def DefaultPlanning(ctx):
             Button(disabled=0, label = "Cancel", style = 4)
         ]
     )
-    test = False
-    while test:
+    test = True
+    while test == True:
         interaction = await bot.wait_for("button_click")
-        if interaction != None:
+        if interaction.component.label == "I\'m in":
             print("\n-----------\n")
             print(f"type {interaction.author.name}")
             print("\n------------\n")
             await interaction.channel.send(f"Cliccked by {interaction.author.name} on {interaction.component.label} name  ")
-            test = True
-        interaction = None
+            test = False
+        else:
+            await interaction.channel.send(f"Cliccked by {interaction.author.name}")
 
 @bot.command(name='list', help="test a changer")
 async def button(ctx):
