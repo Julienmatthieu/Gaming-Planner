@@ -73,7 +73,6 @@ async def next_step(message, authorDb, event, bot):
         interaction = await bot.wait_for("button_click", {max: 1,time: 30000,errors: ['time']})
 
 
-        interaction = await bot.wait_for("button_click").then(message => {print("\n\ntest\n\n"})
         print("\n-----------\n")
         print(f"type {interaction.author.name}")
         print("\n------------\n")
