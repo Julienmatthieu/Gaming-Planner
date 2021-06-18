@@ -51,7 +51,7 @@ async def DefaultPlanning(ctx):
     #    ]
     #)
 
-    bot_message = default_event_message_send(ctx.message.channel, event, authorDb, Color.gold(), True, False)
+    bot_message = msg_serv.default_event_message_send(ctx.message.channel, event, authorDb, Color.gold(), True, False)
 
     ppl = 1
     while ppl < event.slots:
