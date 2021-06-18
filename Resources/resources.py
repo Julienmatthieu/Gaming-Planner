@@ -15,7 +15,7 @@ emojis_dict = {
     'thumbs_up':    '\N{THUMBS UP SIGN}',
     'thumbs_down':  '\N{THUMBS DOWN SIGN}',
     'check':        '\N{WHITE HEAVY CHECK MARK}',
-    'cross':        '❌',
+    'cross':        '',
     'skull':        '💀'
 } 
  
@@ -28,6 +28,11 @@ msg_dict = {
     'role':             '>>> Qui peut participer ? (Role ou pseudo si une seul personne)',
     'done':             '>>> La session est en cours de rédaction. Merci pour votre temps !',
     'added':            'You have been added to the session'
+}
+
+button = {
+    'cancel':   'cancel',
+    'ok':       'I\'m in'
 }
 
 help = {

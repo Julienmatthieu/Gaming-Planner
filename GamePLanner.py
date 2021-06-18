@@ -46,12 +46,13 @@ async def DefaultPlanning(ctx):
         type = 1,
         embed=msg_serv.BuildInvitMessage(event, authorDb),
         components = [
-            Button(disabled=0, label = "I\'m in", style = 3),
-            Button(disabled=0, label = "Cancel", style = 4, id="id")
+            Button(disabled=0, label=res.button['ok'], style = 3, id=res.button['ok']),
+            Button(disabled=0, label=res.button['cancel'], style = 4, id=res.button['cancel'])
             
         ]
     )
     interaction = await bot.wait_for("button_click", check = lambda i: i.component.label.startswith("I"))
+    print(__dict__(interaction))
     await interaction.respond(content=res.msg_dict['added'])
 #    if interaction.component.label == "I\'m in":
 #        await interaction.message.edit(
