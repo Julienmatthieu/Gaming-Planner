@@ -1,10 +1,10 @@
 #from os import name
 import sys
 import pathlib
+from discord import Color
 from discord.ext.commands import Bot
 from discord_components import *
 import time
-
 
 path = pathlib.Path().absolute()
 sys.path.append(f'{path}/Resources/')
@@ -60,6 +60,16 @@ async def DefaultPlanning(ctx):
         else:
             await interaction.respond(content="correctly cancel")
         click += 1
+    
+    await ctx.message.channel.send(
+        type = 1,
+        embed=msg_serv.BuildInvitMessage(event, authorDb, Color.green()),
+        components = [
+            Button(disabled=0, label=res.button['ok'], style = 3, id=res.button['ok']),
+            Button(disabled=0, label=res.button['cancel'], style = 4, id=res.button['cancel'])
+            
+        ]
+    )
 
 @bot.command(name='list', help="test a changer")
 async def button(ctx):
