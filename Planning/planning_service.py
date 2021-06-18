@@ -66,8 +66,14 @@ async def next_step(message, authorDb, event, bot):
                 Button(disabled=0, label = "Cancel", style = 4)
             ]
         )
-        interaction = await bot.wait_for("button_click", check = lambda i: i.component.label.startswith("WOW"))
-        await interaction.respond(content = "Button clicked!")
+
+
+    while True:
+        interaction = await bot.wait_for("button_click")
+        await interaction.respond(content = "Wow")
+
+#        interaction = await bot.wait_for("button_click", check = lambda i: i.component.label.startswith("WOW"))
+#        await interaction.respond(content = "Button clicked!")
 
 async def CancelCurrentEvent(message):
     authorDb = await get_or_create_user(message.author)

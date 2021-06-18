@@ -5,7 +5,6 @@ import discord
 
 # Event setting
 def BuildInvitMessage(event, author):
-    #embed = discord.Embed()
     if event == None:
         return ''
     players = event.get_list_players()
