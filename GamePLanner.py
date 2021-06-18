@@ -38,7 +38,7 @@ async def on_ready():
 
 @bot.command(name='aa', help="test a default event")
 async def DefaultPlanning(ctx):
-    ctx.message.respond(content="azeazea")
+    ctx.respond(content="azeazea")
 
 
 @bot.command(name='test', help="test a default event")
