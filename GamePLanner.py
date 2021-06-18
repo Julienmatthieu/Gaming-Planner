@@ -53,10 +53,10 @@ async def DefaultPlanning(ctx):
         interaction = await bot.wait_for("button_click", check = lambda i: i.component.label.startswith("I"))
         if interaction.component.label == "I\'m in":
             await interaction.channel.send(f"Cliccked by {interaction.author.name} on {interaction.component.label} name  ")
-            await interaction.reponse.send(f"Cliccked by {interaction.author.name} on {interaction.component.label} name  ")
             test = False
         else:
             await interaction.channel.send(f"Cliccked by {interaction.author.name}")
+        await interaction.respond(f"Cliccked by {interaction.author.name} on {interaction.component.label} name  ")
 
 @bot.command(name='list', help="test a changer")
 async def button(ctx):
