@@ -107,8 +107,8 @@ async def on_message(message):
             message.delete()
 
 @bot.event
-async def on_respond(message):
-    print("HHHHHHHHHHHHHHHHHHHHHEEEEEEEEEEEEEEERRRRRRRRRRRRRRRREEEEEEEEEEEEEEEEEE")
+async def on_reaction_add(reaction, user):
+    print("-------------------------------------------------- REACTION ----------------------------------------")
 
 
 def CreatePlayerList(author):
