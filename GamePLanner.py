@@ -53,7 +53,21 @@ async def DefaultPlanning(ctx):
 
     bot_message = await msg_serv.default_event_message_send(ctx.message.channel, bot, event, authorDb, Color.gold(), True, False)
 
+    ppl = 1
+    while ppl < event.slots:
+        interaction = await bot.wait_for("button_click")
 
+        if interaction.component.label == res.button['ok']:
+            await interaction.respond(content=res.msg_dict['added'])
+            ppl += 1
+        else:
+            await interaction.respond(content="correctly cancel")
+            await bot_message.edit(
+                type = 1,
+                embed=msg_serv.BuildInvitMessage(event, authorDb, Color.red()),
+                components=[]
+            )
+            return
 
     await ctx.message.channel.send("Done")
 

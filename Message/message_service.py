@@ -33,7 +33,7 @@ def BuildInvitMessage(event, author, color=Color.gold()):
 
 async def default_event_message_send(send_to, bot, event, authorDb, color=Color.gold(), button = True, is_edit=False):
 
-    bot_message = await send_to.send(
+    return await send_to.send(
         type = 1,
         embed=BuildInvitMessage(event, authorDb, color),
         components = [
@@ -41,22 +41,6 @@ async def default_event_message_send(send_to, bot, event, authorDb, color=Color.
             Button(disabled=0, label=res.button['cancel'], style = 4, id=res.button['cancel'])
         ]
     )
-
-    ppl = 1
-    while ppl < event.slots:
-        interaction = await bot.wait_for("button_click")
-
-        if interaction.component.label == res.button['ok']:
-            await interaction.respond(content=res.msg_dict['added'])
-            ppl += 1
-        else:
-            await interaction.respond(content="correctly cancel")
-            await bot_message.edit(
-                type = 1,
-                embed=msg_serv.BuildInvitMessage(event, authorDb, Color.red()),
-                components=[]
-            )
-            return
 
 async def FullClear(message):
     if str(message.channel.type) == msg_type['dm']:
