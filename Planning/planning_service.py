@@ -72,7 +72,7 @@ async def next_step(message, authorDb, event, bot):
         print("\n-----------\n")
         print(f"type {interaction.author.name}")
         print("\n------------\n")
-        await interaction.respond(content = "Button clicked! <-")
+        await interaction.channel.send(f"Cliccked by {interaction.author.name}")
 #        interaction = await bot.wait_for("button_click", check = lambda i: i.component.label.startswith("WOW"))
 #        await interaction.respond(content = "Button clicked!")
 
