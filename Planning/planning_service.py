@@ -1,4 +1,4 @@
-from os import error
+from os import error, name
 from sys import audit
 import discord
 from discord.ext.commands import Bot
@@ -69,14 +69,15 @@ async def next_step(message, authorDb, event, bot):
 
 
     while True:
-        interaction = await bot.wait_for("button_click")
+
+        interaction = await bot.wait_for("button_click", {max: 1,time: 30000,errors: ['time']})
+
+
+        interaction = await bot.wait_for("button_click").then(message => {print("\n\ntest\n\n"})
         print("\n-----------\n")
-        print(str(type(interaction)))
-        print(f"version {interaction.version}")
-        print(f"type {interaction.type}")
-        print(f"channel_id {interaction.channel_id}")
+        print(f"type {interaction.author.name}")
         print("\n------------\n")
-        await interaction.respond(content = "Wow")
+        await interaction.respond(content = "I have been clicked")
 
 #        interaction = await bot.wait_for("button_click", check = lambda i: i.component.label.startswith("WOW"))
 #        await interaction.respond(content = "Button clicked!")
