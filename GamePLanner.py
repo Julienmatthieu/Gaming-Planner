@@ -35,6 +35,12 @@ async def on_ready():
     print('We have logged in as {0.user}'.format(bot))
     print('\n\n!planning-Sea Of Thieves-4-20h30-here')   
 
+
+@bot.command(name='aa', help="test a default event")
+async def DefaultPlanning(ctx):
+    ctx.message.reponse(content="azeazea")
+
+
 @bot.command(name='test', help="test a default event")
 async def DefaultPlanning(ctx):
     
@@ -50,11 +56,11 @@ async def DefaultPlanning(ctx):
         ]
     )
     interaction = await bot.wait_for("button_click", check = lambda i: i.component.label.startswith("I"))
-    await interaction.channel.send(f"TEST Cliccked by {interaction.author.name} on {interaction.component.label} name  ")
+    await interaction.respond(content=f"TEST {interaction.author.mention} you have been added to the team  ")
+#    await interaction.channel.send(f"TEST Cliccked by {interaction.author.name} on {interaction.component.label} name  ")
 
 #    while test == True:
 #        if interaction.component.label == "I\'m in":
-#            await interaction.respond(content=f"TEST {interaction.author.mention} you have been added to the team  ")
 #            await interaction.message.edit(
 #                type = 1,
 #                embed=msg_serv.BuildInvitMessage(event, authorDb),
