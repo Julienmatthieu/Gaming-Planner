@@ -60,10 +60,11 @@ async def next_step(message, authorDb, event, bot):
         channel = bot.get_channel(int(Location.channelId))
 
         await channel.send(
+            type = 1,
             embed=msg_serv.BuildInvitMessage(event, authorDb),
             components = [
-                Button(disabled=0, label = "I\'m in", style = 3),
-                Button(disabled=0, label = "Cancel", style = 4)
+                Button(disabled=0, name="Yes", label = "I\'m in", style = 3),
+                Button(disabled=0, name="No", label = "Cancel", style = 4)
             ]
         )
 
@@ -72,7 +73,7 @@ async def next_step(message, authorDb, event, bot):
         print("\n-----------\n")
         print(f"type {interaction.author.name}")
         print("\n------------\n")
-        await interaction.channel.send(f"Cliccked by {interaction.author.name}")
+        await interaction.channel.send(f"Cliccked by {interaction.author.name} on ")
 #        interaction = await bot.wait_for("button_click", check = lambda i: i.component.label.startswith("WOW"))
 #        await interaction.respond(content = "Button clicked!")
 
