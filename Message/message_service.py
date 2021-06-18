@@ -1,17 +1,17 @@
 from event import Event
 from user import User
 from resources import msg_type 
-import discord
+from discord import Color, Embed
 
 import resources as res
 
 # Event setting
-def BuildInvitMessage(event, author, color=discord.Color.gold()):
+def BuildInvitMessage(event, author, color=Color.gold()):
     if event == None:
         return ''
     players = event.get_list_players()
 
-    embed=discord.Embed(title=f"Let's play some {event.gameName}", description=f"I\'m looking for **{event.slots}** people(s) to join on **{event.gameName}**. \n\
+    embed=Embed(title=f"Let's play some {event.gameName}", description=f"I\'m looking for **{event.slots}** people(s) to join on **{event.gameName}**. \n\
                                 Game session will start at **{event.time}**. @{event.role} ", color=color)
     # Add an image
     #embed.set_thumbnail(url="https://compass-ssl.xboxlive.com/assets/1f/35/1f355aca-753c-4213-8a42-563128129070.jpg?n=Parallax_Sections_Large_Desktop_01.jpg")
@@ -28,24 +28,32 @@ def BuildInvitMessage(event, author, color=discord.Color.gold()):
 
     return embed
 
-async def default_event_message_send(send_to, event, authorDb, color=discord.Color.gold(), button = True, is_edit=False):
+async def default_event_message_send(send_to, bot, event, authorDb, color=Color.gold(), button = True, is_edit=False):
 
-    return await send_to.send(
+    bot_message = await send_to.send(
         type = 1,
-        embed=BuildInvitMessage(event, author, color),
+        embed=BuildInvitMessage(event, authorDb, color),
         components = [
             Button(disabled=0, label=res.button['ok'], style = 3, id=res.button['ok']),
             Button(disabled=0, label=res.button['cancel'], style = 4, id=res.button['cancel'])
         ]
     )
 
+    ppl = 1
+    while ppl < event.slots:
+        interaction = await bot.wait_for("button_click")
 
-    type = 1,
-    embed=msg_serv.BuildInvitMessage(event, authorDb),
-    components = [
-        Button(disabled=0, label=res.button['ok'], style = 3, id=res.button['ok']),
-        Button(disabled=0, label=res.button['cancel'], style = 4, id=res.button['cancel'])
-    ]
+        if interaction.component.label == res.button['ok']:
+            await interaction.respond(content=res.msg_dict['added'])
+            ppl += 1
+        else:
+            await interaction.respond(content="correctly cancel")
+            await bot_message.edit(
+                type = 1,
+                embed=msg_serv.BuildInvitMessage(event, authorDb, Color.red()),
+                components=[]
+            )
+            return
 
 async def FullClear(message):
     if str(message.channel.type) == msg_type['dm']:
