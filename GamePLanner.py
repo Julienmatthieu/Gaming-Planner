@@ -62,7 +62,8 @@ async def DefaultPlanning(ctx):
     
     await bot_message.edit(
         type = 1,
-        embed=msg_serv.BuildInvitMessage(event, authorDb, Color.green())
+        embed=msg_serv.BuildInvitMessage(event, authorDb, Color.green()),
+        components=[]
     )
 
 @bot.command(name='list', help="test a changer")
