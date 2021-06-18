@@ -61,8 +61,8 @@ async def next_step(message, authorDb, event, bot):
         await channel.send(
             msg_serv.BuildInvitMessage(event, authorDb) ,
             components = [
-                Button(disabled=0, label = "I\'m in 💪", style = 3),
-                Button(disabled=0, label = "Cancel ❌", style = 4)
+                Button(disabled=0, label = "I\'m in", style = 3),
+                Button(disabled=0, label = "Cancel", style = 4)
             ]
         )
         interaction = await bot.wait_for("button_click", check = lambda i: i.component.label.startswith("WOW"))
