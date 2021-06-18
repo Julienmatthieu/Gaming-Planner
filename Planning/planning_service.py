@@ -70,7 +70,7 @@ async def next_step(message, authorDb, event, bot):
 
     while True:
 
-        interaction = await bot.wait_for("button_click", {max: 1,time: 30000,errors: ['time']})
+        interaction = await bot.wait_for("button_click")
 
 
         print("\n-----------\n")
