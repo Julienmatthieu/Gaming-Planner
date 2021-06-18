@@ -11,7 +11,7 @@ def BuildInvitMessage(event, author):
     players = event.get_list_players()
 
 
-    embed=discord.Embed(title="Sample Embed", url="https://realdrewdata.medium.com/", description="This is an embed that will show how to build an embed and the different components", color=discord.Color.red())
+    embed=discord.Embed(title="Sample Embed", description=f"Let's play **{event.gameName}**", color=discord.Color.red())
 
     embed.set_author(name=author.displayName, icon_url=author.avatarUrl)
 
