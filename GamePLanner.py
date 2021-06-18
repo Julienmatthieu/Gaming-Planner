@@ -51,7 +51,7 @@ async def DefaultPlanning(ctx):
         ]
     )
     ppl = 1
-    while click < event.slots:
+    while ppl < event.slots:
         interaction = await bot.wait_for("button_click")
 
         if interaction.component.label == res.button['ok']:
