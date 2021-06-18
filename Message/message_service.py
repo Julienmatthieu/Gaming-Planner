@@ -13,7 +13,7 @@ def BuildInvitMessage(event, author):
 
     embed=discord.Embed(title="Sample Embed", url="https://realdrewdata.medium.com/", description="This is an embed that will show how to build an embed and the different components", color=discord.Color.red())
 
-    #embed.set_author(name=author.displayName, icon_url=author.avatarUrl)
+    embed.set_author(name=author.displayName, icon_url=author.avatarUrl)
 
 #    message = ""
 #    for slot in range(event.slots):
