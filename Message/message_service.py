@@ -22,7 +22,7 @@ def BuildInvitMessage(event, author):
         else:
             message += f'\n\t - '
 
-    embed.add_field(name="Team:", value="", inline=True)
+    embed.add_field(name="Team:", value=" ", inline=True)
     embed.add_field(name="Team:", value=message, inline=True)
 
     embed.set_footer(text=f"Thank you for using Game-planner bot. (event id:{event.id})")
