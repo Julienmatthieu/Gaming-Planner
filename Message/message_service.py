@@ -31,14 +31,7 @@ def BuildInvitMessage(event, author, color=Color.gold()):
 
     return embed
 
-async def default_event_message_send(send_to, bot, event, authorDb, color=Color.gold(), button = True, is_edit=False):
-
-    buttons = []
-    if button:
-        buttons = [
-            Button(disabled=0, label=res.button['ok'], style = 3, id=res.button['ok']),
-            Button(disabled=0, label=res.button['cancel'], style = 4, id=res.button['cancel'])
-        ]
+async def send_or_edit_event_message(send_to, bot, event, authorDb, color=Color.gold(), buttons=[] , is_edit=False):
 
     if is_edit:
         return await send_to.edit(

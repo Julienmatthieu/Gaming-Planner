@@ -42,16 +42,14 @@ async def DefaultPlanning(ctx):
     authorDb = await usr_serv.get_or_create_user(ctx.message.author)
     event = await event_serv.get_by_id(153)
 
-    #bot_message = await ctx.message.channel.send(
-    #    type = 1,
-    #    embed=msg_serv.BuildInvitMessage(event, authorDb),
-    #    components = [
-    #        Button(disabled=0, label=res.button['ok'], style = 3, id=res.button['ok']),
-    #        Button(disabled=0, label=res.button['cancel'], style = 4, id=res.button['cancel'])
-    #    ]
-    #)
 
-    bot_message = await msg_serv.default_event_message_send(ctx.message.channel, bot, event, authorDb, Color.gold(), True, False)
+    bot_message = await msg_serv.default_event_message_send(ctx.message.channel, bot, 
+                                                            event, authorDb, Color.gold(), 
+                                                            [
+                                                                Button(disabled=0, label=res.button['ok'], style = 3, id=res.button['ok']),
+                                                                Button(disabled=0, label=res.button['cancel'], style = 4, id=res.button['cancel'])
+                                                            ], 
+                                                            False)
 
     ppl = 1
     while ppl < event.slots:
@@ -62,13 +60,9 @@ async def DefaultPlanning(ctx):
             ppl += 1
         else:
             await interaction.respond(content="correctly cancel")
-            await bot_message.edit(
-                type = 1,
-                embed=msg_serv.BuildInvitMessage(event, authorDb, Color.red()),
-                components=[]
-            )
+            await msg_serv.default_event_message_send(ctx.message.channel, bot, event, authorDb, Color.gold(), [], False)
             return
-
+    bot_message = await msg_serv.default_event_message_send(ctx.message.channel, bot, event, authorDb, Color.green(), [], False, False)
     await ctx.message.channel.send("Done")
 
 
