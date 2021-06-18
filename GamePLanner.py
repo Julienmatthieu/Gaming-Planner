@@ -50,7 +50,7 @@ async def DefaultPlanning(ctx):
     )
     test = True
     while test == True:
-        interaction = await bot.wait_for("button_click")
+        interaction = await bot.wait_for("button_click", check = lambda i: i.component.label.startswith("I"))
         if interaction.component.label == "I\'m in":
             print("\n-----------\n")
             print(f"type {interaction.author.name}")
