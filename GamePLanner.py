@@ -57,8 +57,10 @@ async def DefaultPlanning(ctx):
 
 #    interaction = await bot.wait_for("button_click", check = lambda i: i.component.label == res.button['ok'])
 #    interaction2 = await bot.wait_for("button_click", check = lambda i: i.component.label == res.button['cancel'])
-    await interaction.respond(content=res.msg_dict['added'])
-    await interaction2.respond(content="correctly cancel")
+    if interaction.label == res.button['ok']:
+        await interaction.respond(content=res.msg_dict['added'])
+    else:
+        await interaction.respond(content="correctly cancel")
 
 #    if interaction.component.label == "I\'m in":
 #        await interaction.message.edit(
