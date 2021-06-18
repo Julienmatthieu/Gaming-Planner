@@ -58,7 +58,7 @@ async def next_step(message, authorDb, event, bot):
         await message.author.send(res.msg_dict['done'])
         Location = await get_location_by_event(event)
         channel = bot.get_channel(int(Location.channelId))
-        bot_message = await msg_serv.send_or_edit_event_message(ctx.message.channel, 
+        bot_message = await msg_serv.send_or_edit_event_message(channel, 
                                             event, authorDb, Color.gold(), 
                                             [
                                                 Button(disabled=0, label=res.button['ok'], style = 3, id=res.button['ok']),
