@@ -94,6 +94,8 @@ async def button(ctx):
 # Registering Receving Message event
 @bot.event
 async def on_message(message):
+    print("HHHHHHHHHHHHHHHHHHHHHEEEEEEEEEEEEEEERRRRRRRRRRRRRRRREEEEEEEEEEEEEEEEEE")
+
     # def tool
     if message.content.startswith(res.commandSign):
         await bot.process_commands(message)
