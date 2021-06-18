@@ -70,6 +70,9 @@ async def next_step(message, authorDb, event, bot):
 
     while True:
         interaction = await bot.wait_for("button_click")
+        print("\n-----------\n")
+        print(str(type(interaction)))
+        print("\n------------\n")
         await interaction.respond(content = "Wow")
 
 #        interaction = await bot.wait_for("button_click", check = lambda i: i.component.label.startswith("WOW"))
