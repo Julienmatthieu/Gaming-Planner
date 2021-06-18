@@ -47,7 +47,7 @@ async def DefaultPlanning(ctx):
         embed=msg_serv.BuildInvitMessage(event, authorDb),
         components = [
             Button(disabled=0, label = "I\'m in", style = 3),
-            Button(disabled=0, label = "Cancel", style = 4, custom_id="id")
+            Button(disabled=0, label = "Cancel", style = 4, id="id")
             
         ]
     )
