@@ -100,9 +100,8 @@ async def button(ctx):
 # Registering Receving Message event
 @bot.event
 async def on_message(message):
-    print("azeazeaz")
     if message.content ==  "TEST":
-        message.channel.send("hello")
+        await message.channel.send("hello")
 
     # def tool
     if message.content.startswith(res.commandSign):
