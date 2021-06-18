@@ -51,18 +51,19 @@ async def DefaultPlanning(ctx):
         ]
     )
     interaction = await bot.wait_for("button_click", check = lambda i: i.component.label.startswith("I"))
-    if interaction.component.label == "I\'m in":
-        await interaction.message.edit(
-            type = 1,
-            embed=msg_serv.BuildInvitMessage(event, authorDb),
-            components = [
-                Button(disabled=0, label = "I\'m in 2 ", style = 3),
-                Button(disabled=0, label = "Cancel 2 ", style = 4)
-            ]
-        )
-    print("\n\n-----------\n")
-    print(interaction.__dict__)
-    print("\n\n-----------\n")
+    interaction.respond(content="TEST")
+#    if interaction.component.label == "I\'m in":
+#        await interaction.message.edit(
+#            type = 1,
+#            embed=msg_serv.BuildInvitMessage(event, authorDb),
+#            components = [
+#                Button(disabled=0, label = "I\'m in 2 ", style = 3),
+#                Button(disabled=0, label = "Cancel 2 ", style = 4)
+#            ]
+#        )
+#    print("\n\n-----------\n")
+#    print(interaction.__dict__)
+#    print("\n\n-----------\n")
 
 #    await interaction.channel.send(f"TEST Cliccked by {interaction.author.name} on {interaction.component.label} name  ")
 
@@ -99,15 +100,16 @@ async def button(ctx):
 # Registering Receving Message event
 @bot.event
 async def on_message(message):
+
+    if message.content ==  "TEST":
+        message.channel.send("hello")
+
     # def tool
     if message.content.startswith(res.commandSign):
         await bot.process_commands(message)
     elif str(message.channel.type) == res.msg_type['dm'] and message.author != bot.user:
         await plan_serv.building_together(message, bot)
-    elif message.author == bot.user:
-        if message.content.startswith("TEST"):
-            time.sleep(5)
-            message.delete()
+        
 
 def CreatePlayerList(author):
     global players
