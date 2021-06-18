@@ -53,7 +53,7 @@ async def DefaultPlanning(ctx):
     while test == True:
         interaction = await bot.wait_for("button_click", check = lambda i: i.component.label.startswith("I"))
         if interaction.component.label == "I\'m in":
-            await interaction.channel.send(f"Cliccked by {interaction.author.name} on {interaction.component.label} name  ")
+            await interaction.channel.send(f"TEST Cliccked by {interaction.author.name} on {interaction.component.label} name  ")
             await interaction.message.edit(
                 type = 1,
                 embed=msg_serv.BuildInvitMessage(event, authorDb),
@@ -98,8 +98,6 @@ async def on_message(message):
     # def tool
     if message.content.startswith(res.commandSign):
         await bot.process_commands(message)
-#    elif message.author == bot.user and str(message.channel.type) != res.msg_type['dm']:
-#        await MessageFromBot(message)
     elif str(message.channel.type) == res.msg_type['dm'] and message.author != bot.user:
         await plan_serv.building_together(message, bot)
     elif message.author == bot.user:
@@ -173,15 +171,6 @@ async def PlanningCommand(ctx):
         event.step = res.steps['game_name']
         await event_serv.update_event(event)
         await message.author.send(res.msg_dict['game_name'])
-
-async def MessageFromBot(message):
-    event = await event_serv.get_last_unset_event(message)
-    if event == None:
-        return
-    if event.step == res.steps['done']:
-        emojis = [res.emojis_dict['thumbs_up'], res.emojis_dict['thumbs_down'], res.emojis_dict['cross']]
-        for emoji in emojis:
-            await message.add_reaction(emoji)
 
 async def UpdateMessage(message_id, channel, content):
     message = await channel.fetch_message(message_id)
