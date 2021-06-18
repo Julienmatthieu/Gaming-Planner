@@ -51,7 +51,12 @@ async def DefaultPlanning(ctx):
         ]
     )
     interaction = await bot.wait_for("button_click", check = lambda i: i.component.label.startswith("I"))
-    await interaction.respond()
+    
+    print("\n\n-----------\n")
+    print(interaction.__dict__)
+    print(interaction.respond().__dict__)
+    print("\n\n-----------\n")
+
 #    await interaction.channel.send(f"TEST Cliccked by {interaction.author.name} on {interaction.component.label} name  ")
 
 #    while test == True:
