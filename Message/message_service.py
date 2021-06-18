@@ -3,6 +3,8 @@ from user import User
 from resources import msg_type 
 import discord
 
+import resources as res
+
 # Event setting
 def BuildInvitMessage(event, author, color=discord.Color.gold()):
     if event == None:
@@ -25,6 +27,25 @@ def BuildInvitMessage(event, author, color=discord.Color.gold()):
     embed.set_footer(text=f"Thank you for using Game-planner bot. (event id:{event.id})")
 
     return embed
+
+async def default_event_message_send(send_to, event, authorDb, color=discord.Color.gold(), button = True, is_edit=False):
+
+    return await send_to.send(
+        type = 1,
+        embed=BuildInvitMessage(event, author, color),
+        components = [
+            Button(disabled=0, label=res.button['ok'], style = 3, id=res.button['ok']),
+            Button(disabled=0, label=res.button['cancel'], style = 4, id=res.button['cancel'])
+        ]
+    )
+
+
+    type = 1,
+    embed=msg_serv.BuildInvitMessage(event, authorDb),
+    components = [
+        Button(disabled=0, label=res.button['ok'], style = 3, id=res.button['ok']),
+        Button(disabled=0, label=res.button['cancel'], style = 4, id=res.button['cancel'])
+    ]
 
 async def FullClear(message):
     if str(message.channel.type) == msg_type['dm']:
