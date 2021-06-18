@@ -18,9 +18,9 @@ def BuildInvitMessage(event, author):
     message = ""
     for slot in range(event.slots):
         if slot < len(players):
-            message += f'\n\t  **➤ {players[slot]}**'
+            message += f'\n\t  ➤ **{players[slot]}**'
         else:
-            message += f'\n\t  **➤** '
+            message += f'\n\t  ➤ '
 
     embed.add_field(name="Team:", value=message, inline=True)
     embed.add_field(name="Team:", value=message, inline=True)
