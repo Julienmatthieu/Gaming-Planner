@@ -18,14 +18,14 @@ def BuildInvitMessage(event, author):
     message = ""
     for slot in range(event.slots):
         if slot < len(players):
-            message += f'\n\t  ➤ **{players[slot]}**'
+            message += f'\n\t  - **{players[slot]}**'
         else:
-            message += f'\n\t  ➤ '
+            message += f'\n\t - ➤ '
 
     embed.add_field(name="Team:", value=message, inline=True)
     embed.add_field(name="Field 2 Title", value="It is inline with Field 3", inline=True)
 
-    embed.set_footer(text=f"Thank you for using Game-planner bot. (id:{event.id})")
+    embed.set_footer(text=f"Thank you for using Game-planner bot. (event id:{event.id})")
 
 #    embed.add_field(name=f"**{author.mention}** lance une session de  **{event.gameName}** ", value=f"**Heure:** **`{event.time}`\n**➤ Places:**{str(event.slots - len(players))}** \n", inline=True)
 #    embed.add_field(name=f"\n Participant: ", value=message, inline=False)
