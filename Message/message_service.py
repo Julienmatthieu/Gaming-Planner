@@ -11,7 +11,7 @@ def BuildInvitMessage(event, author):
     players = event.get_list_players()
 
 
-    embed=discord.Embed(title="Sample Embed", description=f"Let's play **{event.gameName}** ! I\'m looking for **{event.slots}** people(s) to join me.", color=discord.Color.dark_blue())
+    embed=discord.Embed(title=f"Let's play {event.slots}", description=f"Hello i wanna play some **{event.gameName}** and I\'m looking for **{event.slots}** people(s) to join me.", color=discord.Color.DARK_GOLD())
 
     embed.set_author(name=author.displayName, icon_url=author.avatarUrl)
 
