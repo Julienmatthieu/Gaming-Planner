@@ -63,8 +63,8 @@ async def next_step(message, authorDb, event, bot):
             type = 1,
             embed=msg_serv.BuildInvitMessage(event, authorDb),
             components = [
-                Button(disabled=0, name="Yes", label = "I\'m in", style = 3),
-                Button(disabled=0, name="No", label = "Cancel", style = 4)
+                Button(disabled=0, custom_id="Yes", label = "I\'m in", style = 3),
+                Button(disabled=0, namcustom_id="No", label = "Cancel", style = 4)
             ]
         )
 
