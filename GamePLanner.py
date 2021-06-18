@@ -51,8 +51,12 @@ async def DefaultPlanning(ctx):
             
         ]
     )
-    interaction = await bot.wait_for("button_click", check = lambda i: i.component.label == res.button['ok'])
-    interaction2 = await bot.wait_for("button_click", check = lambda i: i.component.label == res.button['cancel'])
+    interaction = await bot.wait_for("button_click", check = lambda i: i.component.label.startswith("I"))
+    interaction2 = await bot.wait_for("button_click", check = lambda i: i.component.label.startswith("C"))
+
+
+#    interaction = await bot.wait_for("button_click", check = lambda i: i.component.label == res.button['ok'])
+#    interaction2 = await bot.wait_for("button_click", check = lambda i: i.component.label == res.button['cancel'])
     await interaction.respond(content=res.msg_dict['added'])
     await interaction2.respond(content="correctly cancel")
 
