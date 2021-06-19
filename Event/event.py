@@ -44,7 +44,7 @@ class Event(object):
         self.role = other.role
         self.step = other.step
 
-    def add_user(self, user):
+    def add_player(self, user):
 #        if user.display_name in self.players:
         index = self.players.index(user.display_name)
         del self.players[user.display_name]
