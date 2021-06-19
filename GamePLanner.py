@@ -32,7 +32,7 @@ async def on_ready():
     DiscordComponents(bot)
     print(f"Logged in as {bot.user}!")
     print('We have logged in as {0.user}'.format(bot))
-    print('\n\n!planning-Sea Of Thieves-4-20h30-here')   
+    print('\n!planning-Sea Of Thieves-4-20h30-here')   
 
 
 @bot.command(name='test', help="test a default event")
