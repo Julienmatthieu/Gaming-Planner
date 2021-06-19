@@ -72,17 +72,6 @@ async def on_message(message):
     elif str(message.channel.type) == res.msg_type['dm'] and message.author != bot.user:
         await plan_serv.building_together(message, bot)
         
-
-def CreatePlayerList(author):
-    global players
-
-    players = list()
-    players.append(author)
-
-def AddUserToEvent(user):
-    if len(players) < slots:
-        players.append(user.name)
-
 def RemoveUserFromEvent(user):
     global author
 
