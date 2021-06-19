@@ -45,11 +45,16 @@ class Event(object):
         self.step = other.step
 
     def add_player(self, user):
-#        if user.display_name in self.players:
-#            return
-        index = self.players.index(user.displayName)
-        del self.players[user.displayName]
-        self.players_id.pop(index)
+        if user.display_name in self.players:
+            return
+        self.players_id.append(user.id)
+        self.players.append(user.displayName)
+
+    def del_player(self, user):
+        if user.display_name in self.players:
+            index = self.players.index(user.displayName)
+            del self.players[user.displayName]
+            self.players_id.pop(index)
     
     def print(self):
         print(f"this is event {self.id}: \n\
