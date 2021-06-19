@@ -21,7 +21,7 @@ def BuildInvitMessage(event, author, color=Color.gold()):
     message = ""
     for slot in range(event.slots):
         if slot < len(event.players):
-            message += f'\n\t  - **{players[slot]}**'
+            message += f'\n\t  - **{event.players[slot]}**'
         else:
             message += f'\n\t - '
 
