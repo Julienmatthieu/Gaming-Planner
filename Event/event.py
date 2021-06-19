@@ -45,8 +45,8 @@ class Event(object):
         self.step = other.step
 
     def add_player(self, user):
-        if user.displayName in self.players:
-            return
+#        if user.displayName in self.players:
+#            return
         self.players_id.append(user.id)
         self.players.append(user.displayName)
 
