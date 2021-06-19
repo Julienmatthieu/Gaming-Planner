@@ -16,7 +16,7 @@ class Event(object):
     
     def __init__(self, id, players, time, slots, gameName, authorId, role, step, players_id):
         self.id = id
-        for p in player.split(databaseSeparator):
+        for p in players.split(databaseSeparator):
             self.players.append(p)
         for p in players_id.split(databaseSeparator):
             self.players_id.append(p)

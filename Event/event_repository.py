@@ -2,9 +2,14 @@ from event import Event, Location
 import connector 
 import resources as res
 
+def stringify_to_db(list):
+    return res.databaseSeparator.join(list)
+
 #approuved 
 async def create_event(event, location):
-    query = f"""INSERT INTO event (players, time, slots, gameName, authorId, role, step) VALUES (\"{event.players}\", \"{event.time}\", {event.slots}, \"{event.gameName}\", {event.authorId}, \"{event.role}\", {event.step})  """
+    query = f"""INSERT INTO event (players, time, slots, gameName, authorId, role, step, players_id) VALUES \
+            (\"{stringify_to_db(event.players)}\", \"{event.time}\", {event.slots}, \"{event.gameName}\", \
+            {event.authorId}, \"{event.role}\", {event.step}, \"{stringify_to_db(event.players_id)}\")  """
     eventId = connector.alter_query(query)
     query = f"""INSERT INTO discordLocation (guildId, channelId, messageId, eventId) VALUES (\"{location.guildId}\", \"{location.channelId}\", \"{location.messageId}\", {eventId}) """
     locationId = connector.alter_query(query)
@@ -28,8 +33,9 @@ async def get_event(event_id):
 # update 
 
 async def update_event(event):
-    query = f"""UPDATE event SET players = \"{event.players}\", time = \"{event.time}\", slots = \"{event.slots}\", gameName = \"{event.gameName}\", \
-                                authorId = \"{event.authorId}\", role = \"{event.role}\", step = \"{event.step}" WHERE id = {event.id} """
+    query = f"""UPDATE event SET players = \"{stringify_to_db(event.players)}\", time = \"{event.time}\", slots = \"{event.slots}\", gameName = \"{event.gameName}\", \
+                                authorId = \"{event.authorId}\", role = \"{event.role}\", step = \"{event.step}", players_id = \"{stringify_to_db(event.players_id)}\" \
+                                WHERE id = {event.id} """
     connector.alter_query(query)
     return event   
 
