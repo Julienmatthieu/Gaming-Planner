@@ -122,11 +122,11 @@ async def PlanningCommand(ctx):
     if message.content != res.commandSign + res.planning:
         event = await event_serv.no_step(message.content, authorDb, event)
         await message.channel.send(msg_serv.BuildInvitMessage(event, authorDb))
-        return
     else:
         event.step = res.steps['game_name']
         await event_serv.update_event(event)
         await message.author.send(res.msg_dict['game_name'])
+    await message.delete()
 
 # Run bot (arg is the bot token)
 bot.run(keys.botToken)
