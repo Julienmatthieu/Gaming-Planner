@@ -51,6 +51,7 @@ class Event(object):
     def print(self):
         print(f"this is event {self.id}: \n\
                             \tplayers = {self.players} \n\
+                            \tplayers_id = {self.players_id} \n\
                             \ttime = {self.time} \n\
                             \tslots = {self.slots} \n\
                             \tgameName = {self.gameName} \n\
