@@ -75,6 +75,13 @@ async def  buttons_management(bot_message, authorDb, event, bot):
             await interaction.respond(content=res.msg_dict['added'])
             event.add_player(userDb)
             await update_event(event)
+             bot_message = await msg_serv.send_or_edit_event_message(bot_message, 
+                                            event, authorDb, Color.gold(), 
+                                            [
+                                                Button(disabled=0, label=res.button['ok'], style = 3, id=res.button['ok']),
+                                                Button(disabled=0, label=res.button['cancel'], style = 4, id=res.button['cancel'])
+                                            ], 
+                                            False)
         elif interaction.component.label == res.button['cancel']:
             await interaction.respond(content="correctly cancel")
             await msg_serv.send_or_edit_event_message(bot_message, event, authorDb, Color.red(), [], True)
