@@ -7,6 +7,7 @@ def stringify_to_db(list):
 
 #approuved 
 async def create_event(event, location):
+    print(" Create ")
     event.print()
     print(f"here => {stringify_to_db(event.players_id)}")
     query = f"""INSERT INTO event (players, time, slots, gameName, authorId, role, step, players_id) VALUES \
@@ -35,6 +36,9 @@ async def get_event(event_id):
 # update 
 
 async def update_event(event):
+    print(" Update ")
+    event.print()
+    print(f"here => {stringify_to_db(event.players_id)}")
     query = f"""UPDATE event SET players = \"{stringify_to_db(event.players)}\", time = \"{event.time}\", slots = \"{event.slots}\", gameName = \"{event.gameName}\", \
                                 authorId = \"{event.authorId}\", role = \"{event.role}\", step = \"{event.step}", players_id = \"{stringify_to_db(event.players_id)}\" \
                                 WHERE id = {event.id} """
