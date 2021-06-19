@@ -3,7 +3,12 @@ import connector
 import resources as res
 
 def stringify_to_db(list):
-    return res.databaseSeparator.join(list)
+    string = ""
+    for elem in list:
+        if string != "":
+            string += res.databaseSeparator
+        string += str(elem)
+    return string
 
 #approuved 
 async def create_event(event, location):
