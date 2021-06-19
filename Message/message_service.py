@@ -12,7 +12,6 @@ import resources as res
 def BuildInvitMessage(event, author, color=Color.gold()):
     if event == None:
         return ''
-    players = event.get_list_players()
 
     embed=Embed(title=f"Let's play some {event.gameName}", description=f"I\'m looking for **{event.slots}** people(s) to join on **{event.gameName}**. \n\
                                 Game session will start at **{event.time}**. @{event.role} ", color=color)
@@ -21,7 +20,7 @@ def BuildInvitMessage(event, author, color=Color.gold()):
     embed.set_author(name=author.displayName, icon_url=author.avatarUrl)
     message = ""
     for slot in range(event.slots):
-        if slot < len(players):
+        if slot < len(event.players):
             message += f'\n\t  - **{players[slot]}**'
         else:
             message += f'\n\t - '
