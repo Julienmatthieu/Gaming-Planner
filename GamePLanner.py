@@ -80,7 +80,6 @@ def RemoveUserFromEvent(user):
         author = players[0]
 
 async def UpdateCurrentEvent(payload):
-    print("\n\n-----------------------  TO DO ---------------------------\n\n")
     return 
     global msg_dict, channel
     user = bot.get_user(payload.user_id)

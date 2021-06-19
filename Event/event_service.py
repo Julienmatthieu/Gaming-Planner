@@ -14,9 +14,6 @@ async def get_last_unset_event(message):
     return await repo.get_event(location.eventId)
 
 async def new_event(message, author):
-    print("Event creation -------------------------------------------")
-    print(message.author.display_name)
-    print("Event creation ------------------------------------------- END")
     new_event = Event(id=0, players=message.author.display_name, time="", slots=1, gameName="", authorId=str(author.id), role="", step=res.steps['init'], players_id=str(message.author.id))
     new_location = Location(id = 0, guildId=message.guild.id, channelId=message.channel.id, messageId=0, eventId=0)
     return await repo.create_event(new_event, new_location)

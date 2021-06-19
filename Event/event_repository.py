@@ -49,7 +49,6 @@ async def update_location_message(location):
     eventId = connector.alter_query(query)
     return eventId
 
-# -------------------------------------------
 
 # Getters 
 

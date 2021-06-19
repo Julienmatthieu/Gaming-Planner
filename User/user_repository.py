@@ -12,7 +12,6 @@ async def get_user_discordId(discordId):
 
 async def create_user(user):
     query = f"""INSERT INTO user (name, discordId, avatarUrl, displayName, mention) VALUES (\"{user.name}\", \"{user.discordId}\", \"{user.avatarUrl}\", \"{user.displayName}\", \"{user.mention}\")  """
-    print(query)
     userId = connector.alter_query(query)
     user.id = userId
     return user

@@ -28,11 +28,6 @@ class Event(object):
         self.authorId = authorId
         self.role = role
         self.step = step
-        print(f"building players_id {self.players_id}")
-        print(f"building players {self.players}")
-        print(f"building players_id {players_id}")
-        print(f"building players {players}")
-
 
     def merge(self, other):
         self.players = other.players
