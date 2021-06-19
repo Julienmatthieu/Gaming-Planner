@@ -70,10 +70,10 @@ async def next_step(message, authorDb, event, bot):
 async def  buttons_management(bot_message, authorDb, event, bot):
     while len(event.players) < event.slots:
         interaction = await bot.wait_for("button_click")
-        user = await get_or_create_user(interaction.user)
+        userDb = await get_or_create_user(interaction.user)
         if interaction.component.label == res.button['ok']:
             await interaction.respond(content=res.msg_dict['added'])
-            event.add_player(user)
+            event.add_player(userDb)
             await update_event(event)
         elif interaction.component.label == res.button['cancel']:
             await interaction.respond(content="correctly cancel")

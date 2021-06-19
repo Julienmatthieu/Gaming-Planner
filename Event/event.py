@@ -46,8 +46,8 @@ class Event(object):
 
     def add_player(self, user):
 #        if user.display_name in self.players:
-        index = self.players.index(user.display_name)
-        del self.players[user.display_name]
+        index = self.players.index(user.displayName)
+        del self.players[user.displayName]
         self.players_id.pop(index)
     
     def print(self):
