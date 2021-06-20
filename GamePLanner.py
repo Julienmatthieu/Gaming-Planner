@@ -23,8 +23,6 @@ import keys
 
 # TO DO LIST 
 # AJOUTER UN talbe pour lister les chan autorisé pour le bot
-
-
 bot = Bot(command_prefix = res.commandSign)
 
 @bot.event
@@ -34,7 +32,7 @@ async def on_ready():
     print('We have logged in as {0.user}'.format(bot))
     print('\n!planning-Sea Of Thieves-4-20h30-here')   
 
-
+"""
 @bot.command(name='test', help="test a default event")
 async def DefaultPlanning(ctx):
     
@@ -61,8 +59,7 @@ async def DefaultPlanning(ctx):
             await msg_serv.send_or_edit_event_message(bot_message, event, authorDb, Color.red(), [], True)
             return
     await msg_serv.send_or_edit_event_message(bot_message, event, authorDb, Color.green(), [], True)
-
-
+"""
 # Registering Receving Message event
 @bot.event
 async def on_message(message):
@@ -71,29 +68,6 @@ async def on_message(message):
         await bot.process_commands(message)
     elif str(message.channel.type) == res.msg_type['dm'] and message.author != bot.user:
         await plan_serv.building_together(message, bot)
-        
-def RemoveUserFromEvent(user):
-    global author
-
-    players.remove(user.name)
-    if user.name == author and len(players) > 0:
-        author = players[0]
-
-async def UpdateCurrentEvent(payload):
-    return 
-    global msg_dict, channel
-    user = bot.get_user(payload.user_id)
-
-    if payload.emoji.name == res.emojis_dict['cross'] and payload.user_id == author.id:
-        await plan_serv.CancelCurrentEvent(message)
-        return
-    if payload.emoji.name == res.emojis_dict['thumbs_up'] and not user.name in players:
-        AddUserToEvent(user)
-    elif payload.emoji.name == res.emojis_dict['thumbs_down'] and user.name in players:
-        RemoveUserFromEvent(user)
-        if len(players) == 0:
-            await plan_serv.CancelCurrentEvent(message)
-            return
 
 @bot.command()
 async def default(ctx):
