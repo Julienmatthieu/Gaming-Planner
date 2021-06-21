@@ -33,34 +33,6 @@ async def on_ready():
     print('We have logged in as {0.user}'.format(bot))
     print('\n!planning-Sea Of Thieves-4-20h30-here')   
 
-"""
-@bot.command(name='test', help="test a default event")
-async def DefaultPlanning(ctx):
-    
-    authorDb = await usr_serv.get_or_create_user(ctx.message.author)
-    event = await event_serv.get_by_id(153)
-
-
-    bot_message = await msg_serv.send_or_edit_event_message(ctx.message.channel, 
-                                                            event, authorDb, Color.gold(), 
-                                                            [
-                                                                Button(disabled=0, label=res.button['ok'], style = 3, id=res.button['ok']),
-                                                                Button(disabled=0, label=res.button['cancel'], style = 4, id=res.button['cancel'])
-                                                            ], 
-                                                            False)
-    ppl = 1 #event get_list_players TO DO
-    while ppl < event.slots:
-        interaction = await bot.wait_for("button_click")
-
-        if interaction.component.label == res.button['ok']:
-            await interaction.respond(content=res.msg_dict['added'])
-            ppl += 1
-        else:
-            await interaction.respond(content="correctly cancel")
-            await msg_serv.send_or_edit_event_message(bot_message, event, authorDb, Color.red(), [], True)
-            return
-    await msg_serv.send_or_edit_event_message(bot_message, event, authorDb, Color.green(), [], True)
-"""
 # Registering Receving Message event
 @bot.event
 async def on_message(message):
