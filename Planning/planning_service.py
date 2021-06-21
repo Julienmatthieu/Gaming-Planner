@@ -34,6 +34,12 @@ async def next_step(message, authorDb, event, bot):
         await message.author.send(res.msg_dict['game_name'])
 
     elif event.step == res.steps['game_name']:
+        event.gameName = message.content
+        event.step = res.steps['slots']
+        await update_event(event)
+        await message.author.send(res.msg_dict['slots'])
+
+    elif event.step == res.steps['slots']:
         event.slots = int(message.content)
         event.step = res.steps['time']
         await update_event(event)
@@ -41,12 +47,6 @@ async def next_step(message, authorDb, event, bot):
 
     elif event.step == res.steps['time']:
         event.time = message.content
-        event.step = res.steps['role']
-        await update_event(event)
-        await message.author.send(res.msg_dict['role'])
-
-    elif event.step == res.steps['role']:
-        event.role = message.content
         event.step = res.steps['done']
         await update_event(event)
         await message.author.send(res.msg_dict['done'])
