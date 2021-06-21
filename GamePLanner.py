@@ -71,7 +71,7 @@ async def on_message(message):
 
 @bot.command()
 @bot.command(name=res.next, help=res.help['next'])
-async def clear(ctx):
+async def next(ctx):
     message = ctx.message
     await plan_serv.pass_event_image(message)
 
