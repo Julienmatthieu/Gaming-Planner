@@ -84,7 +84,7 @@ async def clear(ctx):
     await msg_serv.FullClear(ctx.message)
 
 @bot.command(name=res.cancel, help=res.help['cancel'])
-async def clear(ctx):
+async def cancel(ctx):
     message = ctx.message
     await plan_serv.CancelCurrentEvent(message)
     await msg_serv.FullClear(message)
