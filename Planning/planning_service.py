@@ -37,7 +37,9 @@ async def next_step(message, authorDb, event, bot):
 
     elif event.step == res.steps['game_name']:
         event.gameName = message.content
-        if not await game_serv.known_game(event.gameName):
+        game = await game_serv.known_game(event.gameName)
+        event.game_id = game.id
+        if game.image == "":
             event.step = res.steps['game_image']
             await message.author.send(res.msg_dict['game_image'])
         else:
