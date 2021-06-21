@@ -64,6 +64,6 @@ steps = {
     'game_name': 2,
     'slots': 3,
     'time': 4,
-    'role': 5
+#    'role': 5
     }
 
