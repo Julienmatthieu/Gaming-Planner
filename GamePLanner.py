@@ -69,7 +69,6 @@ async def on_message(message):
     elif str(message.channel.type) == res.msg_type['dm'] and message.author != bot.user:
         await plan_serv.building_together(message, bot)
 
-@bot.command()
 @bot.command(name=res.next, help=res.help['next'])
 async def next(ctx):
     message = ctx.message
