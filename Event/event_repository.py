@@ -18,7 +18,7 @@ async def create_event(event, location):
     query = f"""INSERT INTO event (players, time, slots, authorId, role, step, players_id, game_id) VALUES \
             (\"{stringify_to_db(event.players)}\", \"{event.time}\", {event.slots}, \
             {event.authorId}, \"{event.role}\", {event.step}, \"{stringify_to_db(event.players_id)}\", \"{event.game_id}\")  """
-    print(query)
+    print(f"\n\n\n-------------------------------------------------------------\n{query}\n-------------------------------------------------------------\n")
     eventId = connector.alter_query(query)
     query = f"""INSERT INTO discordLocation (guildId, channelId, messageId, eventId) VALUES (\"{location.guildId}\", \"{location.channelId}\", \"{location.messageId}\", {eventId}) """
     locationId = connector.alter_query(query)
