@@ -9,4 +9,5 @@ async def known_game(name):
         return True
 
 async def add_image(game_id, image_url):
+    print("    ------------- adding image ------------------")
     return await repo.update_image_by_id(game_id, image_url)

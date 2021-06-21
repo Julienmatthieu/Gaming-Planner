@@ -25,6 +25,9 @@ async def get_game(id):
     return game 
 
 async def update_image_by_id(id, image_url):
+    print("    ------------- Updating image ------------------")
+    print(image_url)
     query = f"""UPDATE game SET image = \"{image_url}\" WHERE id = {id}"""
     connector.alter_query(query)
+    print("    ------------- adding done ------------------")
     return True   
