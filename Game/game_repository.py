@@ -23,3 +23,8 @@ async def get_game(id):
     row = records[0]
     game = Game(row[0], row[1], row[2]) 
     return game 
+
+async def update_image_by_id(id, image_url):
+    query = f"""UPDATE game SET image = \"{image_url}\" WHERE id = {id}"""
+    connector.alter_query(query)
+    return True   

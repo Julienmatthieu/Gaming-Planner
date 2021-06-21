@@ -46,9 +46,9 @@ async def next_step(message, authorDb, event, bot):
         await update_event(event)
 
     elif event.step == res.steps['game_image']:
-        event.gameName = message.content
-        await update_event(event)
+        await game_serv.add_image(event.game_id, message.content)
         event.step = res.steps['slots']
+        await update_event(event)
         await message.author.send(res.msg_dict['slots'])
 
     elif event.step == res.steps['slots']:
