@@ -1,4 +1,4 @@
-import event_repository as repo
+import game_repository as repo
 from game import Game
 
 async def known_game(name):
