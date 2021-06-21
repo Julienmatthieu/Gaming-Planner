@@ -115,5 +115,5 @@ async def pass_event_image(message):
         return None
     event.step = res.steps['slots']
     update_event(event)
-    await message.author.sand(res.msg_dict['next'])
+    await message.author.send(res.msg_dict['next'])
     await message.author.send(res.msg_dict['slots'])    
