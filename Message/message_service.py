@@ -13,7 +13,7 @@ def BuildInvitMessage(event, author, color=Color.gold()):
     if event == None:
         return ''
 
-    embed=Embed(title=f"Let's play some {event.gameName}", description=f"I\'m looking for **{event.slots}** people(s) to join on **{event.gameName}**. \n\
+    embed=Embed(title=f"Let's play some event.gameName", description=f"I\'m looking for **{event.slots}** people(s) to join on **event.gameName**. \n\
                                 Game session will start at **{event.time}**. ", color=color)
     # Add an image
     embed.set_thumbnail(url="https://compass-ssl.xboxlive.com/assets/1f/35/1f355aca-753c-4213-8a42-563128129070.jpg?n=Parallax_Sections_Large_Desktop_01.jpg")

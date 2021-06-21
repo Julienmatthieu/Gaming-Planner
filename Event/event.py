@@ -9,13 +9,12 @@ class Event(object):
     players_id = []
     time = ''
     slots = 1
-    gameName = ''
     role = ''
     authorId = 0
     step = 0
     game_id = 0
     
-    def __init__(self, id, players, time, slots, gameName, authorId, role, step, players_id, game_id):
+    def __init__(self, id, players, time, slots, authorId, role, step, players_id, game_id):
         self.id = id
         self.players = []
         self.players_id = []
@@ -25,7 +24,6 @@ class Event(object):
             self.players_id.append(p)
         self.time = time
         self.slots = slots
-        self.gameName = gameName
         self.authorId = authorId
         self.role = role
         self.step = step
@@ -36,7 +34,6 @@ class Event(object):
         self.players_id = other.players_id
         self.time = other.time
         self.slots = other.slots
-        self.gameName = other.gameName
         self.authorId = other.authorId
         self.role = other.role
         self.step = other.step
@@ -60,7 +57,6 @@ class Event(object):
                             \tplayers_id = {self.players_id} \n\
                             \ttime = {self.time} \n\
                             \tslots = {self.slots} \n\
-                            \tgameName = {self.gameName} \n\
                             \tauthorId = {self.authorId} \n\
                             \trole = {self.role} \n\
                             \tgame_id = {self.game_id} \n\

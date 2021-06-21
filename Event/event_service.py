@@ -15,7 +15,7 @@ async def get_last_unset_event(message):
 
 async def new_event(message, author):
     new_event = Event(id=0, players=message.author.display_name, 
-                        time="", slots=1, gameName="", authorId=str(author.id), 
+                        time="", slots=1, authorId=str(author.id), 
                         role="", step=res.steps['init'], players_id=str(message.author.id), 
                         game_id=0)
     new_location = Location(id = 0, guildId=message.guild.id, channelId=message.channel.id, messageId=0, eventId=0)
