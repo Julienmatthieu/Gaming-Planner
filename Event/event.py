@@ -1,64 +1,65 @@
 from sys import setprofile
 
+from resources import databaseSeparator
 
-databaseSeparator='⠀' # Not a space (U+2800)
 
 class Event(object):
     id = 0
-    players = ''
+    players = []
+    players_id = []
     time = ''
     slots = 1
-    gameName = ''
     role = ''
     authorId = 0
     step = 0
+    game_id = 0
     
-    def __init__(self, id, player, time, slots, gameName, authorId, role, step):
+    def __init__(self, id, players, time, slots, authorId, role, step, players_id, game_id):
         self.id = id
-        self.players = player
+        self.players = []
+        self.players_id = []
+        for p in players.split(databaseSeparator):
+            self.players.append(p)
+        for p in players_id.split(databaseSeparator):
+            self.players_id.append(p)
         self.time = time
         self.slots = slots
-        self.gameName = gameName
         self.authorId = authorId
         self.role = role
         self.step = step
-    
+        self.game_id = game_id
+
     def merge(self, other):
         self.players = other.players
+        self.players_id = other.players_id
         self.time = other.time
         self.slots = other.slots
-        self.gameName = other.gameName
         self.authorId = other.authorId
         self.role = other.role
         self.step = other.step
+        self.game_id = other.game_id
 
-    def get_list_players(self):
-        players = list()
-        for player in self.players.split(databaseSeparator):
-            players.append(player)
-        return players
+    def add_player(self, user):
+        if user.displayName in self.players:
+            return
+        self.players_id.append(user.id)
+        self.players.append(user.displayName)
 
-    def AddUserToEvent(self, userName):
-        if len(get_list_players()) < slots:
-            self.players += databaseSeparator + userName
-
-
-    #def RemoveUserFromEvent(user):
-    #    global author
-#
-    #    players.remove(user.name)
-    #    if user.name == author and len(players) > 0:
-    #        author = players[0]
-
-    #testing 
+    def remove_player(self, user):
+        if user.displayName in self.players:
+            index = self.players.index(user.displayName)
+            del self.players[user.displayName]
+            self.players_id.pop(index)
+    
     def print(self):
         print(f"this is event {self.id}: \n\
                             \tplayers = {self.players} \n\
+                            \tplayers_id = {self.players_id} \n\
                             \ttime = {self.time} \n\
                             \tslots = {self.slots} \n\
-                            \tgameName = {self.gameName} \n\
                             \tauthorId = {self.authorId} \n\
                             \trole = {self.role} \n\
+                            \tgame_id = {self.game_id} \n\
                             \n")
 
 class Location(object):
