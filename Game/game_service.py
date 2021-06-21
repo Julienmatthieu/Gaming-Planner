@@ -7,4 +7,3 @@ async def known_game(name):
         return False
     else:
         return True
-    
