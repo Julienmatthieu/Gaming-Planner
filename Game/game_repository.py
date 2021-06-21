@@ -9,7 +9,7 @@ async def create_game(game):
 async def get_game_by_name(name):
     records = connector.select_query(f"""SELECT * FROM game WHERE name = \"{name}\"""")
     if len(records) == 0:
-        return None
+        return await create_game(Game(0, name, ""))
     print(f'\nreport = {records}\n')
     row = records[0]
     game = Game(row[0], row[1], row[2]) 
