@@ -114,6 +114,6 @@ async def pass_event_image(message):
         await message.channel.send(res.error['not_next'])
         return None
     event.step = res.steps['slots']
-    update_event(event)
+    await update_event(event)
     await message.author.send(res.msg_dict['next'])
     await message.author.send(res.msg_dict['slots'])    
