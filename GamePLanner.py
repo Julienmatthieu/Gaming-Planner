@@ -24,6 +24,7 @@ import keys
 
 # TO DO LIST 
 # AJOUTER UN talbe pour lister les chan autorisé pour le bot
+
 bot = Bot(command_prefix = res.commandSign)
 
 @bot.event
@@ -31,9 +32,7 @@ async def on_ready():
     DiscordComponents(bot)
     print(f"Logged in as {bot.user}!")
     print('We have logged in as {0.user}'.format(bot))
-    print('\n!planning-Sea Of Thieves-4-20h30-here')   
 
-# Registering Receving Message event
 @bot.event
 async def on_message(message):
     if message.content.startswith(res.commandSign):

@@ -9,7 +9,6 @@ from resources import msg_type
 import game_service as game_serv
 import resources as res
 
-# Event setting
 async def BuildInvitMessage(event, author, color=Color.gold()):
     if event == None:
         return ''
@@ -17,7 +16,6 @@ async def BuildInvitMessage(event, author, color=Color.gold()):
     game = await game_serv.get_game(event.game_id)
     embed=Embed(title=f"Let's play some {game.name}", description=f"I\'m looking for **{event.slots}** people(s) to join on **{game.name}**. \n\
                                 Game session will start at **{event.time}**. ", color=color)
-    # Add an image
     embed.set_thumbnail(url=game.image)
     embed.set_author(name=author.displayName, icon_url=author.avatarUrl)
     message = ""

@@ -16,7 +16,6 @@ class User(object):
         self.displayName = displayName
         self.mention = mention
 
-        #testing 
     def print(self):
         print(f"this is user {self.id}: \n\
                             \t name = {self.name} \n\

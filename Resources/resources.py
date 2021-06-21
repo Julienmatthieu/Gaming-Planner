@@ -64,6 +64,5 @@ steps = {
     'game_image': 21,
     'slots': 3,
     'time': 4,
-#    'role': 5
     }
 
