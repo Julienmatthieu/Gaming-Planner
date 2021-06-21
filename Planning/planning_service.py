@@ -7,7 +7,9 @@ from discord_components import DiscordComponents, Button
 from user_service import get_or_create_user
 from event_service import new_event, update_event, get_location_by_event, get_last_event_by_userId, delete_event_from_authorId
 import resources as res
+import user_service as usr_service
 import message_service as msg_serv
+import game_service as game_serv
 from event import Event, Location
 
 async def building_together(message, bot):
@@ -35,8 +37,18 @@ async def next_step(message, authorDb, event, bot):
 
     elif event.step == res.steps['game_name']:
         event.gameName = message.content
-        event.step = res.steps['slots']
+        if not game_serv.known_game(event.gameName):
+            event.step = res.steps['game_image']
+            await message.author.send(res.msg_dict['game_image'])
+        else:
+            event.step = res.steps['slots']
+            await message.author.send(res.msg_dict['slots'])
         await update_event(event)
+
+    elif event.step == res.steps['game_image']:
+        event.gameName = message.content
+        await update_event(event)
+        event.step = res.steps['slots']
         await message.author.send(res.msg_dict['slots'])
 
     elif event.step == res.steps['slots']:
@@ -90,3 +102,17 @@ async def CancelCurrentEvent(message):
         await message.author.send(res.msg_dict['nothing_cancel'])
     else:
         await message.author.send(res.msg_dict['cancel'])
+
+async def pass_event_image(message):
+    author = await usr_service.get_by_discord_id(message.author.id)
+    if author == None:
+        await message.channel.send(res.error['not_next'])
+        return None
+    event = await get_last_event_by_userId(author.id)
+    if event == None:
+        await message.channel.send(res.error['not_next'])
+        return None
+    event.step = res.steps['slots']
+    update_event(event)
+    await message.author.sand(res.msg_dict['next'])
+    await message.author.send(res.msg_dict['slots'])    

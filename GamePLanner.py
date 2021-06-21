@@ -13,6 +13,7 @@ sys.path.append(f'{path}/Planning/')
 sys.path.append(f'{path}/Message/')
 sys.path.append(f'{path}/User/')
 sys.path.append(f'{path}/Event')
+sys.path.append(f'{path}/Game')
 import resources as res
 import user_service as usr_serv
 import event_service as event_serv
@@ -63,11 +64,16 @@ async def DefaultPlanning(ctx):
 # Registering Receving Message event
 @bot.event
 async def on_message(message):
-    # def tool
     if message.content.startswith(res.commandSign):
         await bot.process_commands(message)
     elif str(message.channel.type) == res.msg_type['dm'] and message.author != bot.user:
         await plan_serv.building_together(message, bot)
+
+@bot.command()
+@bot.command(name=res.next, help=res.help['next'])
+async def clear(ctx):
+    message = ctx.message
+    await plan_serv.pass_event_image(message)
 
 @bot.command()
 async def default(ctx):
@@ -92,13 +98,9 @@ async def PlanningCommand(ctx):
     authorDb = await usr_serv.get_or_create_user(message.author)
    
     event = await event_serv.new_event(message, authorDb)
-    if message.content != res.commandSign + res.planning:
-        event = await event_serv.no_step(message.content, authorDb, event)
-        await message.channel.send(msg_serv.BuildInvitMessage(event, authorDb))
-    else:
-        event.step = res.steps['game_name']
-        await event_serv.update_event(event)
-        await message.author.send(res.msg_dict['game_name'])
+    event.step = res.steps['game_name']
+    await event_serv.update_event(event)
+    await message.author.send(res.msg_dict['game_name'])
     await message.delete()
 
 # Run bot (arg is the bot token)

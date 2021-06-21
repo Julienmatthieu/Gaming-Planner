@@ -13,8 +13,9 @@ class Event(object):
     role = ''
     authorId = 0
     step = 0
+    game_id = 0
     
-    def __init__(self, id, players, time, slots, gameName, authorId, role, step, players_id):
+    def __init__(self, id, players, time, slots, gameName, authorId, role, step, players_id, game_id):
         self.id = id
         self.players = []
         self.players_id = []
@@ -28,6 +29,7 @@ class Event(object):
         self.authorId = authorId
         self.role = role
         self.step = step
+        self.game_id = game_id
 
     def merge(self, other):
         self.players = other.players
@@ -38,6 +40,7 @@ class Event(object):
         self.authorId = other.authorId
         self.role = other.role
         self.step = other.step
+        self.game_id = other.game_id
 
     def add_player(self, user):
         if user.displayName in self.players:
@@ -60,6 +63,7 @@ class Event(object):
                             \tgameName = {self.gameName} \n\
                             \tauthorId = {self.authorId} \n\
                             \trole = {self.role} \n\
+                            \tgame_id = {self.game_id} \n\
                             \n")
 
 class Location(object):

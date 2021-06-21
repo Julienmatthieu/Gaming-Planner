@@ -10,3 +10,6 @@ async def get_or_create_user(author):
         return await repo.create_user(user)
     else: 
         return userDb
+
+async def get_by_discord_id(discird_id):
+    return await repo.get_user_discordId(discird_id)
