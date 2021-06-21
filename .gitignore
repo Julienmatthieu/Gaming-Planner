@@ -7,3 +7,4 @@ connector/__pycache__/keys.cpython-39.pyc
 connector/event/__pycache__/event_repository.cpython-39.pyc
 connector/event/__pycache__/event.cpython-39.pyc
 Resources/__pycache__/keys.cpython-39.pyc
+Resources/keys.py
