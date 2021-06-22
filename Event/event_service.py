@@ -17,7 +17,7 @@ async def new_event(message, author):
     new_event = Event(id=0, players=message.author.display_name, 
                         time="", slots=1, authorId=str(author.id), 
                         role="", step=res.steps['init'], players_id=str(message.author.id), 
-                        game_id=0, late="")
+                        game_id=0, late=None)
     new_location = Location(id = 0, guildId=message.guild.id, channelId=message.channel.id, messageId=0, eventId=0)
     return await repo.create_event(new_event, new_location)
 
