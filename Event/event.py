@@ -20,12 +20,15 @@ class Event(object):
         self.players = []
         self.players_id = []
         self.late= []
-        for p in players.split(databaseSeparator):
-            self.players.append(p)
-        for p in players_id.split(databaseSeparator):
-            self.players_id.append(p)
-        for p in late.split(databaseSeparator):
-            self.late.append(p)
+        if players:
+            for p in players.split(databaseSeparator):
+                self.players.append(p)
+        if players_id:
+            for p in players_id.split(databaseSeparator):
+                self.players_id.append(p)
+        if late:
+            for p in late.split(databaseSeparator):
+                self.late.append(p)
         self.time = time
         self.slots = slots
         self.authorId = authorId
