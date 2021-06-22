@@ -111,8 +111,6 @@ async def  buttons_management(bot_message, authorDb, event, bot):
                     event, authorDb, Color.gold(), 
                     buttons_builder(['ok', 'late', 'cancel']),
                     True)
-            else:
-                await interaction.respond(content=res.msg_dict["not on event"])
 
     await msg_serv.send_or_edit_event_message(bot_message, event, authorDb, Color.green(), [], True)
 
