@@ -42,15 +42,16 @@ class Event(object):
     def add_player(self, user):
         if user.displayName in self.players:
             return
-        self.players_id.append(user.id)
+        self.players_id.append(user.discord_id)
         self.players.append(user.displayName)
 
     def remove_player(self, user):
-        if user.displayName in self.players:
-            index = self.players.index(user.displayName)
-            del self.players[user.displayName]
-            self.players_id.pop(index)
-    
+        size = len(self.players)
+        del self.players[user.displayName]
+        del self.players_id[user.discord_id]
+        
+        return size == len(self.players)
+
     def print(self):
         print(f"this is event {self.id}: \n\
                             \tplayers = {self.players} \n\

@@ -90,9 +90,29 @@ async def  buttons_management(bot_message, authorDb, event, bot):
                                             ], 
                                             True)
         elif interaction.component.label == res.button['cancel']:
-            await interaction.respond(content="correctly cancel")
-            await msg_serv.send_or_edit_event_message(bot_message, event, authorDb, Color.red(), [], True)
-            return
+            if (authorDb.id == userDb.id):
+                print("entering cancel option\n")
+                event.step = res.steps['cancel']
+                await update_event(event)
+                await interaction.respond(content=res.msg_dict["correctly cancel"])
+                await msg_serv.send_or_edit_event_message(bot_message, event, authorDb, Color.red(), [], True)
+                return
+            else:
+                print("entering else option\n")
+                if event.remove(userDb):
+                    print("removing\n")
+                    await update_event(event)
+                    await interaction.respond(content=res.msg_dict["correctly remove"])
+                    await msg_serv.send_or_edit_event_message(bot_message, 
+                        event, authorDb, Color.gold(), 
+                        [
+                            Button(disabled=0, label=res.button['ok'], style = 3, id=res.button['ok']),
+                            Button(disabled=0, label=res.button['cancel'], style = 4, id=res.button['cancel'])
+                        ], True)
+                else:
+                    print("\n")
+                    await interaction.respond(content=res.msg_dict["not on event"])
+
     await msg_serv.send_or_edit_event_message(bot_message, event, authorDb, Color.green(), [], True)
 
 async def CancelCurrentEvent(message):
