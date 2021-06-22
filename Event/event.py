@@ -48,8 +48,8 @@ class Event(object):
     def remove_player(self, user):
         if user.displayName in self.players:
             index = self.players.index(user.displayName)
-            del self.players[user.displayName]
-            self.players_id.pop(index)
+            del self.players_id[user.discord_id]
+            self.players.pop(index)
     
     def print(self):
         print(f"this is event {self.id}: \n\
