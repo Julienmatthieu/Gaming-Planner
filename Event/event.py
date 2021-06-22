@@ -46,11 +46,15 @@ class Event(object):
         self.players.append(user.displayName)
 
     def remove_player(self, user):
+        print(f"username = {user.displayName}")
         size = len(self.players)
+        print(f"size = {size}")
+        
         if user.displayName in self.players:
             index = self.players.index(user.displayName)
             self.players.pop(index)
             self.players_id.pop(index)
+        print(f" return {size == len(self.players)}")
         return size == len(self.players)
     
     def print(self):
