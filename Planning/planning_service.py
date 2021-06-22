@@ -76,6 +76,8 @@ async def  buttons_management(bot_message, authorDb, event, bot):
         interaction = await bot.wait_for("button_click")
         userDb = await get_or_create_user(interaction.user)
         if interaction.component.label == res.button_text['ok']:
+            if userDb.displayName in event.late:
+                event.remove_late_player(userDb)
             await interaction.respond(content=res.msg_dict['added'])
             event.add_player(userDb)
             await update_event(event)
