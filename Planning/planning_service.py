@@ -99,7 +99,7 @@ async def  buttons_management(bot_message, authorDb, event, bot):
                 return
             else:
                 print("entering else option\n")
-                if event.remove(userDb):
+                if event.remove_player(userDb):
                     print("removing\n")
                     await update_event(event)
                     await interaction.respond(content=res.msg_dict["correctly remove"])
