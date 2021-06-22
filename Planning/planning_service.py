@@ -140,3 +140,4 @@ def buttons_builder(buttons_list):
         if res.button['late'] :
             style = 1
         buttons.append(Button(disabled=0, label=res.button[elem], style = style, id=res.button[elem]))
+    return buttons
