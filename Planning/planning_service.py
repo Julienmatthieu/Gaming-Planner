@@ -132,12 +132,6 @@ def buttons_builder(buttons_list):
     buttons = []
 
     for elem in buttons_list:
-        style = 0
-        if elem == res.button['ok'] :
-            style = 3
-        elif elem == res.button['cancel'] :
-            style = 4
-        elif elem == res.button['late'] :
-            style = 1
+        style = res.button_style[elem]
         buttons.append(Button(disabled=0, label=res.button[elem], style = style, id=res.button[elem]))
     return buttons

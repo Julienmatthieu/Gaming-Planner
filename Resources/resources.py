@@ -36,7 +36,13 @@ msg_dict = {
     'not on event':         '>>> You are not part of this event'
 }
 
-button = {
+button_style = {
+    'cancel':   4,
+    'ok':       3,
+    'late':     1
+}
+
+button_text = {
     'cancel':   'cancel',
     'ok':       'I\'m in',
     'late':     'I will be late'
@@ -70,4 +76,5 @@ steps = {
     'slots': 3,
     'time': 4,
     }
+
 
