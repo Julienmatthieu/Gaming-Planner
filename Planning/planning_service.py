@@ -23,6 +23,7 @@ async def building_together(message, bot):
 
 #Steps
 async def next_step(message, authorDb, event, bot):
+    event.print()
     ctx = await bot.get_context(message)
     if event.step == res.steps['none']:
         new_event(message, authorDb)
