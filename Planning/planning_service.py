@@ -75,7 +75,7 @@ async def  buttons_management(bot_message, authorDb, event, bot):
     while len(event.players) < event.slots:
         interaction = await bot.wait_for("button_click")
         userDb = await get_or_create_user(interaction.user)
-        if interaction.component.label == res.button['ok']:
+        if interaction.component.label == res.button_text['ok']:
             await interaction.respond(content=res.msg_dict['added'])
             event.add_player(userDb)
             await update_event(event)
@@ -83,7 +83,7 @@ async def  buttons_management(bot_message, authorDb, event, bot):
                                             event, authorDb, Color.gold(), 
                                             buttons_builder(['ok', 'late', 'cancel']),
                                             True)
-        elif interaction.component.label == res.button['cancel']:
+        elif interaction.component.label == res.button_text['cancel']:
             if (authorDb.id == userDb.id):
                 event.step = res.steps['cancel']
                 await update_event(event)
@@ -133,5 +133,5 @@ def buttons_builder(buttons_list):
 
     for elem in buttons_list:
         style = res.button_style[elem]
-        buttons.append(Button(disabled=0, label=res.button[elem], style = style, id=res.button[elem]))
+        buttons.append(Button(disabled=0, label=res.button_text[elem], style = style, id=res.button_text[elem]))
     return buttons
