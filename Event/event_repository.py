@@ -3,6 +3,8 @@ import connector
 import resources as res
 
 def stringify_to_db(list):
+    if list == "":
+        return "NULL"
     string = ""
     for elem in list:
         if string != "":
