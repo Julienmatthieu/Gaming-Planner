@@ -97,6 +97,7 @@ async def  buttons_management(bot_message, authorDb, event, bot):
                 await msg_serv.send_or_edit_event_message(bot_message, event, authorDb, Color.red(), [], True)
                 return
             else:
+                print(f"\n ------- \n {event.print()}\n-------\n")
                 if event.remove_player(userDb):
                     await update_event(event)
                     await interaction.respond(content=res.msg_dict["correctly remove"])
