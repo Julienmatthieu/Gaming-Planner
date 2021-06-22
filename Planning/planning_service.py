@@ -67,11 +67,7 @@ async def next_step(message, authorDb, event, bot):
         channel = bot.get_channel(int(Location.channelId))
         bot_message = await msg_serv.send_or_edit_event_message(channel, 
                                             event, authorDb, Color.gold(), 
-                                            [
-                                                Button(disabled=0, label=res.button['ok'], style = 3, id=res.button['ok']),
-                                                Button(disabled=0, label=res.button['cancel'], style = 4, id=res.button['cancel']),
-                                                Button(disabled=0, label=res.button['late'], style = 1, id=res.button['late']),
-                                            ], 
+                                            buttons_builder(['ok', 'late', 'cancel']),
                                             False)
         await buttons_management(bot_message, authorDb, event, bot)
 
@@ -85,10 +81,7 @@ async def  buttons_management(bot_message, authorDb, event, bot):
             await update_event(event)
             await msg_serv.send_or_edit_event_message(bot_message, 
                                             event, authorDb, Color.gold(), 
-                                            [
-                                                Button(disabled=0, label=res.button['ok'], style = 3, id=res.button['ok']),
-                                                Button(disabled=0, label=res.button['cancel'], style = 4, id=res.button['cancel'])
-                                            ], 
+                                            buttons_builder(['ok', 'late', 'cancel']),
                                             True)
         elif interaction.component.label == res.button['cancel']:
             if (authorDb.id == userDb.id):
@@ -104,10 +97,8 @@ async def  buttons_management(bot_message, authorDb, event, bot):
                     await interaction.respond(content=res.msg_dict["correctly remove"])
                     await msg_serv.send_or_edit_event_message(bot_message, 
                         event, authorDb, Color.gold(), 
-                        [
-                            Button(disabled=0, label=res.button['ok'], style = 3, id=res.button['ok']),
-                            Button(disabled=0, label=res.button['cancel'], style = 4, id=res.button['cancel'])
-                        ], True)
+                        buttons_builder(['ok', 'late', 'cancel']),
+                        True)
                 else:
                     await interaction.respond(content=res.msg_dict["not on event"])
 
@@ -135,3 +126,17 @@ async def pass_event_image(message):
     await update_event(event)
     await message.author.send(res.msg_dict['next'])
     await message.author.send(res.msg_dict['slots'])    
+
+
+async def buttons_builder(buttons_list):
+    buttons = []
+
+    for elem in buttons:
+        style = 0
+        if res.button['ok'] :
+            style = 3
+        elif res.button['cancel'] :
+            style = 4
+        if res.button['late'] :
+            style = 1
+        buttons.append(Button(disabled=0, label=res.button[elem], style = style, id=res.button[elem]))
