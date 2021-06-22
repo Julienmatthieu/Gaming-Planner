@@ -19,7 +19,7 @@ emojis_dict = {
     'check':        '\N{WHITE HEAVY CHECK MARK}',
     'cross':        '',
     'skull':        '💀'
-} 
+}
  
 msg_dict = {
     'game_name':        '>>> Hello ! What is the name of the game ?',
