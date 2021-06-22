@@ -20,7 +20,7 @@ emojis_dict = {
     'cross':        '',
     'skull':        '💀'
 }
- 
+
 msg_dict = {
     'game_name':        '>>> Hello ! What is the name of the game ?',
     'game_image':       '>>> I had no image for this game. Could you link one to me ? (or use the !next commad to pass)',
