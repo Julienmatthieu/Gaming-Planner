@@ -103,14 +103,14 @@ async def  buttons_management(bot_message, authorDb, event, bot):
                 else:
                     await interaction.respond(content=res.msg_dict["not on event"])
         elif interaction.component.label == res.button_text['late']:
-            if event.is_present(userDb):
-                event.add_late_player(userDb)
-                await update_event(event)
-                await interaction.respond(content=res.msg_dict['added'])
-                await msg_serv.send_or_edit_event_message(bot_message, 
-                    event, authorDb, Color.gold(), 
-                    buttons_builder(['ok', 'late', 'cancel']),
-                    True)
+            event.add_late_player(userDb)
+            await update_event(event)
+            await msg_serv.send_or_edit_event_message(bot_message, 
+                event, authorDb, Color.gold(), 
+                buttons_builder(['ok', 'late', 'cancel']),
+                True
+            )
+            await interaction.respond(content=res.msg_dict['added'])
 
     await msg_serv.send_or_edit_event_message(bot_message, event, authorDb, Color.green(), [], True)
 
