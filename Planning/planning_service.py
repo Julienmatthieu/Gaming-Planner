@@ -69,7 +69,8 @@ async def next_step(message, authorDb, event, bot):
                                             event, authorDb, Color.gold(), 
                                             [
                                                 Button(disabled=0, label=res.button['ok'], style = 3, id=res.button['ok']),
-                                                Button(disabled=0, label=res.button['cancel'], style = 4, id=res.button['cancel'])
+                                                Button(disabled=0, label=res.button['cancel'], style = 4, id=res.button['cancel']),
+                                                Button(disabled=0, label=res.button['late'], style = 1, id=res.button['late']),
                                             ], 
                                             False)
         await buttons_management(bot_message, authorDb, event, bot)

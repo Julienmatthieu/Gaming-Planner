@@ -38,7 +38,8 @@ msg_dict = {
 
 button = {
     'cancel':   'cancel',
-    'ok':       'I\'m in'
+    'ok':       'I\'m in',
+    'late':     'I will be late'
 }
 
 help = {
