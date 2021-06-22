@@ -128,7 +128,7 @@ async def pass_event_image(message):
     await message.author.send(res.msg_dict['slots'])    
 
 
-async def buttons_builder(buttons_list):
+def buttons_builder(buttons_list):
     buttons = []
 
     for elem in buttons:
