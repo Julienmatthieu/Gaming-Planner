@@ -30,7 +30,6 @@ bot = Bot(command_prefix = res.commandSign)
 @bot.event
 async def on_ready():
     DiscordComponents(bot)
-    print(f"Logged in as {bot.user}!")
     print('We have logged in as {0.user}'.format(bot))
 
 @bot.event
