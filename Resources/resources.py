@@ -13,12 +13,13 @@ unset_channel='nothere'
 reset='reset'
 next='next'
 
-emojis_dict = {
+emojis = {
     'thumbs_up':    '\N{THUMBS UP SIGN}',
     'thumbs_down':  '\N{THUMBS DOWN SIGN}',
     'check':        '\N{WHITE HEAVY CHECK MARK}',
     'cross':        '',
-    'skull':        '💀'
+    'skull':        '💀',
+    'clock':        '🕒'
 }
 
 msg_dict = {
