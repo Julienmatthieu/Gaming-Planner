@@ -131,7 +131,7 @@ async def pass_event_image(message):
 def buttons_builder(buttons_list):
     buttons = []
 
-    for elem in buttons:
+    for elem in buttons_list:
         style = 0
         if res.button['ok'] :
             style = 3
