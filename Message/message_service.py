@@ -10,7 +10,6 @@ import game_service as game_serv
 import resources as res
 
 async def BuildInvitMessage(event, author, color=Color.gold()):
-    event.print()
     if event == None:
         return ''
 

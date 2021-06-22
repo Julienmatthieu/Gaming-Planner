@@ -19,6 +19,7 @@ class Event(object):
         self.id = id
         self.players = []
         self.players_id = []
+        self.late= []
         for p in players.split(databaseSeparator):
             self.players.append(p)
         for p in players_id.split(databaseSeparator):
