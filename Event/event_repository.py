@@ -46,6 +46,7 @@ async def update_event(event):
     query = f"""UPDATE event SET players = \"{stringify_to_db(event.players)}\", time = \"{event.time}\", slots = \"{event.slots}\", \
                                 authorId = \"{event.authorId}\", role = \"{event.role}\", step = \"{event.step}", players_id = \"{stringify_to_db(event.players_id)}\", \
                                 game_id = \"{event.game_id}\", late = \"{stringify_to_db(event.late)}\" WHERE id = {event.id} """
+    print(query)
     connector.alter_query(query)
     return event   
 
