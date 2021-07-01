@@ -25,6 +25,8 @@ class User(object):
         print(f"1 - {self.name != source.name}")
         print(f"2 - {self.avatarUrl != source.avatarUrl}")
         print(f"3 - {self.displayName != source.displayName}")
+        print(f"3 self- {self.displayName}")
+        print(f"3 sour- {source.displayName}")
         print(f"4 - {self.mention != source.mention}")
 
         if self.name != source.name or self.avatarUrl != source.avatarUrl or self.displayName != source.displayName or self.mention != source.mention :
