@@ -24,6 +24,8 @@ class User(object):
 
         print(f"1 - {self.name != source.name}")
         print(f"2 - \"self.avatarUrl != source.avatarUrl\" {self.avatarUrl != source.avatarUrl}")
+        print(f"2 - \"source.avatarUrl != source.avatarUrl\" {source.avatarUrl != source.avatarUrl}")
+        print(f"2 - \"self.avatarUrl != self.avatarUrl\" {self.avatarUrl != self.avatarUrl}")
         print(f"2 self.avatarUrl- \"{self.avatarUrl}\"")
         print(f"2 sour.avatarUrl- \"{source.avatarUrl}\"")
         print(f"3 - {self.displayName != source.displayName}")
