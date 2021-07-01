@@ -16,8 +16,8 @@ class User(object):
         self.displayName = displayName
         self.mention = mention
 
-    def need_update(self, compar):
-        if self.name != compar.name or self.avatarUrl != compar.avatarUrl or self.displayName != compar.displayName or self.mention != compar.mention :
+    def need_update(self, source):
+        if self.name != source.name or self.avatarUrl != source.avatarUrl or self.displayName != source.displayName or self.mention != source.mention :
             return True
         return False
 
@@ -30,9 +30,9 @@ class User(object):
                             \t mention = {self.mention} \n\
                             \n")
 
-    def copy(self, target):
-        self.name = target.name
-        self.discord_id = target.discordId
-        self.avatarUrl = target.avatarUrl
-        self.displayName = target.displayName
-        self.mention = target.mention
+    def copy(self, source):
+        self.name = source.name
+        self.discord_id = source.discordId
+        self.avatarUrl = source.avatarUrl
+        self.displayName = source.displayName
+        self.mention = source.mention
