@@ -5,7 +5,7 @@ from user import User
 
 async def get_or_create_user(author_discord):
     author = User(0, author_discord.display_name, author_discord.id, author_discord.avatar_url, author_discord.display_name, author_discord.mention)
-    userDb = await repo.get_user_discordId(author.id)
+    userDb = await repo.get_user_discordId(author.discord_id)
     print("-----------------------")
     author.print()
 #    userDb.print()
