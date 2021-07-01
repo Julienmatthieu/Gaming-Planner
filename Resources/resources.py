@@ -19,18 +19,21 @@ emojis_dict = {
     'check':        '\N{WHITE HEAVY CHECK MARK}',
     'cross':        '',
     'skull':        '💀'
-} 
- 
+}
+
 msg_dict = {
-    'game_name':        '>>> Hello ! What is the name of the game ?',
-    'game_image':       '>>> I had no image for this game. Could you link one to me ? (or use the !next commad to pass)',
-    'cancel':           '>>> Game session had been canceled.',
-    'nothing_cancel':   '>>> No game session to cancel.',
-    'slots':            '>>> How many players ?',
-    'time':             '>>> At what time will the session start ?',
-    'done':             '>>> The session is being written. Thank you for your time !',
-    'added':            '>>> You have been added to the session',
-    'next':             '>>> The step have been passed'
+    'game_name':            '>>> Hello ! What is the name of the game ?',
+    'game_image':           '>>> I had no image for this game. Could you link one to me ? (or use the !next commad to pass)',
+    'cancel':               '>>> Game session had been canceled.',
+    'nothing_cancel':       '>>> No game session to cancel.',
+    'slots':                '>>> How many players ?',
+    'time':                 '>>> At what time will the session start ?',
+    'done':                 '>>> The session is being written. Thank you for your time !',
+    'added':                '>>> You have been added to the session',
+    'next':                 '>>> The step have been passed',
+    'correctly cancel':     '>>> The event had been correcly canceled',
+    'correctly remove':     '>>> You have been removed from the event',
+    'not on event':         '>>> You are not part of this event'
 }
 
 button = {
@@ -57,6 +60,7 @@ msg_type = {
 }
 
 steps = {
+    'cancel': -2,
     'done': -1,
     'none': 0,
     'init': 1,

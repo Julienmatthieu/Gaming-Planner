@@ -11,9 +11,13 @@ def stringify_to_db(list):
     return string
 
 async def create_event(event, location):
+    game_id = event.game_id
+    if event.game_id == 0:
+        game_id = "NULL"
+
     query = f"""INSERT INTO event (players, time, slots, authorId, role, step, players_id, game_id) VALUES \
             (\"{stringify_to_db(event.players)}\", \"{event.time}\", {event.slots}, \
-            {event.authorId}, \"{event.role}\", {event.step}, \"{stringify_to_db(event.players_id)}\", \"{event.game_id}\")  """
+            {event.authorId}, \"{event.role}\", {event.step}, \"{stringify_to_db(event.players_id)}\", {game_id})  """
     eventId = connector.alter_query(query)
     query = f"""INSERT INTO discordLocation (guildId, channelId, messageId, eventId) VALUES (\"{location.guildId}\", \"{location.channelId}\", \"{location.messageId}\", {eventId}) """
     locationId = connector.alter_query(query)
