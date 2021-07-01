@@ -24,6 +24,8 @@ class User(object):
 
         print(f"1 - {self.name != source.name}")
         print(f"2 - \"self.avatarUrl != source.avatarUrl\" {self.avatarUrl != source.avatarUrl}")
+        print(f"sefl {type(self.avaterUrl)}")
+        print(f"sour {type(source.avaterUrl)}")
         print(f'2 - \"Source print self\" {source.avatarUrl != "https://cdn.discordapp.com/avatars/225743846934446081/afc9af98a91cb4a6f1d24d9a7c9982dc.webp?size=1024"}')
         print(f'2 - \"Source print sour\" {source.avatarUrl != "https://cdn.discordapp.com/avatars/225743846934446081/afc9af98a91cb4a6f1d24d9a7c9982dc.webp?size=1024"}')
         print(f'2 - \"self.avatarUrl != self.avatarUrl\" {self.avatarUrl != "https://cdn.discordapp.com/avatars/225743846934446081/afc9af98a91cb4a6f1d24d9a7c9982dc.webp?size=1024"}')
