@@ -18,10 +18,9 @@ class User(object):
 
     def need_update(self, source):
 
-        print(" ---  NEED UPDATE --- ")
+        print(" ---  ENTERING NEED UPDATE --- ")
         self.print()
         source.print()
-        print(" ---  ---- ------ --- ")
 
 
         if self.name != source.name or self.avatarUrl != source.avatarUrl or self.displayName != source.displayName or self.mention != source.mention :
