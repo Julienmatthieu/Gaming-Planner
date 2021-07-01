@@ -22,17 +22,11 @@ class User(object):
         self.print()
         source.print()
 
-        print(f"1 - {self.name != source.name}")
         print(f"2 - \"self.avatarUrl != source.avatarUrl\" {self.avatarUrl != source.avatarUrl}")
+        print(self.avatarUrl.__dict__)
+        print(source.avatarUrl.__dict__)
         type(self.avatarUrl)
         type(source.avatarUrl)
-        print(f'2 - \"Source print self\" {source.avatarUrl != "https://cdn.discordapp.com/avatars/225743846934446081/afc9af98a91cb4a6f1d24d9a7c9982dc.webp?size=1024"}')
-        print(f'2 - \"Source print sour\" {source.avatarUrl != "https://cdn.discordapp.com/avatars/225743846934446081/afc9af98a91cb4a6f1d24d9a7c9982dc.webp?size=1024"}')
-        print(f'2 - \"self.avatarUrl != self.avatarUrl\" {self.avatarUrl != "https://cdn.discordapp.com/avatars/225743846934446081/afc9af98a91cb4a6f1d24d9a7c9982dc.webp?size=1024"}')
-        print(f"2 self.avatarUrl- \"{self.avatarUrl}\"")
-        print(f"2 sour.avatarUrl- \"{source.avatarUrl}\"")
-        print(f"3 - {self.displayName != source.displayName}")
-        print(f"4 - {self.mention != source.mention}")
 
         if self.name != source.name or self.avatarUrl != source.avatarUrl or self.displayName != source.displayName or self.mention != source.mention :
             print("true")
