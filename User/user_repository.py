@@ -9,7 +9,6 @@ async def get_user_discordId(discord_id):
         return None
     row = records[0]
     test =  User(row[0], row[1], row[2], row[3], row[4], row[5]) 
-    print(f"found this users : {records}, returning {test}")
     return User(row[0], row[1], row[2], row[3], row[4], row[5]) 
 
 async def create_user(user):
