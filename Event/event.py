@@ -89,6 +89,7 @@ class Event(object):
                             \trole = {self.role} \n\
                             \tgame_id = {self.game_id} \n\
                             `\tlate = {self.late} \n\
+                            `\step = {self.step} \n\
                             \n")
 
 class Location(object):
