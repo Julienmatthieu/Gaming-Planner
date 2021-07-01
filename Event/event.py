@@ -13,15 +13,22 @@ class Event(object):
     authorId = 0
     step = 0
     game_id = 0
+    late = []
     
-    def __init__(self, id, players, time, slots, authorId, role, step, players_id, game_id):
+    def __init__(self, id, players, time, slots, authorId, role, step, players_id, game_id, late):
         self.id = id
         self.players = []
         self.players_id = []
-        for p in players.split(databaseSeparator):
-            self.players.append(p)
-        for p in players_id.split(databaseSeparator):
-            self.players_id.append(p)
+        self.late= []
+        if players:
+            for p in players.split(databaseSeparator):
+                self.players.append(p)
+        if players_id:
+            for p in players_id.split(databaseSeparator):
+                self.players_id.append(p)
+        if late:
+            for p in late.split(databaseSeparator):
+                self.late.append(p)
         self.time = time
         self.slots = slots
         self.authorId = authorId
@@ -32,6 +39,7 @@ class Event(object):
     def merge(self, other):
         self.players = other.players
         self.players_id = other.players_id
+        self.late = other.late
         self.time = other.time
         self.slots = other.slots
         self.authorId = other.authorId
@@ -51,7 +59,25 @@ class Event(object):
             index = self.players.index(user.displayName)
             self.players.pop(index)
             self.players_id.pop(index)
-        return not (size == len(self.players))
+            return True
+        elif user.displayName in self.late:
+            index = self.late.index(user.displayName)
+            self.late.pop(index)
+            return True
+        return False
+
+    def add_late_player(self, user):
+        if self.is_present(user):
+            self.remove_player(user)
+        self.late.append(user.displayName)
+
+    def remove_late_player(self, user):
+        if user.displayName in self.late:
+            index = self.late.index(user.displayName)
+            self.late.pop(index)
+
+    def is_present(self, user):
+        return (user.displayName in self.players)
     
     def print(self):
         print(f"this is event {self.id}: \n\
@@ -62,6 +88,7 @@ class Event(object):
                             \tauthorId = {self.authorId} \n\
                             \trole = {self.role} \n\
                             \tgame_id = {self.game_id} \n\
+                            `\tlate = {self.late} \n\
                             \n")
 
 class Location(object):

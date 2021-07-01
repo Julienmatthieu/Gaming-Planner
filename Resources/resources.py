@@ -13,12 +13,13 @@ unset_channel='nothere'
 reset='reset'
 next='next'
 
-emojis_dict = {
+emojis = {
     'thumbs_up':    '\N{THUMBS UP SIGN}',
     'thumbs_down':  '\N{THUMBS DOWN SIGN}',
     'check':        '\N{WHITE HEAVY CHECK MARK}',
     'cross':        '',
-    'skull':        '💀'
+    'skull':        '💀',
+    'clock':        '🕒'
 }
 
 msg_dict = {
@@ -36,9 +37,16 @@ msg_dict = {
     'not on event':         '>>> You are not part of this event'
 }
 
-button = {
+button_style = {
+    'cancel':   4,
+    'ok':       3,
+    'late':     1
+}
+
+button_text = {
     'cancel':   'cancel',
-    'ok':       'I\'m in'
+    'ok':       'I\'m in',
+    'late':     'I will be late'
 }
 
 help = {
@@ -69,4 +77,5 @@ steps = {
     'slots': 3,
     'time': 4,
     }
+
 

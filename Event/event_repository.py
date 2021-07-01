@@ -3,6 +3,8 @@ import connector
 import resources as res
 
 def stringify_to_db(list):
+    if list == "":
+        return "NULL"
     string = ""
     for elem in list:
         if string != "":
@@ -15,9 +17,9 @@ async def create_event(event, location):
     if event.game_id == 0:
         game_id = "NULL"
 
-    query = f"""INSERT INTO event (players, time, slots, authorId, role, step, players_id, game_id) VALUES \
+    query = f"""INSERT INTO event (players, time, slots, authorId, role, step, players_id, game_id, late) VALUES \
             (\"{stringify_to_db(event.players)}\", \"{event.time}\", {event.slots}, \
-            {event.authorId}, \"{event.role}\", {event.step}, \"{stringify_to_db(event.players_id)}\", {game_id})  """
+            {event.authorId}, \"{event.role}\", {event.step}, \"{stringify_to_db(event.players_id)}\", {game_id}, \"{stringify_to_db(event.late)}\")  """
     eventId = connector.alter_query(query)
     query = f"""INSERT INTO discordLocation (guildId, channelId, messageId, eventId) VALUES (\"{location.guildId}\", \"{location.channelId}\", \"{location.messageId}\", {eventId}) """
     locationId = connector.alter_query(query)
@@ -35,7 +37,7 @@ async def get_last_location(guildId, channelId):
 async def get_event(event_id):
     records = connector.select_query(f"""SELECT * FROM event WHERE id = {event_id}""")
     row = records[0]
-    current = Event(row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8]) 
+    current = Event(row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8], row[9]) 
     return current 
 
 # update 
@@ -43,7 +45,7 @@ async def get_event(event_id):
 async def update_event(event):
     query = f"""UPDATE event SET players = \"{stringify_to_db(event.players)}\", time = \"{event.time}\", slots = \"{event.slots}\", \
                                 authorId = \"{event.authorId}\", role = \"{event.role}\", step = \"{event.step}", players_id = \"{stringify_to_db(event.players_id)}\", \
-                                game_id = \"{event.game_id}\"WHERE id = {event.id} """
+                                game_id = \"{event.game_id}\", late = \"{stringify_to_db(event.late)}\" WHERE id = {event.id} """
     connector.alter_query(query)
     return event   
 
@@ -60,7 +62,7 @@ async def get_by_userId(userId):
     if len(records) == 0:
         return None
     row = records[0]
-    return Event(row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8]) 
+    return Event(row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8], row[9]) 
 
 async def get_location_by_event(event):
     query = f""" SELECT * FROM discordLocation WHERE eventId = {event.id} """
