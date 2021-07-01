@@ -8,7 +8,7 @@ async def get_or_create_user(author_discord):
     userDb = await repo.get_user_discordId(author.id)
     print("-----------------------")
     author.print()
-    userDb.print()
+#    userDb.print()
     print("-----------------------")
     if userDb == None:
         return await repo.create_user(author)
