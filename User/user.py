@@ -32,7 +32,7 @@ class User(object):
 
     def copy(self, source):
         self.name = source.name
-        self.discord_id = source.discordId
+        self.discord_id = source.discord_id
         self.avatarUrl = source.avatarUrl
         self.displayName = source.displayName
         self.mention = source.mention
