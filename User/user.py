@@ -23,7 +23,6 @@ class User(object):
         source.print()
 
         print(f"2 - \"self.avatarUrl != source.avatarUrl\" {self.avatarUrl != source.avatarUrl}")
-        print(self.avatarUrl.__dict__)
         print(source.avatarUrl.__dict__)
         type(self.avatarUrl)
         type(source.avatarUrl)
