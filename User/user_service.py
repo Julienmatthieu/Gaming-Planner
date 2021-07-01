@@ -11,8 +11,10 @@ async def get_or_create_user(author_discord):
         print("------------------------ 2.1 ")
         return await repo.create_user(author)
     elif userDb.need_update(author):
-        print("------------------------ 2.2.1 ")
+        print("------------------------ 2.2.1 ---- Copy")
+        userDb.print()
         userDb.copy(author)
+        userDb.print()
         print("------------------------ 2.2.2 ")
         await repo.update_user(userDb)
         print("------------------------ 2.2.3 ")
