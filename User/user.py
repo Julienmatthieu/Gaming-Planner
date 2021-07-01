@@ -23,9 +23,9 @@ class User(object):
         source.print()
 
         print(f"1 - {self.name != source.name}")
-        print(f"2 - {self.avatarUrl != source.avatarUrl}")
-        print(f"2 self- \"{self.avatarUrl}\"")
-        print(f"2 sour- \"{source.avatarUrl}\"")
+        print(f"2 - \"self.avatarUrl != source.avatarUrl\" {self.avatarUrl != source.avatarUrl}")
+        print(f"2 self.avatarUrl- \"{self.avatarUrl}\"")
+        print(f"2 sour.avatarUrl- \"{source.avatarUrl}\"")
         print(f"3 - {self.displayName != source.displayName}")
         print(f"4 - {self.mention != source.mention}")
 
