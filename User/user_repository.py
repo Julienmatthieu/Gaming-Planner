@@ -20,6 +20,9 @@ async def create_user(user):
 async def update_user(user):
     query = f"UPDATE user SET name = {user.name}, avatarUrl = {user.avatarUrl}, displayName = {user.displayName}, mention = {user.mention} \
                     WHERE discordId = {user.id}"    
+    print(f"------------------------------------------------------------\n")
+    print(query)
+    print(f"------------------------------------------------------------\n")
     connector.alter_query(query)
     return user 
     
