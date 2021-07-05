@@ -14,7 +14,7 @@ async def get_last_unset_event(message):
     return await repo.get_event(location.eventId)
 
 async def new_event(message, author):
-    new_event = Event(id=0, players=message.author.display_name, 
+    new_event = Event(id=0, players=message.author.name, 
                         time="", slots=1, authorId=str(author.id), 
                         role="", step=res.steps['init'], players_id=str(message.author.id), 
                         game_id=0, late=None)
