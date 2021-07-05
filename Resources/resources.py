@@ -46,7 +46,7 @@ msg_dict = {
     'correctly cancel':     '>>> The event had been correcly canceled',
     'correctly remove':     '>>> You have been removed from the event',
     'not on event':         '>>> You are not part of this event',
-    'planning_done':        '{names} you game session of {game_name} is ready and will state at {time}'
+    'planning_done':        '{} you game session of {} is ready and will state at {}'
 }
 
 button_style = {
