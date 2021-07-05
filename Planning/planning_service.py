@@ -65,7 +65,7 @@ async def next_step(message, authorDb, event, bot):
         Location = await get_location_by_event(event)
         channel = bot.get_channel(int(Location.channelId))
         bot_message = await msg_serv.send_or_edit_event_message(channel, 
-                                            event, authorDb, Color.gold(), 
+                                            event, authorDb, res.message_colors['process'], 
                                             buttons_builder(['ok', 'late', 'cancel']),
                                             False)
         await buttons_management(bot_message, authorDb, event, bot)
@@ -81,7 +81,7 @@ async def  buttons_management(bot_message, authorDb, event, bot):
             event.add_player(userDb)
             await update_event(event)
             await msg_serv.send_or_edit_event_message(bot_message, 
-                                            event, authorDb, Color.gold(), 
+                                            event, authorDb, res.message_colors['process'], 
                                             buttons_builder(['ok', 'late', 'cancel']),
                                             True)
         elif interaction.component.label == res.button_text['cancel']:
@@ -89,14 +89,14 @@ async def  buttons_management(bot_message, authorDb, event, bot):
                 event.step = res.steps['cancel']
                 await update_event(event)
                 await interaction.respond(content=res.msg_dict["correctly cancel"])
-                await msg_serv.send_or_edit_event_message(bot_message, event, authorDb, Color.red(), [], True)
+                await msg_serv.send_or_edit_event_message(bot_message, event, authorDb, res.message_colors['cancel'], [], True)
                 return
             else:
                 if event.remove_player(userDb) == True:
                     await update_event(event)
                     await interaction.respond(content=res.msg_dict["correctly remove"])
                     await msg_serv.send_or_edit_event_message(bot_message, 
-                        event, authorDb, Color.gold(), 
+                        event, authorDb, res.message_colors['process'], 
                         buttons_builder(['ok', 'late', 'cancel']),
                         True)
                 else:
@@ -105,13 +105,13 @@ async def  buttons_management(bot_message, authorDb, event, bot):
             event.add_late_player(userDb)
             await update_event(event)
             await msg_serv.send_or_edit_event_message(bot_message, 
-                event, authorDb, Color.gold(), 
+                event, authorDb, res.message_colors['process'], 
                 buttons_builder(['ok', 'late', 'cancel']),
                 True
             )
             await interaction.respond(content=res.msg_dict['added'])
 
-    await msg_serv.send_or_edit_event_message(bot_message, event, authorDb, Color.green(), [], True)
+    await msg_serv.send_or_edit_event_message(bot_message, event, authorDb, res.message_colors['done'], [], True)
 
 async def CancelCurrentEvent(message):
     authorDb = await get_or_create_user(message.author)

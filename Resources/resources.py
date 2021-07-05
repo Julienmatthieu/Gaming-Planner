@@ -1,4 +1,6 @@
 from os import error
+from typing import ClassVar
+from discord import Color
 
 #commands
 databaseSeparator='¤'
@@ -15,6 +17,12 @@ next='next'
 
 max_show_line = 6
 max_show_line_text = " more slot(s) available"
+
+message_colors = {
+    'done':     Color.green(),
+    'cancel':   Color.red(),
+    'process':  Color.gold()
+}
 
 emojis = {
     'thumbs_up':    '\N{THUMBS UP SIGN}',
