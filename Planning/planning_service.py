@@ -111,8 +111,7 @@ async def  buttons_management(bot_message, authorDb, event, bot):
     game = await game_serv.get_game(event.game_id)
     names = ""
     for id in event.players_id:
-        names += (await usr_service.get_by_discord_id(id)).mention 
-        names += ' '
+        names += (await usr_service.get_by_discord_id(id)).mention + ' '
     await bot_message.channel.send(res.msg_dict['planning_done'].format(names, game.name, event.time))
 
 async def CancelCurrentEvent(message):
