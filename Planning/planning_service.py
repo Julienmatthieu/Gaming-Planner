@@ -73,7 +73,8 @@ async def next_step(message, authorDb, event, bot):
 async def  buttons_management(bot_message, authorDb, event, bot):
     while len(event.players) < event.slots:
         interaction = await bot.wait_for("button_click")
-        print(interaction.user.__dict__)
+        print(interaction.user.username)
+        print(interaction.user.display_name)
         print("-------")
         userDb = await get_or_create_user(interaction.user)
         if interaction.component.label == res.button_text['ok']:
