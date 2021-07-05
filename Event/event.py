@@ -69,7 +69,8 @@ class Event(object):
     def add_late_player(self, user):
         if self.is_present(user):
             self.remove_player(user)
-        self.late.append(user.displayName)
+        if user.displayName not in self.late:
+            self.late.append(user.displayName)
 
     def remove_late_player(self, user):
         if user.displayName in self.late:
