@@ -26,8 +26,10 @@ async def BuildInvitMessage(event, author, color=Color.gold()):
     for slot in range(event.slots):
         if slot < len(event.players):
             message += f'\n\t  - **{event.players[slot]}**'
-        else:
+        elif slot < res.max_show_line:
             message += f'\n\t - '
+        else:
+            message += f'\n    {len(event.players) - slot} {res.max_show_line_text}'
 
     embed.add_field(name="Team:", value=message, inline=True)
     if len(event.late) > 0:

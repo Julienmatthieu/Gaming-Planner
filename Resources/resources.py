@@ -13,6 +13,9 @@ unset_channel='nothere'
 reset='reset'
 next='next'
 
+max_show_line = 6
+max_show_line_text = " more slot(s) available"
+
 emojis = {
     'thumbs_up':    '\N{THUMBS UP SIGN}',
     'thumbs_down':  '\N{THUMBS DOWN SIGN}',
