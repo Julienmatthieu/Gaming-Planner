@@ -1,4 +1,6 @@
 from os import error
+from typing import ClassVar
+from discord import Color
 
 #commands
 databaseSeparator='¤'
@@ -15,6 +17,12 @@ next='next'
 
 max_show_line = 6
 max_show_line_text = " more slot(s) available"
+
+message_colors = {
+    'done':     Color.green(),
+    'cancel':   Color.red(),
+    'process':  Color.gold()
+}
 
 emojis = {
     'thumbs_up':    '\N{THUMBS UP SIGN}',
@@ -37,7 +45,8 @@ msg_dict = {
     'next':                 '>>> The step have been passed',
     'correctly cancel':     '>>> The event had been correcly canceled',
     'correctly remove':     '>>> You have been removed from the event',
-    'not on event':         '>>> You are not part of this event'
+    'not on event':         '>>> You are not part of this event',
+    'planning_done':        '{} you game session of **{}** is ready and will start at **{}**'
 }
 
 button_style = {

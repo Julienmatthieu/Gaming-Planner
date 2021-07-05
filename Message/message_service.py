@@ -9,13 +9,13 @@ from resources import msg_type
 import game_service as game_serv
 import resources as res
 
-async def BuildInvitMessage(event, author, color=Color.gold()):
+async def BuildInvitMessage(event, author, color=res.message_colors['process']):
     if event == None:
         return ''
 
     game = await game_serv.get_game(event.game_id)
     title = f"Let's play some {game.name}"
-    if color == Color.red():
+    if color == res.message_colors['cancel']:
         title = f"🔴 Canceled 🔴 {game.name}"
 
     embed=Embed(title=f"{title}", description=f"I\'m looking for **{event.slots - len(event.players)}** people(s) to join me on **{game.name}**. \n\
@@ -44,7 +44,7 @@ async def BuildInvitMessage(event, author, color=Color.gold()):
 
     return embed
 
-async def send_or_edit_event_message(send_to, event, authorDb, color=Color.gold(), buttons=[] , is_edit=False):
+async def send_or_edit_event_message(send_to, event, authorDb, color=res.message_colors['process'], buttons=[] , is_edit=False):
 
     if is_edit:
         return await send_to.edit(
