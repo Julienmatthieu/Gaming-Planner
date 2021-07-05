@@ -48,7 +48,6 @@ class Event(object):
         self.game_id = other.game_id
 
     def add_player(self, user):
-        user.print()
         if user.displayName in self.players:
             return
         self.players_id.append(user.discord_id)
