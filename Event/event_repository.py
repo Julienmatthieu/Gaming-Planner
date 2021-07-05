@@ -2,7 +2,6 @@ import time
 from event import Event, Location 
 import connector 
 import resources as res
-import time
 
 def stringify_to_db(list):
     if list == "":
