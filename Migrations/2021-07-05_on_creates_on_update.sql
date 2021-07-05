@@ -1,0 +1,11 @@
+ALTER TABLE `gameplanner`.`user` ADD COLUMN `on_create` TIMESTAMP DEFAULT NOW() NOT NULL COMMENT '';
+ALTER TABLE `gameplanner`.`user` ADD COLUMN `on_update` TIMESTAMP DEFAULT NOW() NOT NULL COMMENT '';
+
+ALTER TABLE `gameplanner`.`event` ADD COLUMN `on_create` TIMESTAMP DEFAULT NOW() NOT NULL COMMENT '';
+ALTER TABLE `gameplanner`.`event` ADD COLUMN `on_update` TIMESTAMP DEFAULT NOW() NOT NULL COMMENT '';
+
+ALTER TABLE `gameplanner`.`discordLocation` ADD COLUMN `on_create` TIMESTAMP DEFAULT NOW() NOT NULL COMMENT '';
+ALTER TABLE `gameplanner`.`discordLocation` ADD COLUMN `on_update` TIMESTAMP DEFAULT NOW() NOT NULL COMMENT '';
+
+ALTER TABLE `gameplanner`.`game` ADD COLUMN `on_create` TIMESTAMP DEFAULT NOW() NOT NULL COMMENT '';
+ALTER TABLE `gameplanner`.`game` ADD COLUMN `on_update` TIMESTAMP DEFAULT NOW() NOT NULL COMMENT '';

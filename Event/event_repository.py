@@ -1,6 +1,8 @@
+import time
 from event import Event, Location 
 import connector 
 import resources as res
+import datetime
 
 def stringify_to_db(list):
     if list == "":
@@ -43,14 +45,17 @@ async def get_event(event_id):
 # update 
 
 async def update_event(event):
+    timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
     query = f"""UPDATE event SET players = \"{stringify_to_db(event.players)}\", time = \"{event.time}\", slots = \"{event.slots}\", \
                                 authorId = \"{event.authorId}\", role = \"{event.role}\", step = \"{event.step}", players_id = \"{stringify_to_db(event.players_id)}\", \
-                                game_id = \"{event.game_id}\", late = \"{stringify_to_db(event.late)}\" WHERE id = {event.id} """
+                                game_id = \"{event.game_id}\", late = \"{stringify_to_db(event.late)}\", on_update = \"{timestamp}\" \
+                                WHERE id = {event.id} """
     connector.alter_query(query)
     return event   
 
 async def update_location_message(location):
-    query = f"""UPDATE discordLocation SET messageId = \"{location.messageId}\" WHERE id = {location.id} """
+    timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    query = f"""UPDATE discordLocation SET messageId = \"{location.messageId}\", on_update = \"{timestamp}\"  WHERE id = {location.id} """
     eventId = connector.alter_query(query)
     return eventId
 
