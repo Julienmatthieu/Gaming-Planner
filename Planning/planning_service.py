@@ -108,7 +108,8 @@ async def  buttons_management(bot_message, authorDb, event, bot):
             await interaction.respond(content=res.msg_dict['added'])
 
     await msg_serv.send_or_edit_event_message(bot_message, event, authorDb, res.message_colors['done'], [], True)
-    await bot_message.channel.send(res.msg_dict['planning_done'].format('NAMES', 'GAME', 'TIME'))
+    game = game_serv.get_game(event.game_id)
+    await bot_message.channel.send(res.msg_dict['planning_done'].format('NAMES', game.name, event.time))
 
 async def CancelCurrentEvent(message):
     authorDb = await get_or_create_user(message.author)
