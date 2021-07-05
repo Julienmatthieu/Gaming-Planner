@@ -1,8 +1,5 @@
 from os import error, name
-from sys import audit
-from discord import Color 
-from discord.ext.commands import Bot
-from discord_components import DiscordComponents, Button
+from discord_components import Button
 
 from user_service import get_or_create_user
 from event_service import new_event, update_event, get_location_by_event, get_last_event_by_userId, delete_event_from_authorId
@@ -10,7 +7,6 @@ import resources as res
 import user_service as usr_service
 import message_service as msg_serv
 import game_service as game_serv
-from event import Event, Location
 
 async def building_together(message, bot):
     
