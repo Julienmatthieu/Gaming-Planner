@@ -18,7 +18,7 @@ async def BuildInvitMessage(event, author, color=Color.gold()):
         cancel += "🔴 Canceled 🔴"
 
     game = await game_serv.get_game(event.game_id)
-    embed=Embed(title=f"Let's play some {game.name} {cancel}", description=f"I\'m looking for **{event.slots - len(event.players)}** people(s) to join me on **{game.name}**. \n\
+    embed=Embed(title=f"{cancel}\nLet's play some {game.name}", description=f"I\'m looking for **{event.slots - len(event.players)}** people(s) to join me on **{game.name}**. \n\
                                 Game session will start at **{event.time}**. ", color=color)
     embed.set_thumbnail(url=game.image)
     embed.set_author(name=author.displayName, icon_url=author.avatarUrl)
