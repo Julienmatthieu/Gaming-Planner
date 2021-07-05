@@ -1,5 +1,5 @@
 from game import Game 
-import datetime
+import time
 import connector 
 
 async def create_game(game):
@@ -24,7 +24,7 @@ async def get_game(id):
     return game 
 
 async def update_image_by_id(id, image_url):
-    timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    timestamp = time.strftime('%Y-%m-%d %H-%M-%S')
 
     query = f"""UPDATE game SET image = \"{image_url}\", on_update = \"{timestamp}\"  WHERE id = {id}"""
     connector.alter_query(query)

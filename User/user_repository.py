@@ -1,4 +1,4 @@
-import datetime
+import time
 import connector 
 from user import User
 from resources import databaseSeparator
@@ -18,7 +18,8 @@ async def create_user(user):
     return user
 
 async def update_user(user):
-    timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+    timestamp = time.strftime('%Y-%m-%d %H-%M-%S')
+
     query = f"UPDATE user SET name = \"{user.name}\", avatarUrl = \"{user.avatarUrl}\", displayName = \"{user.displayName}\", \
                     mention = \"{user.mention}\", on_update = \"{timestamp} \" \
                     WHERE discordId = {user.discord_id}"    
