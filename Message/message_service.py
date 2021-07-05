@@ -18,7 +18,7 @@ async def BuildInvitMessage(event, author, color=Color.gold()):
     if color == Color.red():
         title = f"🔴 Canceled 🔴 {game.name}"
 
-    embed=Embed(title=title, description=f"I\'m looking for **{event.slots - len(event.players)}** people(s) to join me on **{game.name}**. \n\
+    embed=Embed(title=f"{title}", description=f"I\'m looking for **{event.slots - len(event.players)}** people(s) to join me on **{game.name}**. \n\
                                 Game session will start at **{event.time}**. ", color=color)
     embed.set_thumbnail(url=game.image)
     embed.set_author(name=author.displayName, icon_url=author.avatarUrl)
