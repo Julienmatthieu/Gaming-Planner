@@ -77,7 +77,7 @@ class Event(object):
             self.late.pop(index)
 
     def is_present(self, user):
-        return (user.displayName in self.players)
+        return (user.displayName in self.late)
     
     def print(self):
         print(f"this is event {self.id}: \n\
