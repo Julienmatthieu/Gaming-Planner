@@ -3,7 +3,9 @@ import discord
 
 import event_repository as repo
 import location_service as loc_serv
-from event import Event, Location
+from event import Event
+from location import Location
+
 import resources as res
 
 async def get_last_unset_event(message):
