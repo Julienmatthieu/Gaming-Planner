@@ -23,9 +23,6 @@ import location_service as loc_serv
 from  user import User
 import keys
 
-# TO DO LIST 
-# AJOUTER UN talbe pour lister les chan autorisé pour le bot
-
 bot = Bot(command_prefix = res.commandSign)
 
 @bot.event
