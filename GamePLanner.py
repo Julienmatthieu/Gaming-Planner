@@ -14,11 +14,13 @@ sys.path.append(f'{path}/Message/')
 sys.path.append(f'{path}/User/')
 sys.path.append(f'{path}/Event')
 sys.path.append(f'{path}/Game')
+sys.path.append(f'{path}/Location')
 import resources as res
 import user_service as usr_serv
 import event_service as event_serv
 import message_service as msg_serv
 import planning_service as plan_serv
+import location_service as loc_serv
 from  user import User
 import keys
 

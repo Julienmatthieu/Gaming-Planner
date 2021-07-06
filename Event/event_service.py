@@ -2,15 +2,16 @@ from time import process_time
 import discord 
 
 import event_repository as repo
+import location_service as loc_serv
 from event import Event, Location
 import resources as res
 
 async def get_last_unset_event(message):
-    location = await repo.get_last_location(message.guild.id, message.channel.id)
+    location = await loc_serv.get_event_by_message_location(message)
     if (location == None):
         return
     location.messageId = message.id
-    await repo.update_location_message(location)
+    await loc_serv.update_location_message(location)
     return await repo.get_event(location.eventId)
 
 async def new_event(message, author):
@@ -26,10 +27,7 @@ async def update_event(event):
 
 async def get_last_event_by_userId(userId):
     return await repo.get_by_userId(userId)
-
-async def get_location_by_event(event):
-    return await repo.get_location_by_event(event)
-    
+   
 async def delete_event_from_authorId(authorId):
     event = await get_last_event_by_userId(authorId)
 
