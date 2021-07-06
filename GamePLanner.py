@@ -4,7 +4,7 @@ import pathlib
 from discord import Color
 from discord.ext.commands import Bot
 from discord_components import *
-import time
+import re
 
 path = pathlib.Path().absolute()
 sys.path.append(f'{path}/Resources/')
@@ -40,14 +40,12 @@ async def on_message(message):
         await bot.process_commands(message)
     elif str(message.channel.type) == res.msg_type['dm'] and message.author != bot.user:
         await plan_serv.building_together(message, bot)
-    elif str(message.channel.type) != res.msg_type['dm'] and message.author == bot.user:
-        print("\n I can see this message \n")
-        print(type(message))
-        print(message.embeds)
-        if len(message.embeds) > 0:
-            for elem in message.embeds:
-                print(elem.footer)
-        print(message.__disct__)
+    elif str(message.channel.type) != res.msg_type['dm'] and message.author == bot.user and message.embeds != None:
+        for elem in message.embeds:
+            print(elem.footer)
+            id = int(re.search(r'\d+', elem.footer).group())
+            print(f" my id is {id}")
+
 @bot.command(name=res.next, help=res.help['next'])
 async def next(ctx):
     message = ctx.message
