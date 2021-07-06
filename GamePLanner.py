@@ -4,7 +4,6 @@ import pathlib
 from discord import Color
 from discord.ext.commands import Bot
 from discord_components import *
-import time
 
 path = pathlib.Path().absolute()
 sys.path.append(f'{path}/Resources/')
@@ -14,11 +13,13 @@ sys.path.append(f'{path}/Message/')
 sys.path.append(f'{path}/User/')
 sys.path.append(f'{path}/Event')
 sys.path.append(f'{path}/Game')
+sys.path.append(f'{path}/Location')
 import resources as res
 import user_service as usr_serv
 import event_service as event_serv
 import message_service as msg_serv
 import planning_service as plan_serv
+import location_service as loc_serv
 from  user import User
 import keys
 
@@ -38,6 +39,8 @@ async def on_message(message):
         await bot.process_commands(message)
     elif str(message.channel.type) == res.msg_type['dm'] and message.author != bot.user:
         await plan_serv.building_together(message, bot)
+    elif str(message.channel.type) != res.msg_type['dm'] and message.author == bot.user and message.embeds != None:
+        await loc_serv.update_location_message_id(message)
 
 @bot.command(name=res.next, help=res.help['next'])
 async def next(ctx):

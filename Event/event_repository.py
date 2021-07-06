@@ -1,7 +1,9 @@
 import time
-from event import Event, Location 
-import connector 
+from event import Event 
+from location import Location
+import location_service as loc_serv
 import resources as res
+import connector 
 
 def stringify_to_db(list):
     if list == "":
@@ -21,19 +23,10 @@ async def create_event(event, location):
     query = f"""INSERT INTO event (players, time, slots, authorId, role, step, players_id, game_id, late) VALUES \
             (\"{stringify_to_db(event.players)}\", \"{event.time}\", {event.slots}, \
             {event.authorId}, \"{event.role}\", {event.step}, \"{stringify_to_db(event.players_id)}\", {game_id}, \"{stringify_to_db(event.late)}\")  """
-    eventId = connector.alter_query(query)
-    query = f"""INSERT INTO discordLocation (guildId, channelId, messageId, eventId) VALUES (\"{location.guildId}\", \"{location.channelId}\", \"{location.messageId}\", {eventId}) """
-    locationId = connector.alter_query(query)
-    event.id = eventId
+    event.id = connector.alter_query(query)
+    location.eventId = event.id
+    location = await loc_serv.create_new_location(location)
     return event
-
-async def get_last_location(guildId, channelId):
-    records = connector.select_query(f"""SELECT * FROM discordLocation WHERE guildId = {guildId} AND channelId = {channelId} AND messageId = 0 ORDER BY eventId DESC""")
-    if len(records) == 0:
-        return None
-    row = records[0]
-    location = Location(row[0], row[1], row[2], row[3], row[4]) 
-    return location 
 
 async def get_event(event_id):
     records = connector.select_query(f"""SELECT * FROM event WHERE id = {event_id}""")
@@ -53,13 +46,6 @@ async def update_event(event):
     connector.alter_query(query)
     return event   
 
-async def update_location_message(location):
-    timestamp = time.strftime('%Y-%m-%d %H-%M-%S')
-
-    query = f"""UPDATE discordLocation SET messageId = \"{location.messageId}\", on_update = \"{timestamp}\"  WHERE id = {location.id} """
-    eventId = connector.alter_query(query)
-    return eventId
-
 # Getters 
 
 async def get_by_userId(userId):
@@ -70,14 +56,6 @@ async def get_by_userId(userId):
     row = records[0]
     return Event(row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8], row[9]) 
 
-async def get_location_by_event(event):
-    query = f""" SELECT * FROM discordLocation WHERE eventId = {event.id} """
-    records = connector.select_query(query)
-    if len(records) == 0:
-        return None
-    row = records[0]
-    return Location(row[0], row[1], row[2], row[3], row[4]) 
-
 async def get_location(location):
     records = connector.select_query(f"""SELECT * FROM discordLocation WHERE guildId = {location.guildId} AND channelId = {location.channelId} AND messageId = {location.messageId} """)
     row = records[0]
@@ -87,11 +65,6 @@ async def get_location(location):
 async def get_eventid_by_location(location):
     location = await get_location(location)
     return location.eventId
-
-async def get_location_by_event(event):
-    records = connector.select_query(f"""SELECT * FROM discordLocation WHERE eventId = {event.id} """)
-    row = records[0]
-    return Location(row[0], row[1], row[2], row[3], row[4]) 
 
 async def get_event_from_location(guildId, channelId, messageId):
     id = get_eventid_by_location(guildId, channelId, messageId)

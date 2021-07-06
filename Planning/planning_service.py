@@ -2,7 +2,8 @@ from os import error, name
 from discord_components import Button
 
 from user_service import get_or_create_user
-from event_service import new_event, update_event, get_location_by_event, get_last_event_by_userId, delete_event_from_authorId
+from event_service import new_event, update_event, get_last_event_by_userId, delete_event_from_authorId
+from location_service import get_location_by_event
 import resources as res
 import user_service as usr_service
 import message_service as msg_serv
