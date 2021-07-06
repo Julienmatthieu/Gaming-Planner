@@ -1,5 +1,5 @@
 import time
-from localisation import Location 
+from location import Location 
 import connector 
 import resources as res
 
