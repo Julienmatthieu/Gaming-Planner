@@ -8,14 +8,6 @@ from location import Location
 
 import resources as res
 
-async def get_last_unset_event(message):
-    location = await loc_serv.get_event_by_message_location(message)
-    if (location == None):
-        return
-    location.messageId = message.id
-    await loc_serv.update_location_message(location)
-    return await repo.get_event(location.eventId)
-
 async def new_event(message, author):
     new_event = Event(id=0, players=message.author.name, 
                         time="", slots=1, authorId=str(author.id), 
