@@ -24,7 +24,7 @@ async def get_location_by_event(event):
     row = records[0]
     return Location(row[0], row[1], row[2], row[3], row[4]) 
 
-async def update_location_for_message(event_id, message):
+async def update_location_from_message(event_id, message):
     timestamp = time.strftime('%Y-%m-%d %H-%M-%S')
 
     query = f"""UPDATE discordLocation SET messageId = \"{message.id}\", on_update = \"{timestamp}\"  WHERE id = {event_id} AND guildId = {message.guild.id} \
