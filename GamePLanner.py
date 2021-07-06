@@ -4,7 +4,6 @@ import pathlib
 from discord import Color
 from discord.ext.commands import Bot
 from discord_components import *
-import re
 
 path = pathlib.Path().absolute()
 sys.path.append(f'{path}/Resources/')
@@ -41,10 +40,7 @@ async def on_message(message):
     elif str(message.channel.type) == res.msg_type['dm'] and message.author != bot.user:
         await plan_serv.building_together(message, bot)
     elif str(message.channel.type) != res.msg_type['dm'] and message.author == bot.user and message.embeds != None:
-        for elem in message.embeds:
-            print(elem.footer.text)
-            id = int(re.search(r'\d+', elem.footer.text).group())
-            print(f" my id is {id}")
+        await loc_serv.update_location_message_id(message)
 
 @bot.command(name=res.next, help=res.help['next'])
 async def next(ctx):

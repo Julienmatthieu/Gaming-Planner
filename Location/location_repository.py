@@ -30,3 +30,10 @@ async def get_location_by_event(event):
         return None
     row = records[0]
     return Location(row[0], row[1], row[2], row[3], row[4]) 
+
+async def update_location_message(event_id, message_id):
+    timestamp = time.strftime('%Y-%m-%d %H-%M-%S')
+
+    query = f"""UPDATE discordLocation SET messageId = \"{message_id}\", on_update = \"{timestamp}\"  WHERE id = {event_id} """
+    eventId = connector.alter_query(query)
+    return eventId
