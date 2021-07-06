@@ -11,7 +11,7 @@ async def update_location_message(location):
     return eventId
 
 async def create_location(location):
-    query = f"""INSERT INTO discordLocation (guildId, channelId, messageId, eventId) VALUES (\"{location.guildId}\", \"{location.channelId}\", \"{location.messageId}\", {eventId}) """
+    query = f"""INSERT INTO discordLocation (guildId, channelId, messageId, eventId) VALUES (\"{location.guildId}\", \"{location.channelId}\", \"{location.messageId}\", {location.eventId}) """
     location.id = connector.alter_query(query)
     return location
 
