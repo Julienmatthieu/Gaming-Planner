@@ -42,7 +42,7 @@ async def on_message(message):
         await plan_serv.building_together(message, bot)
     elif str(message.channel.type) != res.msg_type['dm'] and message.author == bot.user and message.embeds != None:
         for elem in message.embeds:
-            print(elem.footer)
+            print(elem.footer.text)
             id = int(re.search(r'\d+', elem.footer).group())
             print(f" my id is {id}")
 
