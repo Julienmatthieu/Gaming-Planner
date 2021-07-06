@@ -40,7 +40,7 @@ async def BuildInvitMessage(event, author, color=res.message_colors['process']):
             message += f'\n\t  - **{player}**'
         embed.add_field(name=f"Up but late {res.emojis['clock']}:", value=message, inline=True)
 
-    embed.set_footer(text=f"Thank you for using Game-planner bot. (event id:{event.id})")
+    embed.set_footer(text=f"Thank you for using Game-planner bot. | event_id:{event.id} ")
 
     return embed
 

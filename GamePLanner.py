@@ -42,7 +42,9 @@ async def on_message(message):
         await plan_serv.building_together(message, bot)
     elif str(message.channel.type) != res.msg_type['dm'] and message.author == bot.user:
         print("\n I can see this message \n")
-        print(message.content)
+        print(type(message))
+        print(message.footer)
+        print(message.__disct__)
 @bot.command(name=res.next, help=res.help['next'])
 async def next(ctx):
     message = ctx.message
