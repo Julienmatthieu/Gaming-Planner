@@ -56,14 +56,6 @@ async def get_by_userId(userId):
     row = records[0]
     return Event(row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7], row[8], row[9]) 
 
-async def get_location_by_event(event):
-    query = f""" SELECT * FROM discordLocation WHERE eventId = {event.id} """
-    records = connector.select_query(query)
-    if len(records) == 0:
-        return None
-    row = records[0]
-    return Location(row[0], row[1], row[2], row[3], row[4]) 
-
 async def get_location(location):
     records = connector.select_query(f"""SELECT * FROM discordLocation WHERE guildId = {location.guildId} AND channelId = {location.channelId} AND messageId = {location.messageId} """)
     row = records[0]

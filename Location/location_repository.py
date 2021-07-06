@@ -22,3 +22,11 @@ async def get_location_by_guild_and_channel(guildId, channelId):
     row = records[0]
     location = Location(row[0], row[1], row[2], row[3], row[4]) 
     return location 
+
+async def get_location_by_event(event):
+    query = f""" SELECT * FROM discordLocation WHERE eventId = {event.id} """
+    records = connector.select_query(query)
+    if len(records) == 0:
+        return None
+    row = records[0]
+    return Location(row[0], row[1], row[2], row[3], row[4]) 
