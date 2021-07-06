@@ -43,7 +43,9 @@ async def on_message(message):
     elif str(message.channel.type) != res.msg_type['dm'] and message.author == bot.user:
         print("\n I can see this message \n")
         print(type(message))
-        print(message.footer)
+        print(message.embeds)
+        if len(message.embeds) > 0:
+        print(message.embeds[1])
         print(message.__disct__)
 @bot.command(name=res.next, help=res.help['next'])
 async def next(ctx):
