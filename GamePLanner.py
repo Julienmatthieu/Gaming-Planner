@@ -45,7 +45,8 @@ async def on_message(message):
         print(type(message))
         print(message.embeds)
         if len(message.embeds) > 0:
-        print(message.embeds[1])
+            print(message.embeds[1])
+            print(message.embeds[1].footer)
         print(message.__disct__)
 @bot.command(name=res.next, help=res.help['next'])
 async def next(ctx):
