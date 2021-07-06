@@ -74,11 +74,6 @@ async def get_eventid_by_location(location):
     location = await get_location(location)
     return location.eventId
 
-async def get_location_by_event(event):
-    records = connector.select_query(f"""SELECT * FROM discordLocation WHERE eventId = {event.id} """)
-    row = records[0]
-    return Location(row[0], row[1], row[2], row[3], row[4]) 
-
 async def get_event_from_location(guildId, channelId, messageId):
     id = get_eventid_by_location(guildId, channelId, messageId)
     event = await get_event(id)
