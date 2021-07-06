@@ -14,10 +14,8 @@ async def get_event_by_message_location(message):
 
 async def update_location_message_id(message):
 
-    author_db = await usr_serv.get_by_discord_id(message.author.id)
-
     for elem in message.embeds:
         print(elem.footer.text)
         event_id = int(re.search(r'\d+', elem.footer.text).group())
         print(f" my id is {event_id} and my message id is {message.id}")
-        await repo.update_location_message(event_id, message)
+        await repo.update_location_from_message(event_id, message)
